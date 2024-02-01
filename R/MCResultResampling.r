@@ -66,7 +66,10 @@ setClass(
       
       # RNG settings
       rng.seed="numeric",
-      rng.kind="character"
+      rng.kind="character",
+      
+      # Robust / classic covariance for bootstrap ellipses
+      robust.cov="character"
   ),
    
    contains = "MCResult"
@@ -81,6 +84,9 @@ setMethod(f="initialize",signature="MCResultResampling",definition=MCResultResam
 
 setGeneric("plotBootstrapCoefficients",function(.Object,...){standardGeneric("plotBootstrapCoefficients")})
 setMethod("plotBootstrapCoefficients",signature=c(.Object="MCResultResampling"),definition=MCResultResampling.plotBootstrapCoefficients)
+
+setGeneric("plotBoxEllipses",function(.Object,...){standardGeneric("plotBoxEllipses")})
+setMethod("plotBoxEllipses",signature=c(.Object="MCResultResampling"),definition=MCResultResampling.plotBoxEllipses)
 
 setGeneric("plotBootstrapT",function(.Object,...){standardGeneric("plotBootstrapT")})
 setMethod("plotBootstrapT",signature=c(.Object="MCResultResampling"),definition=MCResultResampling.plotBootstrapT)

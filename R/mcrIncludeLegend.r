@@ -104,7 +104,11 @@ includeLegend <- function(models = list(), digits = 2,design = paste(1:2),
         		    RegType[i] <-"Deming Regression"
         	    } else if (x@regmeth == "WDeming") {
                     RegType[i] <-"Weighted Deming Regression"
-                } else { 
+              } else if (x@regmeth == "MDeming") {
+                  RegType[i] <-"Weighted M-Deming Regression"
+              } else if (x@regmeth == "MMDeming") {
+                  RegType[i] <-"Weighted MM-Deming Regression"
+              } else { 
                     RegType[i]  <- "Passing Bablok Regression"
                 }
             } else RegType[i] <- model.names[i]

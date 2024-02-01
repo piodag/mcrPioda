@@ -51,7 +51,7 @@ newMCResultJackknife <- function(   wdata, para, sample.names=NULL, method.names
     stopifnot(is.matrix(para))
     stopifnot(all(dim(para)==c(2,4)))
     stopifnot(is.character(regmeth))
-    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","PaBa","WDeming", "PaBaLarge","PBequi","TS")))
+    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","PaBa","WDeming", "PaBaLarge","PBequi","TS","MDeming","MMDeming")))
     stopifnot(is.character(cimeth))
     stopifnot(cimeth=="jackknife")
     stopifnot(is.numeric(alpha))
@@ -339,6 +339,10 @@ MCResultJackknife.printSummary<-function(.Object)
         regtext <- "Deming Regression"
     if(regmeth=="WDeming") 
         regtext <- "Weighted Deming Regression"
+    if(regmeth=="MDeming")
+      regtext <- "Weighted M-Deming Regression"
+    if(regmeth=="MMDeming")
+      regtext <- "Weighted MM-Deming Regression"
     if(regmeth %in% c("PaBa", "PaBaLarge")) 
         regtext <- "Passing Bablok Regression"
 

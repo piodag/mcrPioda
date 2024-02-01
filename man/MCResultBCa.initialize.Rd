@@ -28,7 +28,8 @@ MCResultBCa.initialize(
   sigmaB0 = 0,
   sigmaB1 = 0,
   error.ratio = 0,
-  weight = 1
+  weight = 1,
+  robust.cov = "MCD"
 )
 }
 \arguments{
@@ -79,6 +80,9 @@ MCResultBCa.initialize(
 \item{error.ratio}{for deming regression}
 
 \item{weight}{1 for each data point}
+
+\item{robust.cov}{Robust covariance method for Box & Ellipses plot}
+
 }
 \value{
 No return value

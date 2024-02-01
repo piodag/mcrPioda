@@ -64,7 +64,7 @@ newMCResultResampling <- function(wdata,para,xmean,sample.names=NULL,method.name
     stopifnot(is.matrix(para))
     stopifnot(all(dim(para)==c(2,4)))
     stopifnot(is.character(regmeth))
-    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","PaBa","WDeming", "PaBaLarge","TS","PBequi")))
+    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","PaBa","WDeming", "PaBaLarge","TS","PBequi","MDeming", "MMDeming")))
     stopifnot(is.character(cimeth))
     stopifnot(is.element(cimeth,c("bootstrap","nestedbootstrap")))
     stopifnot(is.character(bootcimeth))
@@ -155,12 +155,13 @@ newMCResultResampling <- function(wdata,para,xmean,sample.names=NULL,method.name
 #' @param sigmaB0 SD for 'B0'
 #' @param sigmaB1 SD for 'B1'
 #' @param weight 1 for each data point
+#' @param robust.cov "MCD", "SDe" or "Classic" covariance method see rrcov
 #' @return No return value
 
 MCResultResampling.initialize <- function(.Object,data=data.frame(X=NA,Y=NA),para=matrix(NA,ncol=4,nrow=2),xmean=0,mnames=c("unknown","unknown"),
                                           regmeth="unknown",cimeth="unknown",bootcimeth="unknown",alpha=0.05,glob.coef=c(0,0),
                                           rng.seed=as.numeric(NA),rng.kind="unknown",glob.sigma=c(0,0),nsamples=0,nnested=0,B0=0,B1=0,
-                                          MX=0,sigmaB0=0,sigmaB1=0,error.ratio=0, weight=1)
+                                          MX=0,sigmaB0=0,sigmaB1=0,error.ratio=0, weight=1,robust.cov="MCD")
 {
     .Object@data <- data
     .Object@error.ratio <- error.ratio
@@ -182,7 +183,8 @@ MCResultResampling.initialize <- function(.Object,data=data.frame(X=NA,Y=NA),par
     .Object@sigmaB1 <- sigmaB1
     .Object@rng.seed <- rng.seed
     .Object@rng.kind <- rng.kind
-    .Object@weight<-weight       
+    .Object@weight<-weight
+    .Object@robust.cov <- robust.cov
     
     return(.Object)
 }
@@ -215,6 +217,56 @@ MCResultResampling.plotBootstrapCoefficients<-function(.Object,breaks=20,...){
     points(density(.Object@B0),type="l",lty=2)
     abline(v=.Object@glob.coef[1], col="red")
     text(.Object@glob.coef[1]+(hi$breaks[length(hi$breaks)]-hi$breaks[1])/30,range(c(dns$y,hi$density),na.rm=TRUE)[2],"estimation",col="red",adj=0)
+}
+
+
+MCResultResampling.plotBoxEllipses<-function(.Object, robust.cov = c("MCD","SDe","Classic"))
+{
+  par(mfrow=c(1,1))
+  if(robust.cov=="MCD"){
+    t.mcd<-rrcov::CovMcd(cbind(.Object@B0,.Object@B1))
+    text.label<-"robust MCD"
+  }else if (robust.cov=="SDe"){
+    t.mcd<-rrcov::CovClassic(cbind(.Object@B0,.Object@B1))
+    text.label<-"robust SDe"
+  }else if (robust.cov=="Classic"){
+    t.mcd<-rrcov::CovClassic(cbind(.Object@B0,.Object@B1))
+    text.label<-"Classical"
+  }else{
+    t.mcd<-rrcov::CovMcd(cbind(.Object@B0,.Object@B1))
+    text.label<-"robust MCD"
+  }
+  
+  t.md<-mahalanobis(c(0,1),center=t.mcd$center,cov=t.mcd$cov)
+  res.p<-pchisq(t.md,df=2,lower.tail=F)
+  names(res.p)<-"Chisq global p-value"
+  plot(.Object@B0,.Object@B1,xlab="intercept",ylab="slope",pch=16,col=rgb(0,0,0,alpha=0.2))
+  points(0,1,pch=4,cex=2,col="red",lwd=3)
+  grid()
+  res.cx<-.Object@para[1,1:4]
+  res.cy<-.Object@para[2,1:4]
+  rect(res.cx[3],res.cy[3],res.cx[4],res.cy[4],
+       border="purple",lty=3,lwd=2)
+  
+  points(res.cx[1],res.cy[1],col="purple",pch=3,cex=2,lwd=3)
+  
+  mixtools::ellipse(mu=t.mcd$center,sigma=t.mcd$cov,alpha=0.05,
+                    npoints=250,newplot=FALSE,
+                    draw=TRUE, col="blue",lwd=1,lty=2)
+  
+  mixtools::ellipse(mu=t.mcd$center,sigma=t.mcd$cov,alpha=0.01,
+                    npoints=250,newplot=FALSE,
+                    draw=TRUE, col="blue",lwd=1,lty=1)
+  
+  points(t.mcd$center[1],t.mcd$center[2],col="blue",pch=8,cex=2,lwd=3)
+  
+  mtext(paste("Chi sq. p-value with 2 d.f.: ",signif(res.p,4)),side=1, line=-2,adj=0.1,font=1)
+  
+  legend("topright",legend=c("ell. 5%","ell. 1%","CI 5%"),title="Alpha val.",
+         lty=c(2,1,3),lwd=c(1,1,2),col=c("blue","blue","purple"))
+  
+  title(paste("Box & ellipses (",text.label,"covariance ) of the",.Object@regmeth,"bootstrapped samples estimates"))
+  
 }
 
 #' Plot distriblution of bootstrap pivot T
@@ -310,7 +362,7 @@ MCResultResampling.calcResponse<-function(.Object, x.levels, alpha=0.05, bootcim
     stopifnot(length(x.levels) > 0)
     stopifnot(bootcimeth %in% c("Student","tBoot","quantile"))
     
-    if (.Object@regmeth %in% c("PaBa", "PaBaLarge", "WDeming") & .Object@cimeth == "bootstrap" & bootcimeth=="tBoot") 
+    if (.Object@regmeth %in% c("PaBa", "PaBaLarge", "WDeming", "MDeming", "MMDeming") & .Object@cimeth == "bootstrap" & bootcimeth=="tBoot") 
         stop(paste("It is impossible to calculate the tBoot confidence bounds for ",.Object@regmeth,".\n Please choose nested bootstrap.",sep=""))
     
     npoints<-length(.Object@data[,"x"])
@@ -391,6 +443,8 @@ MCResultResampling.printSummary<-function(.Object){
     if (regmeth=="PBequi") regtext<-"Equivariant Passing-Bablok Regression"
     if (regmeth=="Deming") regtext<-"Deming Regression"
     if (regmeth=="WDeming") regtext <- "Weighted Deming Regression"
+    if (regmeth=="MDeming") regtext <- "Weighted M-Deming Regression"
+    if (regmeth=="MMDeming") regtext <- "Weighted MM-Deming Regression"
     if (regmeth %in% c("PaBa", "PaBaLarge")) regtext <- "Passing Bablok Regression"
     cat("\n\n------------------------------------------\n\n")
     cat(paste("Reference method: ",.Object@mnames[1],"\n",sep=""))

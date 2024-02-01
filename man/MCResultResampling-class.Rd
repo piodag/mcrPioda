@@ -12,7 +12,7 @@ Result of a method comparison with resampling based confidence intervals.
 }
 \section{Objects from the Class}{
 Object is typically created by a call to function \code{\link{mcreg}}.
-Object can be directly constructed by calling \code{\link{newMCResultResampling}} or \code{new("MCResultResampling", data, para, xmean, mnames, regmeth, cimeth, bootcimeth, alpha, glob.coef, rng.seed, rng.kind, glob.sigma, nsamples, nnested, B0, B1, MX, sigmaB0, sigmaB1, error.ratio, weight)}.
+Object can be directly constructed by calling \code{\link{newMCResultResampling}} or \code{new("MCResultResampling", data, para, xmean, mnames, regmeth, cimeth, bootcimeth, alpha, glob.coef, rng.seed, rng.kind, glob.sigma, nsamples, nnested, B0, B1, MX, sigmaB0, sigmaB1, error.ratio, weight,robust.cov)}.
 }
 \section{Slots}{
   \describe{
@@ -37,6 +37,7 @@ Object can be directly constructed by calling \code{\link{newMCResultResampling}
     \item{\code{error.ratio}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{alpha}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{weight}:}{Object of class \code{"numeric"} ~~ }
+    \item{\code{robust.cov}:}{Object of class \code{"character"} ~~ }
   }
 }
 \section{Extends}{

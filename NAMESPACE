@@ -64,6 +64,7 @@ export(
 	"MCResultBCa.calcResponse",
 	"MCResultBCa.initialize",
 	"MCResultBCa.plotBootstrapCoefficients",
+	"MCResultBCa.plotBoxEllipses",
 	"MCResultBCa.plotBootstrapT",
 	"MCResultBCa.printSummary",
 	"MCResultJackknife.calcResponse",
@@ -78,6 +79,7 @@ export(
 	"MCResultResampling.calcResponse",
 	"MCResultResampling.initialize",
 	"MCResultResampling.plotBootstrapCoefficients",
+	"MCResultResampling.plotBoxEllipses",
 	"MCResultResampling.plotBootstrapT",
 	"MCResultResampling.printSummary"
 )

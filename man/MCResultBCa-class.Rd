@@ -12,7 +12,7 @@ Result of a method comparison with BCa-bootstrap based confidence intervals.
 }
 \section{Objects from the Class}{
 Object is typically created by a call to function \code{\link{mcreg}}.
-Object can be directly constructed by calling \code{\link{newMCResultBCa}} or \code{new("MCResultBCa", data, para, xmean, mnames, regmeth, cimeth, bootcimeth, alpha, glob.coef, glob.sigma, nsamples, nnested, B0jack, B1jack, B0, B1, MX, rng.seed, rng.kind, sigmaB0, sigmaB1, error.ratio, weight)}.
+Object can be directly constructed by calling \code{\link{newMCResultBCa}} or \code{new("MCResultBCa", data, para, xmean, mnames, regmeth, cimeth, bootcimeth, alpha, glob.coef, glob.sigma, nsamples, nnested, B0jack, B1jack, B0, B1, MX, rng.seed, rng.kind, sigmaB0, sigmaB1, error.ratio, weight,robust.cov)}.
 }
 \section{Slots}{
   \describe{
@@ -39,6 +39,7 @@ Object can be directly constructed by calling \code{\link{newMCResultBCa}} or \c
     \item{\code{error.ratio}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{alpha}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{weight}:}{Object of class \code{"numeric"} ~~ }
+    \item{\code{robust.cov}:}{Object of class \code{"character"} ~~ }
   }
 }
 \section{Extends}{

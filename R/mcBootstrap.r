@@ -35,7 +35,9 @@
 #' @param method.reg Regression method.  It is possible to choose between five regression types:
 #'                        \code{"LinReg"} - ordinary least square regression, 
 #'         \code{"WLinReg"} - weighted ordinary least square regression,\code{"Deming"} - Deming regression, 
-#'         \code{"WDeming"} - weighted Deming regression, \code{"PaBa"} - Passing-Bablok regression. 
+#'         \code{"WDeming"} - weighted Deming regression, \code{"PaBa"} - Passing-Bablok regression.
+#'         \code{"WDeming"} - weighted Deming regression, \code{"MDeming"} - weighted M-Deming regression,
+#'         \code{"MMDeming"} - weighted MM-Deming regression,\code{"PaBa"} - Passing-Bablok regression. 
 #' @param bootstrap Bootstrap based confidence interval estimation method. 
 #' @param jackknife Logical value. If TRUE - Jackknife based confidence interval estimation method.
 #' @param nsamples Number of bootstrap samples.
@@ -79,7 +81,7 @@
 
 
 
-mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaBa", "PaBaLarge","TS","PBequi"),
+mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaBa", "PaBaLarge","TS","PBequi","MDeming", "MMDeming"),
 						jackknife=TRUE, bootstrap=c("none","bootstrap", "nestedbootstrap"),
 						X, Y, error.ratio, nsamples=1000,
                         nnested=25, iter.max=30, threshold=0.00000001, NBins=1000000, slope.measure=c("radian","tangent")) 
@@ -95,7 +97,7 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
     stopifnot(!is.na(X) & !is.na(Y))
     stopifnot(length(X) > 0)
     
-    if(method.reg %in% c("Deming", "WDeming"))
+    if(method.reg %in% c("Deming", "WDeming", "MDeming", "MMDeming"))
     {
         stopifnot(!is.na(error.ratio))
         stopifnot(is.numeric(error.ratio))
@@ -208,7 +210,29 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
         	mc.wdemingConstCV(X[idx], Y[idx], error.ratio=error.ratio, 
 										iter.max=iter.max, threshold=threshold)
         }
-    }else if(method.reg == "PaBaLarge"){
+    }else if(method.reg == "MDeming"){
+      callfun.reg <- function(idx)
+      {
+        if(sd(X[idx])<=0)
+        {
+          ## All identical points, no estimation possible
+          warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
+          return(list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA)))
+        }
+        return(mc.mdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold))
+      }
+    }else if(method.reg == "MMDeming"){
+      callfun.reg <- function(idx)
+      {
+        if(sd(X[idx])<=0)
+        {
+          ## All identical points, no estimation possible
+          warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
+          return(list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA)))
+        }
+        return(mc.mmdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold))
+      }
+    } else if(method.reg == "PaBaLarge"){
         callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
             if((sd(X[idx]) <= 0) | (sd(Y[idx]) <= 0)){
                 ## All identical points on one axis, no estimation possible
@@ -252,7 +276,7 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
     }else{  
         weight <- d$weight
     } 
-	if(method.reg %in% c("WDeming","PaBa", "PaBaLarge")){
+	if(method.reg %in% c("WDeming","PaBa", "PaBaLarge", "MDeming", "MMDeming")){
 		## Analytical standard errors not available for weighted Deming and Passing-Bablok
 		glob.seb0 <- as.numeric(NA)
 		glob.seb1 <- as.numeric(NA)
@@ -296,6 +320,8 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
 		B0jack <- sapply(results, function(x) x$b0)
 		B1jack <- sapply(results, function(x) x$b1)
     	
+# if(method.reg %in% c("LinReg","WLinReg","Deming","MDeming","MMdeming")) ? da capire che cosa fare con Jackknife
+		
    	    if(method.reg == "WDeming"){		
             ## Use Linnet's algorithm to estimate parameter SEs	
             jackLinnetB0 <- mc.calcLinnetCI(B0jack, glob.b0, 0.05)
@@ -357,7 +383,7 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
 				if(method.reg %in% c("LinReg", "WLinReg", "Deming","TS","PBequi")){
 					sigmaB0 <- d$se.b0
 					sigmaB1 <- d$se.b1
-				}else if(method.reg == "WDeming"){
+				}else if(method.reg %in% c("WDeming","MDeming","MMDeming")){
 					## Use global SE estimates according to Linnet's method
 					sigmaB0 <- glob.seb0
 					sigmaB1 <- glob.seb1

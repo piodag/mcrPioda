@@ -47,7 +47,7 @@ newMCResult <- function(wdata, para, sample.names=NULL, method.names=NULL, regme
     stopifnot(is.matrix(para))
     stopifnot(all(dim(para)==c(2,4)))
     stopifnot(is.character(regmeth))
-    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","BaPa","WDeming", "PaBaLarge","TS","PBequi")))
+    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","BaPa","WDeming", "PaBaLarge","TS","PBequi","MDeming","MMDeming")))
     stopifnot(!is.na(alpha))
     stopifnot(is.numeric(alpha))
     stopifnot(length(alpha) > 0)
@@ -777,6 +777,10 @@ MCResult.plot <- function(x,
 		titname<-"Deming Regression"
 	else if(x@regmeth == "WDeming")
 		titname<-"Weighted Deming Regression"
+	else if(x@regmeth == "MDeming")
+	  titname<-"Weighted M-Deming Regression"
+	else if(x@regmeth == "MMDeming")
+	  titname<-"Weighted MM-Deming Regression"
 	else 
 		titname <- "Passing Bablok Regression"
 	
@@ -1230,9 +1234,15 @@ MCResult.plotBias<-function(x,
     } else if(x@regmeth == "WDeming")
     {
         titname<-"Weighted Deming Regression"
-    } else   titname <- "Passing Bablok Regression"
+    } else if(x@regmeth == "MDeming")
+    {
+      titname<-"Weighted M-Deming Regression"
+    } else if(x@regmeth == "MMDeming")
+    {
+      titname<-"Weighted MM-Deming Regression"
+    }else   titname <- "Passing Bablok Regression"
     
-	if(x@regmeth %in% c("WDeming","PaBa", "PaBaLarge") & x@cimeth== "analytical" & (ci.area==TRUE | ci.border==TRUE))
+	if(x@regmeth %in% c("WDeming","PaBa", "PaBaLarge","MDeming","MMDeming") & x@cimeth== "analytical" & (ci.area==TRUE | ci.border==TRUE))
     {
         ci.area <- FALSE
         ci.border <- FALSE
@@ -1684,10 +1694,14 @@ MCResult.plotResiduals<-function(.Object, res.type=c("optimized", "y", "x"),
 		    titname <- "Deming Regression"
   	    else if(.Object@regmeth == "TS")
             titname<-"Theil-Sen Regression"
-	    else if(.Object@regmeth == "PBequi")
+	      else if(.Object@regmeth == "PBequi")
             titname<-"Equivariant Passing-Bablok Regression"
         else if(.Object@regmeth == "WDeming")
             titname <- "Weighted Deming Regression"
+        else if(.Object@regmeth == "MDeming")
+          titname <- "Weighted M-Deming Regression"
+        else if(.Object@regmeth == "MMDeming")
+          titname <- "Weighted MM-Deming Regression"
         else
             titname <- "Passing Bablok Regression"
 

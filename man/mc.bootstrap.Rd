@@ -6,7 +6,7 @@
 \usage{
 mc.bootstrap(
   method.reg = c("LinReg", "WLinReg", "Deming", "WDeming", "PaBa", "PaBaLarge", "TS",
-    "PBequi"),
+    "PBequi","MDeming","MMDeming"),
   jackknife = TRUE,
   bootstrap = c("none", "bootstrap", "nestedbootstrap"),
   X,
@@ -21,10 +21,12 @@ mc.bootstrap(
 )
 }
 \arguments{
-\item{method.reg}{Regression method.  It is possible to choose between five regression types:
+\item{method.reg}{Regression method.  It is possible to choose between seven regression types:
                \code{"LinReg"} - ordinary least square regression, 
-\code{"WLinReg"} - weighted ordinary least square regression,\code{"Deming"} - Deming regression, 
-\code{"WDeming"} - weighted Deming regression, \code{"PaBa"} - Passing-Bablok regression.}
+\code{"WLinReg"} - weighted ordinary least square regression, \code{"Deming"} - Deming regression, 
+\code{"WDeming"} - weighted Deming regression, \code{"MDeming"} - weighted M-Deming
+  regression, \code{"MMDeming"} - weighted MM-Deming
+  regression, \code{"PaBa"} - Passing-Bablok regression.}
 
 \item{jackknife}{Logical value. If TRUE - Jackknife based confidence interval estimation method.}
 

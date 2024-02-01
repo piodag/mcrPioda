@@ -63,7 +63,10 @@ setClass(
       
       # RNG settings
       rng.seed="numeric",
-      rng.kind="character"
+      rng.kind="character",
+      
+      # Robust / classic covariance for bootstrap ellipses
+      robust.cov="character"
 
   )
 )
@@ -76,6 +79,8 @@ setClass(
 setMethod(f="initialize",signature="MCResultBCa",definition=MCResultBCa.initialize)
 
 setMethod("plotBootstrapCoefficients",signature=c(.Object="MCResultBCa"),definition=MCResultBCa.plotBootstrapCoefficients)
+
+setMethod("plotBoxEllipses",signature=c(.Object="MCResultBCa"),definition=MCResultBCa.plotBoxEllipses)
 
 setMethod("plotBootstrapT",signature=c(.Object="MCResultBCa"),definition=MCResultBCa.plotBootstrapT)
 
