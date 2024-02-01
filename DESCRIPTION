@@ -10,7 +10,7 @@ Authors@R: c(
     person("Ekaterina", "Manuilova", , "ekaterina.manuilova@roche.com", role = c("aut")),
     person("Florian", "Dufey", , "florian.dufey@roche.com", role = c("aut"), comment = c(ORCID = "0000-0001-6467-8556")),
     person("Jakob", "Raymaekers", ,"jakob.raymaekers@kuleuven.com", role = c("aut"), comment=c(ORCID="0000-0002-2093-3137")),
-    person("Giorgio", "pioda", ,"gfwp@ticino.com", role = c("aut"), comment=c(ORCID="0000-0002-8714-8678")),
+    person("Giorgio", "Pioda", ,"gfwp@ticino.com", role = c("aut"), comment=c(ORCID="0000-0002-8714-8678")),
     person(given = "Venkatraman E.", family = "Seshan", role = c("ctb"), email = "seshanv@mskcc.org"),
     person("Roche", role = c("cph", "fnd"))
     )
