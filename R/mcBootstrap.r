@@ -330,7 +330,8 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
 	        return(list(glob.coef = c(glob.b0,glob.b1),
 						glob.sigma = c(glob.seb0,glob.seb1),
 						xmean = xmean,
-        	            B0jack = B0jack, B1jack = B1jack,
+        	  B0jack = B0jack,
+						B1jack = B1jack,
 						npoints = npoints, cimeth = "jackknife", 
 						weight = weight))
         }
