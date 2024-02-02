@@ -220,7 +220,7 @@ MCResultResampling.plotBootstrapCoefficients<-function(.Object,breaks=20,...){
 }
 
 
-MCResultResampling.plotBoxEllipses<-function(.Object, robust.cov = c("MCD","SDe","Classic"))
+MCResultResampling.plotBoxEllipses<-function(.Object, robust.cov = "MCD")
 {
   par(mfrow=c(1,1))
   if(robust.cov=="MCD"){

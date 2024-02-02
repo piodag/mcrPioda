@@ -211,26 +211,22 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
 										iter.max=iter.max, threshold=threshold)
         }
     }else if(method.reg == "MDeming"){
-      callfun.reg <- function(idx)
-      {
-        if(sd(X[idx])<=0)
-        {
+      callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
+        if(sd(X[idx])<=0){
           ## All identical points, no estimation possible
           warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
-          return(list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA)))
+          list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA))
         }
-        return(mc.mdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold))
+        mc.mdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold)
       }
     }else if(method.reg == "MMDeming"){
-      callfun.reg <- function(idx)
-      {
-        if(sd(X[idx])<=0)
-        {
+      callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
+        if(sd(X[idx])<=0){
           ## All identical points, no estimation possible
           warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
-          return(list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA)))
+          list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA))
         }
-        return(mc.mmdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold))
+        mc.mmdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold)
       }
     } else if(method.reg == "PaBaLarge"){
         callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
@@ -322,7 +318,7 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
     	
 # if(method.reg %in% c("LinReg","WLinReg","Deming","MDeming","MMdeming")) ? da capire che cosa fare con Jackknife
 		
-   	    if(method.reg == "WDeming"){		
+   	    if(method.reg %in% c("WDeming","MDeming","MMDeming")){		
             ## Use Linnet's algorithm to estimate parameter SEs	
             jackLinnetB0 <- mc.calcLinnetCI(B0jack, glob.b0, 0.05)
             jackLinnetB1 <- mc.calcLinnetCI(B1jack, glob.b1, 0.05)

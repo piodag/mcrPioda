@@ -144,7 +144,12 @@ mc.mdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.00000
       b0<-B0
     } # end of iterative algorithm
 
-    return(list(b1=B1,b0=B0,iter=i,xw=XW, weight=W))
+    list(b0 = B0, b1 = B1, 
+                se.b0 = 0 , se.b1 = 0, 
+                xw = XW,  weight = W)
+    
+    
+    
   }
 #}
 

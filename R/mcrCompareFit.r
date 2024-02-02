@@ -31,8 +31,8 @@
 #' @return No return value, instead a plot is generated
 #' 
 #' @examples
-#'      library("mcr")
-#'      data("creatinine", package="mcr")
+#'      library("mcrPioda")
+#'      data("creatinine", package="mcrPioda")
 #'      fit.lr <- mcreg(as.matrix(creatinine), method.reg="LinReg", na.rm=TRUE)
 #'      fit.wlr <- mcreg(as.matrix(creatinine), method.reg="WLinReg", na.rm=TRUE)
 #'      compareFit( fit.lr, fit.wlr )

@@ -257,7 +257,7 @@ MCResultJackknife.getRJIF<-function(.Object)
 #' @aliases plotwithRJIF
 #' @examples
 #'     #library("mcr")
-#'     data(creatinine,package="mcr")
+#'     data(creatinine,package="mcrPioda")
 #'     x <- creatinine$serum.crea
 #'     y <- creatinine$plasma.crea
 #'     # Deming regression fit.

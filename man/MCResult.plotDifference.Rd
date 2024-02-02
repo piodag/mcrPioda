@@ -94,8 +94,8 @@ No return value, instead a plot is generated
 Draw different Bland-Altman plot modifications (see parameter \code{plot.type}).
 }
 \examples{
-    #library("mcr")
-    data(creatinine,package="mcr")
+    #library("mcrPioda")
+    data(creatinine,package="mcrPioda")
     x <- creatinine$serum.crea
     y <- creatinine$plasma.crea
 

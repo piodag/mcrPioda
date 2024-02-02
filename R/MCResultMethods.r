@@ -329,7 +329,7 @@ MCResult.calcCUSUM <- function(.Object)
 #' @return No return value, instead a plot is generated
 #' @examples
 #'     #library("mcr")
-#'     data(creatinine,package="mcr")
+#'     data(creatinine,package="mcrPioda")
 #'     x <- creatinine$serum.crea
 #'     y <- creatinine$plasma.crea
 #' 
@@ -546,7 +546,7 @@ MCResult.plotDifference <- function(.Object,
 #' @aliases calcResponse
 #' @examples
 #'     #library("mcr")
-#'     data(creatinine,package="mcr")
+#'     data(creatinine,package="mcrPioda")
 #'     x <- creatinine$serum.crea
 #'     y <- creatinine$plasma.crea
 #'     # Deming regression fit.
@@ -578,7 +578,7 @@ MCResult.calcResponse <- function(.Object,x.levels,alpha,...)
 #' @aliases calcBias
 #' @examples
 #'     #library("mcr")
-#'     data(creatinine,package="mcr")
+#'     data(creatinine,package="mcrPioda")
 #'     x <- creatinine$serum.crea
 #'     y <- creatinine$plasma.crea
 #' 
@@ -675,8 +675,8 @@ MCResult.calcBias <- function(.Object, x.levels, type = c("absolute", "proportio
 #' @aliases plot
 #' @return No return value, instead a plot is generated
 #' @examples
-#'  library(mcr)
-#'  data(creatinine,package="mcr")
+#'  library(mcrPioda)
+#'  data(creatinine,package="mcrPioda")
 #'  creatinine <- creatinine[complete.cases(creatinine),]
 #'   x <- creatinine$serum.crea
 #'   y <- creatinine$plasma.crea
@@ -1139,7 +1139,7 @@ MCResult.plot <- function(x,
 #' @return No return value, instead a plot is generated
 #' @examples
 #' #library("mcr")
-#' data(creatinine,package="mcr")
+#' data(creatinine,package="mcrPioda")
 #' 
 #' creatinine <- creatinine[complete.cases(creatinine),]
 #' x <- creatinine$serum.crea
@@ -1653,7 +1653,7 @@ MCResult.printSummary <- function(.Object)
 #' @aliases plotResiduals
 #' @return No return value, instead a plot is generated
 #' @examples
-#'     data(creatinine,package="mcr")
+#'     data(creatinine,package="mcrPioda")
 #'     x <- creatinine$serum.crea
 #'     y <- creatinine$plasma.crea
 #' 

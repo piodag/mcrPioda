@@ -1,4 +1,4 @@
-useDynLib(mcr, .registration=TRUE)
+useDynLib(mcrPioda, .registration=TRUE)
 
 ### imported generics and functions
 import(methods)

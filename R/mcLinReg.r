@@ -58,7 +58,7 @@ mc.linreg <- function(X, Y)
 						X = as.numeric(X), Y = as.numeric(Y), N = as.integer(n), 
 						intercept = as.numeric(intercept), slope = as.numeric(slope), 
 						seIntercept = as.numeric(seIntercept), seSlope = as.numeric(seSlope), 
-						W = as.numeric(W), XW = as.numeric(xw), PACKAGE="mcr")
+						W = as.numeric(W), XW = as.numeric(xw), PACKAGE="mcrPioda")
 	
 	
 	## Return estimates and sd
@@ -112,7 +112,7 @@ mc.wlinreg <- function(X, Y)
 						X = as.numeric(X), Y = as.numeric(Y), N = as.integer(n), 
 						intercept = as.numeric(intercept), slope = as.numeric(slope), 
 						seIntercept = as.numeric(seIntercept), seSlope = as.numeric(seSlope), 
-						W = as.numeric(W), XW = as.numeric(xw), PACKAGE="mcr")
+						W = as.numeric(W), XW = as.numeric(xw), PACKAGE="mcrPioda")
 	
 	
 	## Return estimates and sd

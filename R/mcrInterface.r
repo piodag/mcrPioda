@@ -196,8 +196,8 @@
 #' @seealso \code{\link{plotDifference}}, \code{\link{plot.mcr}}, \code{\link{getResiduals}}, \code{\link{plotResiduals}}, \code{\link{calcResponse}}, \code{\link{calcBias}}, \code{\link{plotBias}}, \code{\link{compareFit}}
 #' @author Ekaterina Manuilova \email{ekaterina.manuilova@@roche.com}, Andre Schuetzenmeister \email{andre.schuetzenmeister@@roche.com}, Fabian Model \email{fabian.model@@roche.com}, Sergej Potapov \email{sergej.potapov@@roche.com}, Florian Dufey \email{florian.dufey@@roche.com}, Jakob Raymaekers \email{jakob.raymaekers@@kuleuven.be}
 #' @examples
-#' library("mcr")
-#' data(creatinine,package="mcr")
+#' library("mcrPioda")
+#' data(creatinine,package="mcrPioda")
 #' x <- creatinine$serum.crea
 #' y <- creatinine$plasma.crea
 #' # Deming regression fit.
@@ -253,7 +253,7 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
         stopifnot(length(error.ratio) > 0)
         stopifnot(error.ratio >= 0) 
         
-        if( method.reg == "WDeming"){
+        if( method.reg %in% c("WDeming","MDeming", "MMDeming")){
             stopifnot(!is.na(iter.max))
             stopifnot(is.numeric(iter.max))
             stopifnot(length(iter.max) > 0)
@@ -338,7 +338,7 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
         stop("Passing-Bablok regression for negative values is not available.")	
     if(method.reg == "WLinReg" & any(data == 0)) 
         stop("Weighted linear regression for zero values is not available.")
-    if(method.reg %in% c("WDeming","PaBa") & method.ci=="bootstrap" & method.bootstrap.ci=="tBoot") 
+    if(method.reg %in% c("WDeming","PaBa","MDeming","MMDeming") & method.ci=="bootstrap" & method.bootstrap.ci=="tBoot") 
         stop(paste("The analytical estimation of coefficients' SE for", method.reg ,"is not available. \nFor tBoot please choose nested bootstrap."))	
 
     ## Analytical confidence intervals
@@ -397,11 +397,11 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
 							jackknife = TRUE,
 							bootstrap = "none", 
 							X = data[,"x"], Y = data[,"y"],
-                            error.ratio = error.ratio, 
+              error.ratio = error.ratio, 
 							nsamples = nsamples, 
 							NBins = NBins, 
 							slope.measure = slope.measure,
-                            threshold = threshold, 
+              threshold = threshold, 
 							iter.max = iter.max, 
 							nnested = nnested)
         B0jack <- res$B0jack
@@ -444,7 +444,7 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
 								bootstrap = method.ci, 
 								X = data[,"x"], Y = data[,"y"], NBins = NBins, 
 								slope.measure = slope.measure,
-                                error.ratio = error.ratio, 
+                error.ratio = error.ratio, 
 								nsamples = nsamples, 
 								threshold = threshold, 
 								iter.max = iter.max, 

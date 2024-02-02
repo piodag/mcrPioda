@@ -2,7 +2,7 @@
 \alias{MCResultResampling.plotBoxEllipses}
 \title{Plot distriblution of bootstrap coefficients with robust covariance ellipses and a CI box}
 \usage{
-MCResultResampling.plotBoxEllipses(.Object, robust.cov = c("MCD","SDe","Classic"))
+MCResultResampling.plotBoxEllipses(.Object, robust.cov = "MCD")
 }
 \arguments{
   \item{.Object}{Object of class "MCResultResampling"}

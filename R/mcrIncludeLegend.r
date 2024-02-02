@@ -44,9 +44,9 @@
 #' @aliases includeLegend
 #' @seealso \code{\link{plot.mcr}}, \code{\link{plotBias}}, \code{\link{plotResiduals}}, \code{\link{plotDifference}}, \code{\link{compareFit}}
 #' @examples
-#' #library("mcr")
+#' #library("mcrPioda")
 #'
-#'  data(creatinine,package="mcr")
+#'  data(creatinine,package="mcrPioda")
 #'  x <- creatinine$serum.crea
 #'  y <- creatinine$plasma.crea
 #'

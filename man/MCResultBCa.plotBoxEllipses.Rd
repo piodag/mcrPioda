@@ -2,7 +2,7 @@
 \alias{MCResultBCa.plotBoxEllipses}
 \title{Plot distriblution of bootstrap coefficients and Box and Ellipses for the hypotesis testing}
 \usage{
-MCResultBCa.plotBoxEllipses(.Object, robust.cov = c("MCD","SDe","Classic"))
+MCResultBCa.plotBoxEllipses(.Object, robust.cov = "MCD")
 }
 \arguments{
   \item{.Object}{Object of class "MCResultBCa"}

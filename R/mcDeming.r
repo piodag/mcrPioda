@@ -84,7 +84,7 @@ mc.deming <- function(X, Y, error.ratio)
 						threshold = as.numeric(threshold), 
 						W = as.numeric(W), 
 						xw = as.numeric(xw), 
-						PACKAGE="mcr")
+						PACKAGE="mcrPioda")
 
 	list(b0 = model.Deming$intercept, b1 = model.Deming$slope, 
 		se.b0 = model.Deming$seIntercept, se.b1 = model.Deming$seSlope, 

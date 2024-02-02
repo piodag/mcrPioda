@@ -137,7 +137,7 @@ mc.paba <- function(angM = NULL, X, Y, alpha = 0.05, posCor = TRUE,
 					seIntercept = as.numeric(seIntercept), seSlope = as.numeric(seSlope), 
 					pQuantile = as.numeric(qnorm(1-alpha/2)), pCor = as.integer(posCor), 
 					tangent = as.integer(slope.measure), Ncpu = as.integer(Ncpu),
-					PACKAGE="mcr")
+					PACKAGE="mcrPioda")
 	
     ##
 	## Confidence intervals for slope

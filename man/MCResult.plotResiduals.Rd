@@ -57,7 +57,7 @@ No return value, instead a plot is generated
 Plot Residuals of an MCResult Object
 }
 \examples{
-    data(creatinine,package="mcr")
+    data(creatinine,package="mcrPioda")
     x <- creatinine$serum.crea
     y <- creatinine$plasma.crea
 

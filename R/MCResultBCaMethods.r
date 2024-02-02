@@ -233,7 +233,7 @@ MCResultBCa.plotBootstrapCoefficients<-function(.Object, breaks=20, ...)
 }
 
 
-MCResultBCa.plotBoxEllipses<-function(.Object, robust.cov = c("MCD","SDe","Classic"))
+MCResultBCa.plotBoxEllipses<-function(.Object, robust.cov = "MCD")
 {
   par(mfrow=c(1,1))
   if(robust.cov=="MCD"){

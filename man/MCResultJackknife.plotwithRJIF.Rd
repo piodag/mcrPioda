@@ -19,8 +19,8 @@ Observations with high influence (relative jackknife influence function is great
 are highlighted as red points.
 }
 \examples{
-    #library("mcr")
-    data(creatinine,package="mcr")
+    #library("mcrPioda")
+    data(creatinine,package="mcrPioda")
     x <- creatinine$serum.crea
     y <- creatinine$plasma.crea
     # Deming regression fit.

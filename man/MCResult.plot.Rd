@@ -132,8 +132,8 @@ Plot method X (reference) vs. method Y (test) with (optional) line of identity,
 regression line and confidence bounds for response.
 }
 \examples{
- library(mcr)
- data(creatinine,package="mcr")
+ library(mcrPioda)
+ data(creatinine,package="mcrPioda")
  creatinine <- creatinine[complete.cases(creatinine),]
   x <- creatinine$serum.crea
   y <- creatinine$plasma.crea

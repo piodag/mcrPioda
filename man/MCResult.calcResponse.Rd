@@ -23,8 +23,8 @@ response and corresponding confidence interval for each point in vector \code{x.
 Calculate Response \eqn{Intercept + Slope * Refrencemethod} with Corresponding Confidence Interval
 }
 \examples{
-    #library("mcr")
-    data(creatinine,package="mcr")
+    #library("mcrPioda")
+    data(creatinine,package="mcrPioda")
     x <- creatinine$serum.crea
     y <- creatinine$plasma.crea
     # Deming regression fit.

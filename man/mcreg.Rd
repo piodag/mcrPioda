@@ -171,8 +171,8 @@ Same holds true for the Theil-Sen estimator, which is a robust alternative to li
 Like linear regression, it assumes that x-values are error free.
 }
 \examples{
-library("mcr")
-data(creatinine,package="mcr")
+library("mcrPioda")
+data(creatinine,package="mcrPioda")
 x <- creatinine$serum.crea
 y <- creatinine$plasma.crea
 # Deming regression fit.

@@ -42,8 +42,8 @@ up the computation.
 }
 \examples{
 
- library("mcr")
- data(creatinine,package="mcr")
+ library("mcrPioda")
+ data(creatinine,package="mcrPioda")
  
 # remove any NAs
 crea <- na.omit(creatinine)

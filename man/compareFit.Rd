@@ -17,8 +17,8 @@ Graphical comparison of regression parameters (intercept and slope) and their as
 100(1-alpha)\% confidence intervals for multiple fitted models of 'MCResult' sub-classes.
 }
 \examples{
-     library("mcr")
-     data("creatinine", package="mcr")
+     library("mcrPioda")
+     data("creatinine", package="mcrPioda")
      fit.lr <- mcreg(as.matrix(creatinine), method.reg="LinReg", na.rm=TRUE)
      fit.wlr <- mcreg(as.matrix(creatinine), method.reg="WLinReg", na.rm=TRUE)
      compareFit( fit.lr, fit.wlr )

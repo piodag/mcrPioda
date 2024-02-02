@@ -112,8 +112,8 @@ with confidence bounds, covering the whole range of reference method X
 or only part of it.
 }
 \examples{
-#library("mcr")
-data(creatinine,package="mcr")
+#library("mcrPioda")
+data(creatinine,package="mcrPioda")
 
 creatinine <- creatinine[complete.cases(creatinine),]
 x <- creatinine$serum.crea

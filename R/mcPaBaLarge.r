@@ -33,7 +33,7 @@
 #' @examples
 #' 
 #'  library("mcr")
-#'  data(creatinine,package="mcr")
+#'  data(creatinine,package="mcrPioda")
 #'  
 #' # remove any NAs
 #' crea <- na.omit(creatinine)
@@ -82,7 +82,7 @@ mc.paba.LargeData <- function(X, Y, NBins=1e06, alpha=0.05, posCor=TRUE, calcCI=
                 pPosCor=as.integer(posCor), pNBins=as.integer(NBins),
                 pSlope=double(1), pQuantile=as.double(qnorm(1-alpha/2)),                                            # output
                 pSlopeLower=as.double(-INF), pSlopeUpper=as.double(INF), pCIundefined=as.integer(0),
-				tangent=as.integer(slope.measure == "tangent"), PACKAGE="mcr")
+				tangent=as.integer(slope.measure == "tangent"), PACKAGE="mcrPioda")
 
     mcres.slope <- res$pSlope  
 

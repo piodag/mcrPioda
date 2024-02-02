@@ -57,9 +57,9 @@ Legend in plot.
 Include legend in regression plot (function \code{plot()}) or in bias plot (function \code{plotBias  ()}) with two or more lines.
 }
 \examples{
-#library("mcr")
+#library("mcrPioda")
 
- data(creatinine,package="mcr")
+ data(creatinine,package="mcrPioda")
  x <- creatinine$serum.crea
  y <- creatinine$plasma.crea
 

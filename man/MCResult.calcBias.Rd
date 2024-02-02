@@ -37,8 +37,8 @@ at the decision point Xc as
 with corresponding confidence intervals.
 }
 \examples{
-    #library("mcr")
-    data(creatinine,package="mcr")
+    #library("mcrPioda")
+    data(creatinine,package="mcrPioda")
     x <- creatinine$serum.crea
     y <- creatinine$plasma.crea
 

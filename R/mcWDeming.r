@@ -89,7 +89,7 @@ mc.wdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.00
 							threshold = as.numeric(threshold), 
 							W = as.numeric(W), 
 							xw = as.numeric(xw), 
-							PACKAGE="mcr")
+							PACKAGE="mcrPioda")
 		if (model.Deming$maxit >= maxit) {
 			warning(paste("no konvergence after", maxit, "iterations"))
 		}
