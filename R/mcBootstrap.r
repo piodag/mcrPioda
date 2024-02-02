@@ -78,9 +78,6 @@
 #' @author Ekaterina Manuilova \email{ekaterina.manuilova@@roche.com}, Fabian Model \email{fabian.model@@roche.com}, Sergej Potapov \email{sergej.potapov@@roche.com}
 
 
-
-
-
 mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaBa", "PaBaLarge","TS","PBequi","MDeming", "MMDeming"),
 						jackknife=TRUE, bootstrap=c("none","bootstrap", "nestedbootstrap"),
 						X, Y, error.ratio, nsamples=1000,

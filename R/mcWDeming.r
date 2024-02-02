@@ -93,6 +93,7 @@ mc.wdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.00
 		if (model.Deming$maxit >= maxit) {
 			warning(paste("no konvergence after", maxit, "iterations"))
 		}
+		
 		list(b1 = model.Deming$slope, b0 = model.Deming$intercept,
 				iter = model.Deming$maxit,
 				xw = model.Deming$xw,  weight = model.Deming$W)

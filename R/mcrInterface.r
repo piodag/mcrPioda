@@ -379,11 +379,11 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
 		
                     result <- newMCResultAnalytical(method.names = mnames, 
 										sample.names = sample.names, 
-                                        wdata = data,
+                    wdata = data,
 										para = mc.res, 
 										xmean = xmean, 
 										regmeth = method.reg,
-                                        cimeth = method.ci, 
+                    cimeth = method.ci, 
 										error.ratio = error.ratio, 
 										alpha = alpha, 
 										weight = weight)
@@ -457,7 +457,7 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
 								bootstrap = method.ci, 
 								X = data[,"x"], Y = data[,"y"], NBins = NBins, 
 								slope.measure = slope.measure,
-                                error.ratio = error.ratio, 
+                error.ratio = error.ratio, 
 								nsamples = nsamples, 
 								threshold = threshold, 
 								iter.max = iter.max, 
@@ -505,28 +505,30 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
         if(method.bootstrap.ci == "BCa"){
             result <- newMCResultBCa(method.names = mnames, 
 									sample.names = sample.names, 
-                                    wdata=data, para=mc.res, xmean=xmean, 
+                  wdata=data, para=mc.res, xmean=xmean, 
 									regmeth=method.reg,
-                                    cimeth=method.ci, bootcimeth=method.bootstrap.ci, 
+                  cimeth=method.ci, bootcimeth=method.bootstrap.ci, 
 									B0jack=B0jack, B1jack=B1jack,
-                                    B0=B0, B1=B1, MX=MX, 
+                  B0=B0, B1=B1, MX=MX, 
 									sigmaB0=sigmaB0, sigmaB1=sigmaB1, 
 									alpha=alpha, glob.coef=glob.coef,
-                                    glob.sigma=glob.sigma, nsamples=nsamples, 
+                  glob.sigma=glob.sigma, nsamples=nsamples, 
 									nnested=nnested, error.ratio=error.ratio,
-                                    rng.seed=rng.seed, rng.kind=rng.kind, weight=weight)
+									#threshold=threshold,       #Added here threshold which is missing
+                  rng.seed=rng.seed, rng.kind=rng.kind, weight=weight)
         }else{
             result <- newMCResultResampling(method.names = mnames, 
 											sample.names = sample.names, 
-                                            wdata=data, para=mc.res, xmean=xmean, 
+                      wdata=data, para=mc.res, xmean=xmean, 
 											regmeth=method.reg,
-                                            cimeth=method.ci, bootcimeth=method.bootstrap.ci,
-                                            B0=B0, B1=B1, MX=MX, 
+                      cimeth=method.ci, bootcimeth=method.bootstrap.ci,
+                      B0=B0, B1=B1, MX=MX, 
 											sigmaB0=sigmaB0, sigmaB1=sigmaB1, 
 											alpha=alpha, glob.coef=glob.coef,
-                                            glob.sigma=glob.sigma, nsamples=nsamples, 
+                      glob.sigma=glob.sigma, nsamples=nsamples, 
 											nnested=nnested, error.ratio=error.ratio,
-                                            rng.seed=rng.seed,rng.kind=rng.kind, weight=weight)
+											#threshold=threshold,       #Added here threshold which is missing
+                      rng.seed=rng.seed,rng.kind=rng.kind, weight=weight)
         }
         
         ## Restore old random number generator
