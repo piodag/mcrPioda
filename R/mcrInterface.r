@@ -392,7 +392,8 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
 
 								
     } else if(method.ci == "jackknife") {
-        cat("Jackknife based calculation of standard error and confidence intervals according to Linnet's method.\n")
+        cat("Jackknife based calculation of standard error and confidence intervals\n")
+        cat("according to Linnet's method and subsequent Pioda's proposal.\n")
         res <- mc.bootstrap(method.reg = method.reg, 
 							jackknife = TRUE,
 							bootstrap = "none", 
