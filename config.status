@@ -588,7 +588,7 @@ S["ac_ct_CC"]="gcc"
 S["CPPFLAGS"]=""
 S["LDFLAGS"]="-Wl,-z,relro"
 S["CFLAGS"]="-g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTI"\
-"FY_SOURCE=2 -UNDEBUG -Wall -pedantic -g -O0 -fdiagnostics-color=always -I/usr/include"
+"FY_SOURCE=2 -I/usr/include"
 S["CC"]="gcc"
 S["target_alias"]=""
 S["host_alias"]=""

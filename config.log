@@ -28,7 +28,6 @@ uname -v = #1 SMP PREEMPT_DYNAMIC Debian 6.1.55-1 (2023-09-29)
 /bin/universe          = unknown
 
 PATH: /usr/bin/
-PATH: /usr/bin/
 PATH: /home/gfwp/bin/
 PATH: /usr/local/bin/
 PATH: /usr/bin/
@@ -36,7 +35,6 @@ PATH: /bin/
 PATH: /usr/local/games/
 PATH: /usr/games/
 PATH: /usr/lib/rstudio/resources/app/bin/quarto/bin/
-PATH: /usr/lib/rstudio/resources/app/bin/postback/
 PATH: /usr/lib/rstudio/resources/app/bin/postback/
 
 
@@ -83,27 +81,27 @@ gcc: fatal error: no input files
 compilation terminated.
 configure:2658: $? = 1
 configure:2678: checking whether the C compiler works
-configure:2700: gcc -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -UNDEBUG -Wall -pedantic -g -O0 -fdiagnostics-color=always  -Wl,-z,relro conftest.c  >&5
+configure:2700: gcc -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -Wl,-z,relro conftest.c  >&5
 configure:2704: $? = 0
 configure:2754: result: yes
 configure:2757: checking for C compiler default output file name
 configure:2759: result: a.out
 configure:2765: checking for suffix of executables
-configure:2772: gcc -o conftest -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -UNDEBUG -Wall -pedantic -g -O0 -fdiagnostics-color=always  -Wl,-z,relro conftest.c  >&5
+configure:2772: gcc -o conftest -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -Wl,-z,relro conftest.c  >&5
 configure:2776: $? = 0
 configure:2799: result: 
 configure:2821: checking whether we are cross compiling
-configure:2829: gcc -o conftest -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -UNDEBUG -Wall -pedantic -g -O0 -fdiagnostics-color=always  -Wl,-z,relro conftest.c  >&5
+configure:2829: gcc -o conftest -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -Wl,-z,relro conftest.c  >&5
 configure:2833: $? = 0
 configure:2840: ./conftest
 configure:2844: $? = 0
 configure:2859: result: no
 configure:2864: checking for suffix of object files
-configure:2887: gcc -c -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -UNDEBUG -Wall -pedantic -g -O0 -fdiagnostics-color=always  conftest.c >&5
+configure:2887: gcc -c -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  conftest.c >&5
 configure:2891: $? = 0
 configure:2913: result: o
 configure:2917: checking whether the compiler supports GNU C
-configure:2937: gcc -c -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -UNDEBUG -Wall -pedantic -g -O0 -fdiagnostics-color=always  conftest.c >&5
+configure:2937: gcc -c -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  conftest.c >&5
 configure:2937: $? = 0
 configure:2947: result: yes
 configure:2958: checking whether gcc accepts -g
@@ -111,7 +109,7 @@ configure:2979: gcc -c -g  conftest.c >&5
 configure:2979: $? = 0
 configure:3023: result: yes
 configure:3043: checking for gcc option to enable C11 features
-configure:3058: gcc  -c -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -UNDEBUG -Wall -pedantic -g -O0 -fdiagnostics-color=always  conftest.c >&5
+configure:3058: gcc  -c -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  conftest.c >&5
 configure:3058: $? = 0
 configure:3076: result: none needed
 configure:3305: checking for Fortran compiler version
@@ -157,7 +155,7 @@ configure:3419: checking for gsl-config
 configure:3442: found /usr/bin/gsl-config
 configure:3454: result: /usr/bin/gsl-config
 configure:3482: checking if GSL version >= 2.2
-configure:3510: gcc -o conftest -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -UNDEBUG -Wall -pedantic -g -O0 -fdiagnostics-color=always -I/usr/include  -Wl,-z,relro conftest.c  >&5
+configure:3510: gcc -o conftest -g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -I/usr/include  -Wl,-z,relro conftest.c  >&5
 configure:3510: $? = 0
 configure:3510: ./conftest
 configure:3510: $? = 0
@@ -220,7 +218,7 @@ ac_cv_prog_fc_g=yes
 ## ----------------- ##
 
 CC='gcc'
-CFLAGS='-g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -UNDEBUG -Wall -pedantic -g -O0 -fdiagnostics-color=always -I/usr/include'
+CFLAGS='-g -O2 -ffile-prefix-map=/build/r-base-wZDgjM/r-base-4.2.2.20221110=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -I/usr/include'
 CPPFLAGS=''
 DEFS='-DPACKAGE_NAME=\"gslnls\" -DPACKAGE_TARNAME=\"gslnls\" -DPACKAGE_VERSION=\"1.3.2\" -DPACKAGE_STRING=\"gslnls\ 1.3.2\" -DPACKAGE_BUGREPORT=\"https://github.com/JorisChau/gslnls/issues/\" -DPACKAGE_URL=\"\"'
 ECHO_C=''
