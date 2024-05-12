@@ -2,7 +2,7 @@
 \alias{mc.mdemingConstCV}
 \title{Calculate M Weighted Deming Regression}
 \usage{
-mc.mdemingConstCV(X, Y, error.ratio, iter.max = 120, threshold = 1e-06)
+mc.mdemingConstCV(X, Y, error.ratio, iter.max = 30, threshold = 1e-06)
 }
 \arguments{
   \item{X}{measurement values of reference method.}
