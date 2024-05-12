@@ -14,6 +14,8 @@ extern void calc_Linreg(void *, void *, void *, void *, void *, void *, void *, 
 extern void calc_PaBa(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void PaBaLargeData(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 
+extern void calc_DemReg(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+
 /* .Call calls */
 extern SEXP calcAngleMat(SEXP, SEXP, SEXP);
 
@@ -26,6 +28,8 @@ static const R_CMethodDef CEntries[] = {
     {"calc_Linreg",   (DL_FUNC) &calc_Linreg,    9},
     {"calc_PaBa",     (DL_FUNC) &calc_PaBa,     11},
     {"PaBaLargeData", (DL_FUNC) &PaBaLargeData, 11},
+    
+    {"calc_Deming",   (DL_FUNC) &calc_Deming,   13},
     {NULL, NULL, 0}
 };
 
