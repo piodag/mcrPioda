@@ -23,7 +23,7 @@ response and corresponding confidence interval for each point in vector \code{x.
 Calculate Response \eqn{Intercept + Slope * Refrencemethod} with Corresponding Confidence Interval
 }
 \examples{
-    #library("mcrPioda")
+    #library("mcr")
     data(creatinine,package="mcrPioda")
     x <- creatinine$serum.crea
     y <- creatinine$plasma.crea

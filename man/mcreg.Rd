@@ -13,7 +13,7 @@ mcreg(
   mtest.name = NULL,
   sample.names = NULL,
   method.reg = c("PaBa", "LinReg", "WLinReg", "Deming", "WDeming", "PaBaLarge", "PBequi",
-    "TS","MDeming","MMDeming"),
+    "TS", "MDeming", "MMDeming"),
   method.ci = c("bootstrap", "jackknife", "analytical", "nestedbootstrap"),
   method.bootstrap.ci = c("quantile", "Student", "BCa", "tBoot"),
   nsamples = 999,
@@ -49,8 +49,8 @@ test method, necessary for Deming regression (Default 1).}
 \code{"WLinReg"} - weighted ordinary least square regression.\cr
 \code{"Deming"} - Deming regression.\cr 
 \code{"WDeming"} - weighted Deming regression.\cr
-\code{"MDeming"} - weighted M-Deming regression.\cr
-\code{"MMDeming"} - weighted MM-Deming regression.\cr
+\code{"MDeming"} - Huber M-Deming regression.\cr
+\code{"MMDeming"} - Huber MM-Deming regression.\cr
 \code{"TS"} - Theil-Sen regression.\cr
 \code{"PBequi"} - equivariant Passing-Bablok regression.\cr
 \code{"PaBa"} - Passing-Bablok regression.\cr  

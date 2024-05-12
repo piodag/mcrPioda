@@ -75,8 +75,7 @@ MCResultResampling.initialize(
 
 \item{weight}{1 for each data point}
 
-\item{robust.cov}{Robust covariance method for Box & Ellipses plot}
-
+\item{robust.cov}{"MCD", "SDe" or "Classic" covariance method see rrcov}
 }
 \value{
 No return value

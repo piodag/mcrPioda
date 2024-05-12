@@ -19,7 +19,7 @@ Observations with high influence (relative jackknife influence function is great
 are highlighted as red points.
 }
 \examples{
-    #library("mcrPioda")
+    #library("mcr")
     data(creatinine,package="mcrPioda")
     x <- creatinine$serum.crea
     y <- creatinine$plasma.crea
