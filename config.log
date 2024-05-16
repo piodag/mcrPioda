@@ -28,6 +28,17 @@ uname -v = #1 SMP PREEMPT_DYNAMIC Debian 6.1.55-1 (2023-09-29)
 /bin/universe          = unknown
 
 PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
+PATH: /usr/bin/
 PATH: /home/gfwp/bin/
 PATH: /usr/local/bin/
 PATH: /usr/bin/
@@ -35,6 +46,17 @@ PATH: /bin/
 PATH: /usr/local/games/
 PATH: /usr/games/
 PATH: /usr/lib/rstudio/resources/app/bin/quarto/bin/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
+PATH: /usr/lib/rstudio/resources/app/bin/postback/
 PATH: /usr/lib/rstudio/resources/app/bin/postback/
 
 

@@ -185,7 +185,7 @@ mc.mdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.00
     mode <- 1
     W <- rep(1, nX)
     
-    model.Deming <- .C("calc_RobDem", 
+    model.Deming <- .C("calc_MDem", 
                        x = as.numeric(X), y = as.numeric(Y), 
                        n = as.integer(nX), 
                        error_ratio = as.numeric(error.ratio), 
