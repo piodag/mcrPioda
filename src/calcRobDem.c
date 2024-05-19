@@ -1,5 +1,5 @@
 //
-//C implementation of Deming regression
+// C implementation of M and MM-Deming regression
 //
 
 #include <R.h>
@@ -82,13 +82,13 @@ void calc_MDem(const double *X, const double *Y, int *nX,
 		}
 		
 		// MAD from GLS library
-		mad = gsl_stats_mad(euclid,1,n,work);
 		
-
+		mad = gsl_stats_mad(euclid,1,n,work);
 		
 		//do loop at least once
 		 while(i < itermax[0]){
 			double XW = 0, YW = 0, sumW = 0;
+		   
 			// Calculation of weights
 			for(j = 0; j < n; j++){
 					d = Y[j] - (intercept[0] + slope[0]*X[j]);
@@ -147,33 +147,36 @@ void calc_MDem(const double *X, const double *Y, int *nX,
 }
 
 
+
+
 void calc_MMDem(const double *X, const double *Y, int *nX,
                  double *error_ratio, double *intercept, double *slope,
                  double *se_intercept, double *se_slope, int *Wmode,
                  int *itermax, double *threshold, double *W,
                  double *xw, double *ltsScale)
 {
-  double meanX, meanY, u, q, p, r, x2;
+  // double meanX, meanY, u, q, p, r, x2;
   int i, n;
   
   n = *nX;
   double Scale = *ltsScale; 
   double lambda = *error_ratio;
-  meanX = meanY = u = q = p = r = x2 = 0;
+  
+  // meanX = meanY = u = q = p = r = x2 = 0;
   
   // calculation mean of X and Y
-  get_mean(X, nX, &meanX);
-  get_mean(Y, nX, &meanY);
-  *xw = meanX;
+  // get_mean(X, nX, &meanX);
+  // get_mean(Y, nX, &meanY);
+  // *xw = meanX;
   
   // calculation of u, q, p, r
-  for(i = 0; i < n; i++){
-    x2 += X[i]*X[i];
-    u += (X[i] - meanX) * (X[i] - meanX);
-    q += (Y[i] - meanY) * (Y[i] - meanY);
-    p += (X[i] - meanX) * (Y[i] - meanY);
-  }
-  r = p / sqrt(u*q);
+  // for(i = 0; i < n; i++){
+  //  x2 += X[i]*X[i];
+  //  u += (X[i] - meanX) * (X[i] - meanX);
+  //  q += (Y[i] - meanY) * (Y[i] - meanY);
+  //  p += (X[i] - meanX) * (Y[i] - meanY);
+  //}
+  // r = p / sqrt(u*q);
   
   
   // Estimated points
@@ -181,21 +184,22 @@ void calc_MMDem(const double *X, const double *Y, int *nX,
   //        the measurements of two methods with  Proportional errors.
   //        STATISTICS IN MEDICINE, VOL. 9, 1463-1473 (1990)].
   
-  slope[0] = ((lambda*q - u) + sqrt(pow((u - lambda*q), 2) + 4*lambda*pow(p,2))) / (2*lambda*p);
-  intercept[0] = meanY - slope[0]*meanX;
+  // slope[0] = ((lambda*q - u) + sqrt(pow((u - lambda*q), 2) + 4*lambda*pow(p,2))) / (2*lambda*p);
+  // intercept[0] = meanY - slope[0]*meanX;
   
   
   // if mode = 1, then calculate Deming with weights
   
-  if(Wmode[0] < 1){
+  // if(Wmode[0] < 1){
     // Standard error
     // [Ref. Strike, P. W. (1991) Statistical Methods in Laboratory Medicine.
     //       Butterworth-Heinemann, Oxford ].
-    double r_2 = pow(r, 2);
-    se_slope[0] = sqrt(pow(slope[0],2) * (diff(1, r_2) / r_2) / (n - 2));
-    se_intercept[0] = sqrt(pow(se_slope[0],2) * (x2/n));
-  }else{
+  //  double r_2 = pow(r, 2);
+  //  se_slope[0] = sqrt(pow(slope[0],2) * (diff(1, r_2) / r_2) / (n - 2));
+  //  se_intercept[0] = sqrt(pow(se_slope[0],2) * (x2/n));
+  // }else{
     //
+    
     // Iterative Algorithm
     
     int j = 0;
@@ -245,12 +249,14 @@ void calc_MMDem(const double *X, const double *Y, int *nX,
       //mad = gsl_stats_mad(euclid,1,n,work);
       
       //Calculation of regression coefficients
+      
       U = 0, Q = 0, P = 0;
       for(j = 0; j < n; j++){
         U += W[j]*((X[j] - XW) * (X[j] - XW));
         Q += W[j]*((Y[j] - YW) * (Y[j] - YW));
         P += W[j]*((X[j] - XW) * (Y[j] - YW));
       }
+      
       // Estimated points
       B1 = (lambda*Q - U + sqrt(pow((U - lambda*Q), 2) + 4*lambda*pow(P,2))) / (2*lambda*P);
       B0 = YW - B1*XW;
@@ -273,5 +279,5 @@ void calc_MMDem(const double *X, const double *Y, int *nX,
     // set standard error to 0
     se_slope[0] = 0;
     se_intercept[0] = 0;
-  }
+ //  }
 }
