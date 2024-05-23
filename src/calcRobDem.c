@@ -142,18 +142,15 @@ void calc_MMDem(const double *X, const double *Y, int *nX,
                int *itermax, double *threshold, double *W,
                double *xw, double *kM, double *tauMM)
 {
-  // double meanX, meanY, u, q, p;
   int i, n;
   
   n = *nX;
   double lambda = *error_ratio;
   
-  
   // Estimated points
   // [ Ref. K.Linnet. Estimation of the linear relationship between
   //        the measurements of two methods with  Proportional errors.
   //        STATISTICS IN MEDICINE, VOL. 9, 1463-1473 (1990)].
-  
   
   int j = 0;
   double d = 0, XHAT = 0, YHAT = 0;
@@ -164,20 +161,6 @@ void calc_MMDem(const double *X, const double *Y, int *nX,
   double tau = *tauMM;
   double euclid[n];
   double work[n];
-  
-  // MAD gets estimated only once at the beginning, accordin to MM
-  
-  // for(j = 0; j < n; j++){
-  //  d = Y[j] - (intercept[0] + slope[0]*X[j]);
-  //  XHAT = X[j] + (lambda*slope[0]*d / (1 + lambda*pow(slope[0],2)));
-  //  YHAT = Y[j] - (d/(1 + lambda*pow(slope[0],2)));
-  //  euclid[j] = sqrt(pow((X[j]-XHAT),2)+pow(Y[j]-YHAT,2));
-  // }
-  
-  
-  // Stop loop, calculate MAD
-  //  mad = gsl_stats_mad(euclid,1,n,work);
-  
   
   //do loop at least once
   while(i < itermax[0]){
@@ -205,13 +188,10 @@ void calc_MMDem(const double *X, const double *Y, int *nX,
       W[j] = 0;
      }
       
-      
       sumW += W[j];
       XW += W[j] * X[j];
       YW += W[j] * Y[j];
-      
     }
-    
     
     XW = XW/sumW;
     YW = YW/sumW;
@@ -237,8 +217,7 @@ void calc_MMDem(const double *X, const double *Y, int *nX,
     }
     
     // This part is set to break resonance in the convergence. It is crucial to 
-    // average both slope AND intercept.
-    // Makes convergence faster.
+    // average both slope AND intercept. Makes convergence faster.
     
     if(i % 2){
       slope[0] = (slope[0] + B1) / 2;
