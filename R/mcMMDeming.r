@@ -125,7 +125,7 @@ mc.mmdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.0000
     {
       if (i >= iter.max)
       {
-        warning(paste("no convergence after",iter.max,"iterations, last values B1:",B1,"B0:",B0, "iter:",i,"sum(W):",sum(W)))
+        warning(paste("no convergence after",iter.max,"iterations, last values B1:",B1,"B0:",B0))
         break
       }
 
@@ -158,9 +158,7 @@ mc.mmdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.0000
       if (!is.finite(B1)){
 
           if (error.count==0) {
-            
-             warning(paste("Rocke restart","b1:",b1,"b0:",b0,"B1:",B1,"iter:",i,"sum W:",sum(W)))
-            
+             #message(paste("Rocke prior restart","b1:",b1,"b0:",b0,"sum W:",sum(W)))
              error.count<-error.count+1
              cov.sest<-rrcov::CovSest(cbind(X,Y),method="rocke")
              b1<-mean(c(cov.sest$cov[2,1]/cov.sest$cov[1,1],1/(cov.sest$cov[2,1]/cov.sest$cov[2,2])))
@@ -194,16 +192,13 @@ mc.mmdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.0000
              # Point estimates
 
              B1 <- (error.ratio*Q-U+sqrt((U-error.ratio*Q)^2+4*error.ratio*P^2))/(2*error.ratio*P)
-             
-             warning(paste("Rocke post restart data","b1:",b1,"b0:",b0,"B1:",B1,"iter:",i,"sum W:",sum(W)))
+             warning(paste("Rocke post restart","b1:",b1,"b0:",b0,"B1:",B1,"sum W:",sum(W)))
 
              # If still singular, then the Rocke estimate is returned
              # to avoid bootstrap problems. Perhaps better the previous sfast estimate?
 
              if (!is.finite(B1)){
-               
-                warning(paste("No Rocke start helps, passing over the start values","b1:",b1,"b0:",b0,"B1:",B1,"iter:",i,"sum(W)",sum(W)))
-               
+                warning(paste("Not even Rocke start helps, passing over the start values","b1:",b1,"b0:",b0))
                 B1 <- b1
                 B0 <- b0
                 break
@@ -226,12 +221,21 @@ mc.mmdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.0000
         #if(error.count>0){
         #  message(paste("final B1:",B1,"B0:",B0))
         #}
+        b1<-B1
+        b0<-B0
         break
       }
 
+      if((i %% 2) == 0) {
+        b1<- (B1 + b1)/2
+        b0<- (B0 + b0)/2
+      } else {
+        b1<-B1
+        b0<-B0
+      }
       # new values
-      b1<-B1
-      b0<-B0
+      #b1<-B1
+      #b0<-B0
     } # end of iterative algorithm
     
     list(b0 = B0, b1 = B1, 

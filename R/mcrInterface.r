@@ -103,6 +103,8 @@
 #'          \code{"WDeming"} - weighted Deming regression.\cr
 #'          \code{"MDeming"} - Huber M-Deming regression.\cr
 #'          \code{"MMDeming"} - Huber MM-Deming regression.\cr
+#'          \code{"NgMMDeming"} - new generation MM-Deming regression.\cr
+#'          \code{"PiMMDeming"} - Prior informed MM-Deming regression.\cr
 #'          \code{"TS"} - Theil-Sen regression.\cr
 #'          \code{"PBequi"} - equivariant Passing-Bablok regression.\cr
 #'          \code{"PaBa"} - Passing-Bablok regression.\cr  
@@ -233,7 +235,7 @@
 
 mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
               mref.name = NULL, mtest.name = NULL, sample.names = NULL,
-              method.reg = c("PaBa", "LinReg", "WLinReg", "Deming", "WDeming", "PaBaLarge", "PBequi", "TS","MDeming", "MMDeming"),
+              method.reg = c("PaBa", "LinReg", "WLinReg", "Deming", "WDeming", "PaBaLarge", "PBequi", "TS","MDeming", "MMDeming","NgMMDeming","PiMMDeming"),
               method.ci = c("bootstrap", "jackknife", "analytical", "nestedbootstrap"),
               method.bootstrap.ci = c("quantile", "Student", "BCa", "tBoot"),
               nsamples = 999, nnested = 25, rng.seed = NULL, rng.kind = "Mersenne-Twister",
@@ -247,13 +249,13 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
     slope.measure <- match.arg(slope.measure)
   
 	## Check input data
-    if( method.reg %in% c("Deming", "WDeming","MDeming", "MMDeming")){
+    if( method.reg %in% c("Deming", "WDeming","MDeming", "MMDeming","NgMMDeming","PiMMDeming")){
         stopifnot(!is.na(error.ratio))
         stopifnot(is.numeric(error.ratio))
         stopifnot(length(error.ratio) > 0)
         stopifnot(error.ratio >= 0) 
         
-        if( method.reg %in% c("WDeming","MDeming", "MMDeming")){
+        if( method.reg %in% c("WDeming","MDeming", "MMDeming","NgMMDeming","PiMMDeming")){
             stopifnot(!is.na(iter.max))
             stopifnot(is.numeric(iter.max))
             stopifnot(length(iter.max) > 0)
@@ -338,7 +340,7 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
         stop("Passing-Bablok regression for negative values is not available.")	
     if(method.reg == "WLinReg" & any(data == 0)) 
         stop("Weighted linear regression for zero values is not available.")
-    if(method.reg %in% c("WDeming","PaBa","MDeming","MMDeming") & method.ci=="bootstrap" & method.bootstrap.ci=="tBoot") 
+    if(method.reg %in% c("WDeming","PaBa","MDeming","MMDeming","NgMMDeming","PiMMDeming") & method.ci=="bootstrap" & method.bootstrap.ci=="tBoot") 
         stop(paste("The analytical estimation of coefficients' SE for", method.reg ,"is not available. \nFor tBoot please choose nested bootstrap."))	
 
     ## Analytical confidence intervals

@@ -2,6 +2,8 @@ mcrPioda is a fork of the mcr package with additional functionalities:
 
  - MDeming regression - With bootstrap CI and jackknife CI + SE 
  - MMDeming regression - With bootstrap CI and jackknife CI + SE
+ - NgMMDeming regression - With bootstrap CI and jackknife CI + SE
+ - PiMMDeming regression - With bootstrap CI and jackknife CI + SE
  - plotBoxEllipses for Mahalanobis distance hypothesis testing
 
 The M-Deming and MM-Deming iterative procedures are still written in R and not compiled with C.

@@ -37,7 +37,9 @@
 #'         \code{"WLinReg"} - weighted ordinary least square regression,\code{"Deming"} - Deming regression, 
 #'         \code{"WDeming"} - weighted Deming regression, \code{"PaBa"} - Passing-Bablok regression.
 #'         \code{"WDeming"} - weighted Deming regression, \code{"MDeming"} - weighted M-Deming regression,
-#'         \code{"MMDeming"} - weighted MM-Deming regression,\code{"PaBa"} - Passing-Bablok regression. 
+#'         \code{"MMDeming"} - weighted MM-Deming regression,\code{"MMDeming"} - Passing-Bablok regression.
+#'         \code{"NgMMDeming"} - new generation MM-Deming regression,\code{"NgMMDeming"} - Passing-Bablok regression.
+#'         \code{"PiMMDeming"} - prior informed MM-Deming regression,\code{"PiMMDeming"} - Passing-Bablok regression. 
 #' @param bootstrap Bootstrap based confidence interval estimation method. 
 #' @param jackknife Logical value. If TRUE - Jackknife based confidence interval estimation method.
 #' @param nsamples Number of bootstrap samples.
@@ -78,7 +80,7 @@
 #' @author Ekaterina Manuilova \email{ekaterina.manuilova@@roche.com}, Fabian Model \email{fabian.model@@roche.com}, Sergej Potapov \email{sergej.potapov@@roche.com}
 
 
-mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaBa", "PaBaLarge","TS","PBequi","MDeming", "MMDeming"),
+mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaBa", "PaBaLarge","TS","PBequi","MDeming", "MMDeming","NgMMDeming","PiMMDeming"),
 						jackknife=TRUE, bootstrap=c("none","bootstrap", "nestedbootstrap"),
 						X, Y, error.ratio, nsamples=1000,
                         nnested=25, iter.max=30, threshold=0.00000001, NBins=1000000, slope.measure=c("radian","tangent")) 
@@ -94,7 +96,7 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
     stopifnot(!is.na(X) & !is.na(Y))
     stopifnot(length(X) > 0)
     
-    if(method.reg %in% c("Deming", "WDeming", "MDeming", "MMDeming"))
+    if(method.reg %in% c("Deming", "WDeming", "MDeming", "MMDeming","NgMMDeming","PiMMDeming"))
     {
         stopifnot(!is.na(error.ratio))
         stopifnot(is.numeric(error.ratio))
@@ -225,6 +227,24 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
         }
         mc.mmdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold)
       }
+    }else if(method.reg == "NgMMDeming"){
+      callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
+        if(sd(X[idx])<=0){
+          ## All identical points, no estimation possible
+          warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
+          list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA))
+        }
+        mc.mmNgdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold)
+      }
+    } else if(method.reg == "PiMMDeming"){
+      callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
+        if(sd(X[idx])<=0){
+          ## All identical points, no estimation possible
+          warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
+          list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA))
+        }
+        mc.mmPidemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold)
+      }
     } else if(method.reg == "PaBaLarge"){
         callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
             if((sd(X[idx]) <= 0) | (sd(Y[idx]) <= 0)){
@@ -269,7 +289,7 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
     }else{  
         weight <- d$weight
     } 
-	if(method.reg %in% c("WDeming","PaBa", "PaBaLarge", "MDeming", "MMDeming")){
+	if(method.reg %in% c("WDeming","PaBa", "PaBaLarge", "MDeming", "MMDeming","NgMMDeming","PiMMDeming")){
 		## Analytical standard errors not available for weighted Deming and Passing-Bablok
 		glob.seb0 <- as.numeric(NA)
 		glob.seb1 <- as.numeric(NA)
@@ -315,7 +335,7 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
     	
 # if(method.reg %in% c("LinReg","WLinReg","Deming","MDeming","MMdeming")) ? da capire che cosa fare con Jackknife
 		
-   	    if(method.reg %in% c("WDeming","MDeming","MMDeming")){		
+   	    if(method.reg %in% c("WDeming","MDeming","MMDeming", "NgMMDeming","PiMMDeming")){		
             ## Use Linnet's algorithm to estimate parameter SEs	
             jackLinnetB0 <- mc.calcLinnetCI(B0jack, glob.b0, 0.05)
             jackLinnetB1 <- mc.calcLinnetCI(B1jack, glob.b1, 0.05)
@@ -377,7 +397,7 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
 				if(method.reg %in% c("LinReg", "WLinReg", "Deming","TS","PBequi")){
 					sigmaB0 <- d$se.b0
 					sigmaB1 <- d$se.b1
-				}else if(method.reg %in% c("WDeming","MDeming","MMDeming")){
+				}else if(method.reg %in% c("WDeming","MDeming","MMDeming","NgMMDeming","PiMMDeming")){
 					## Use global SE estimates according to Linnet's method
 					sigmaB0 <- glob.seb0
 					sigmaB1 <- glob.seb1

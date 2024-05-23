@@ -64,7 +64,7 @@ newMCResultResampling <- function(wdata,para,xmean,sample.names=NULL,method.name
     stopifnot(is.matrix(para))
     stopifnot(all(dim(para)==c(2,4)))
     stopifnot(is.character(regmeth))
-    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","PaBa","WDeming", "PaBaLarge","TS","PBequi","MDeming", "MMDeming")))
+    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","PaBa","WDeming", "PaBaLarge","TS","PBequi","MDeming", "MMDeming","NgMMDeming","PiMMDeming")))
     stopifnot(is.character(cimeth))
     stopifnot(is.element(cimeth,c("bootstrap","nestedbootstrap")))
     stopifnot(is.character(bootcimeth))
@@ -362,7 +362,7 @@ MCResultResampling.calcResponse<-function(.Object, x.levels, alpha=0.05, bootcim
     stopifnot(length(x.levels) > 0)
     stopifnot(bootcimeth %in% c("Student","tBoot","quantile"))
     
-    if (.Object@regmeth %in% c("PaBa", "PaBaLarge", "WDeming", "MDeming", "MMDeming") & .Object@cimeth == "bootstrap" & bootcimeth=="tBoot") 
+    if (.Object@regmeth %in% c("PaBa", "PaBaLarge", "WDeming", "MDeming", "MMDeming","NgMMDeming","PiMMDeming") & .Object@cimeth == "bootstrap" & bootcimeth=="tBoot") 
         stop(paste("It is impossible to calculate the tBoot confidence bounds for ",.Object@regmeth,".\n Please choose nested bootstrap.",sep=""))
     
     npoints<-length(.Object@data[,"x"])
@@ -445,6 +445,8 @@ MCResultResampling.printSummary<-function(.Object){
     if (regmeth=="WDeming") regtext <- "Weighted Deming Regression"
     if (regmeth=="MDeming") regtext <- "Weighted M-Deming Regression"
     if (regmeth=="MMDeming") regtext <- "Weighted MM-Deming Regression"
+    if (regmeth=="NgMMDeming") regtext <- "New generation MM-Deming Regression"
+    if (regmeth=="PiMMDeming") regtext <- "Prior informed MM-Deming Regression"
     if (regmeth %in% c("PaBa", "PaBaLarge")) regtext <- "Passing Bablok Regression"
     cat("\n\n------------------------------------------\n\n")
     cat(paste("Reference method: ",.Object@mnames[1],"\n",sep=""))

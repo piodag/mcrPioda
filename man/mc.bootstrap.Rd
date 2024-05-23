@@ -6,7 +6,7 @@
 \usage{
 mc.bootstrap(
   method.reg = c("LinReg", "WLinReg", "Deming", "WDeming", "PaBa", "PaBaLarge", "TS",
-    "PBequi", "MDeming", "MMDeming"),
+    "PBequi", "MDeming", "MMDeming","NgMMDeming","PiMMDeming"),
   jackknife = TRUE,
   bootstrap = c("none", "bootstrap", "nestedbootstrap"),
   X,
@@ -26,7 +26,9 @@ mc.bootstrap(
 \code{"WLinReg"} - weighted ordinary least square regression,\code{"Deming"} - Deming regression, 
 \code{"WDeming"} - weighted Deming regression, \code{"PaBa"} - Passing-Bablok regression.
 \code{"WDeming"} - weighted Deming regression, \code{"MDeming"} - weighted M-Deming regression,
-\code{"MMDeming"} - weighted MM-Deming regression,\code{"PaBa"} - Passing-Bablok regression.}
+\code{"MMDeming"} - weighted MM-Deming regression,\code{"MMDeming"} - Passing-Bablok regression.}
+\code{"NgMMDeming"} - new generation MM-Deming regression,\code{"NgMMDeming"} - Passing-Bablok regression.}
+\code{"PiMMDeming"} - prior informed MM-Deming regression,\code{"PiMMDeming"} - Passing-Bablok regression.}
 
 \item{jackknife}{Logical value. If TRUE - Jackknife based confidence interval estimation method.}
 

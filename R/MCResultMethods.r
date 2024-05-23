@@ -47,7 +47,7 @@ newMCResult <- function(wdata, para, sample.names=NULL, method.names=NULL, regme
     stopifnot(is.matrix(para))
     stopifnot(all(dim(para)==c(2,4)))
     stopifnot(is.character(regmeth))
-    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","BaPa","WDeming", "PaBaLarge","TS","PBequi","MDeming","MMDeming")))
+    stopifnot(is.element(regmeth,c("LinReg","WLinReg","Deming","BaPa","WDeming", "PaBaLarge","TS","PBequi","MDeming","MMDeming","NgMMDeming","PiMMDeming")))
     stopifnot(!is.na(alpha))
     stopifnot(is.numeric(alpha))
     stopifnot(length(alpha) > 0)
@@ -781,6 +781,10 @@ MCResult.plot <- function(x,
 	  titname<-"Weighted M-Deming Regression"
 	else if(x@regmeth == "MMDeming")
 	  titname<-"Weighted MM-Deming Regression"
+	else if(x@regmeth == "NgMMDeming")
+	  titname<-"New generation MM-Deming Regression"
+	else if(x@regmeth == "PiMMDeming")
+	  titname<-"Prior informed MM-Deming Regression"
 	else 
 		titname <- "Passing Bablok Regression"
 	
@@ -1240,7 +1244,13 @@ MCResult.plotBias<-function(x,
     } else if(x@regmeth == "MMDeming")
     {
       titname<-"Weighted MM-Deming Regression"
-    }else   titname <- "Passing Bablok Regression"
+    } else if(x@regmeth == "NgMMDeming")
+    {
+      titname<-"New generation MM-Deming Regression"
+    } else if(x@regmeth == "PiMMDeming")
+    {
+      titname<-"Prior informed MM-Deming Regression"
+    } else   titname <- "Passing Bablok Regression"
     
 	if(x@regmeth %in% c("WDeming","PaBa", "PaBaLarge","MDeming","MMDeming") & x@cimeth== "analytical" & (ci.area==TRUE | ci.border==TRUE))
     {
@@ -1702,6 +1712,10 @@ MCResult.plotResiduals<-function(.Object, res.type=c("optimized", "y", "x"),
           titname <- "Weighted M-Deming Regression"
         else if(.Object@regmeth == "MMDeming")
           titname <- "Weighted MM-Deming Regression"
+        else if(.Object@regmeth == "NgMMDeming")
+          titname <- "New generation MM-Deming Regression"
+        else if(.Object@regmeth == "PiMMDeming")
+          titname <- "Prior informed MM-Deming Regression"
         else
             titname <- "Passing Bablok Regression"
 

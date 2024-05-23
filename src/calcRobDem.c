@@ -1,6 +1,7 @@
 //
 // C implementation of M and MM-Deming regression
-//
+// Copyright: G. Pioda, 2024, gfwp@ticino.com
+// Inspired from mcr package
 
 #include <R.h>
 #include <Rdefines.h>
@@ -13,7 +14,8 @@
 void calc_MDem(const double *X, const double *Y, int *nX,
                double *error_ratio, double *intercept, double *slope,
                double *se_intercept, double *se_slope, int *Wmode,
-               int *itermax, double *threshold, double *W, double *xw)
+               int *itermax, double *threshold, double *W,
+               double *xw, double *kM)
 {
   double meanX, meanY, u, q, p;
   int i, n;
@@ -50,7 +52,7 @@ void calc_MDem(const double *X, const double *Y, int *nX,
   i = 0;
   
   double mad = 0;
-  double k = 1.345;
+  double k = *kM;
   double euclid[n];
   double work[n];
 
@@ -94,9 +96,7 @@ void calc_MDem(const double *X, const double *Y, int *nX,
     U = 0, Q = 0, P = 0;
     for(j = 0; j < n; j++){
       U += W[j]*((X[j] - XW) * (X[j] - XW));
-      //U += W[j]*pow((X[j] - XW),2);
       Q += W[j]*((Y[j] - YW) * (Y[j] - YW));
-      //Q += W[j]*pow((Y[j] - YW),2);
       P += W[j]*((X[j] - XW) * (Y[j] - YW));
     }
     // Estimated points
@@ -110,8 +110,135 @@ void calc_MDem(const double *X, const double *Y, int *nX,
       break;
     }
     
-    // This part is set to break periodicity in the convergence. Crucial to average both slope AND intercept
-    // Feel free to optimise the modula length
+    // This part is set to break resonance in the convergence. It is crucial to 
+    // average both slope AND intercept.
+    // Makes convergence faster.
+    
+    if(i % 2){
+      slope[0] = (slope[0] + B1) / 2;
+      intercept[0] = (intercept[0] + B0) / 2;
+      i++;
+      
+    }else{
+      slope[0] = B1;
+      intercept[0] = B0;
+      i++;
+    }
+
+  }
+  
+  itermax[0] = i + 1;
+  
+}
+
+
+// MM Deming rewriting. The big problem is the estimate of the starting value. The covSest() SFAST function is way too unreliable
+// to be used in C; generates too many false starts. The whole SFAST ROCKE alternance must be replaced. Here only the MM optimization
+// part.
+
+void calc_MMDem(const double *X, const double *Y, int *nX,
+               double *error_ratio, double *intercept, double *slope,
+               double *se_intercept, double *se_slope, int *Wmode,
+               int *itermax, double *threshold, double *W,
+               double *xw, double *kM, double *tauMM)
+{
+  // double meanX, meanY, u, q, p;
+  int i, n;
+  
+  n = *nX;
+  double lambda = *error_ratio;
+  
+  
+  // Estimated points
+  // [ Ref. K.Linnet. Estimation of the linear relationship between
+  //        the measurements of two methods with  Proportional errors.
+  //        STATISTICS IN MEDICINE, VOL. 9, 1463-1473 (1990)].
+  
+  
+  int j = 0;
+  double d = 0, XHAT = 0, YHAT = 0;
+  double B0 = 0, B1 = 0, U = 0, Q = 0, P = 0;
+  i = 0;
+  
+  double mad = 0;
+  double tau = *tauMM;
+  double euclid[n];
+  double work[n];
+  
+  // MAD gets estimated only once at the beginning, accordin to MM
+  
+  // for(j = 0; j < n; j++){
+  //  d = Y[j] - (intercept[0] + slope[0]*X[j]);
+  //  XHAT = X[j] + (lambda*slope[0]*d / (1 + lambda*pow(slope[0],2)));
+  //  YHAT = Y[j] - (d/(1 + lambda*pow(slope[0],2)));
+  //  euclid[j] = sqrt(pow((X[j]-XHAT),2)+pow(Y[j]-YHAT,2));
+  // }
+  
+  
+  // Stop loop, calculate MAD
+  //  mad = gsl_stats_mad(euclid,1,n,work);
+  
+  
+  //do loop at least once
+  while(i < itermax[0]){
+    
+    double XW = 0, YW = 0, sumW = 0;
+    
+    for(j = 0; j < n; j++){
+      d = Y[j] - (intercept[0] + slope[0]*X[j]);
+      XHAT = X[j] + (lambda*slope[0]*d / (1 + lambda*pow(slope[0],2)));
+      YHAT = Y[j] - (d/(1 + lambda*pow(slope[0],2)));
+      euclid[j] = sqrt(pow((X[j]-XHAT),2)+pow(Y[j]-YHAT,2));
+    }
+    
+    // Stop loop, calculate MAD
+    
+     mad = gsl_stats_mad(euclid,1,n,work);
+    
+    // Calculation of weights
+    
+    for(j = 0; j < n; j++){
+      
+     if( euclid[j]/mad <= tau) {
+       W[j] = pow(1-pow((euclid[j]/mad)/tau,2),2);
+     } else {
+      W[j] = 0;
+     }
+      
+      
+      sumW += W[j];
+      XW += W[j] * X[j];
+      YW += W[j] * Y[j];
+      
+    }
+    
+    
+    XW = XW/sumW;
+    YW = YW/sumW;
+    *xw = XW;
+    
+    //Calculation of regression coefficients
+    U = 0, Q = 0, P = 0;
+    for(j = 0; j < n; j++){
+      U += W[j]*((X[j] - XW) * (X[j] - XW));
+      Q += W[j]*((Y[j] - YW) * (Y[j] - YW));
+      P += W[j]*((X[j] - XW) * (Y[j] - YW));
+    }
+    
+    // Estimated points
+    B1 = (lambda*Q - U + sqrt(pow((U - lambda*Q), 2) + 4*lambda*pow(P,2))) / (2*lambda*P);
+    B0 = YW - B1*XW;
+    
+    if(fabs(slope[0] - B1) < threshold[0] && fabs(intercept[0] - B0) < threshold[0]){
+      // set new values
+      slope[0] = B1;
+      intercept[0] = B0;
+      break;
+    }
+    
+    // This part is set to break resonance in the convergence. It is crucial to 
+    // average both slope AND intercept.
+    // Makes convergence faster.
     
     if(i % 2){
       slope[0] = (slope[0] + B1) / 2;
@@ -124,21 +251,10 @@ void calc_MDem(const double *X, const double *Y, int *nX,
       i++;
     }
     
-    // set new values to average with the previous, to have faster convergence
-    //slope[0] = B1;
-    //slope[0] = (slope[0] + B1)/2;
-    //intercept[0] = B0;
-    //intercept[0] = YW - slope[0]*XW;
-    //i++;
   }
-  
-  // To break the jumping between 2 B1 values
   
   itermax[0] = i + 1;
   
-  // set standard error to 0
-  //se_slope[0] = 0;
-  //se_intercept[0] = 0;
 }
 
 

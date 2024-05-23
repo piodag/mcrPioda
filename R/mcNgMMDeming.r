@@ -22,9 +22,12 @@
 ##
 ###############################################################################
 
-#' Calculate Weighted Deming Regression
+#' Calculate MM Deming Regression
 #'
-#' Calculate weighted deming regression with iterative algorithm suggested by Linnet.
+#' Calculate MM Deming regression with iterative algorithm inspired on the work of Linnet.
+#' The algorithm uses bisquare redescending weights. For maximal stability and convergence
+#' the euclidean residuals are scaled in each iteration with a fresh calculated MAD instead of
+#' keeping the same MAD (assesed at the starting step) for the whole iteration.
 #' This algorithm is avalaible only for positive values. But even in this case there is no guarantee that
 #' the algorithm always converges.
 #'
@@ -45,115 +48,10 @@
 #'              Linnet K.
 #'              Estimation of the Linear Relationship between the Measurements of two Methods with Proportional Errors.
 #'              STATISTICS IN MEDICINE, Vol. 9, 1463-1473 (1990).
-#mc.mdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.000001)
-#{
-#  # Check validity of parameters
-
-#  stopifnot(is.numeric(X))
-#  stopifnot(is.numeric(Y))
-#  stopifnot(length(X) == length(Y))
-#  stopifnot(is.numeric(error.ratio))
-#  stopifnot(error.ratio > 0)
-#  stopifnot(is.numeric(iter.max))
-#  stopifnot(round(iter.max) == iter.max)
-#  stopifnot(iter.max > 0)
-#  stopifnot(is.numeric(threshold))
-#  stopifnot(threshold >= 0)
-
-#  # This algorithm often doesn't converge if there are negative
-#  # measurements in data set
-
-# # if (min(X)<0 | min(Y)<0)
-##  {
-##    return(paste("There are negative values in data set."))
-##  }
-##  else
-##  {
-#    # 1. Calculate  initial values
-#    #    (point estimates of unweighted deming regression)
-
-#    n <- length(X)
-
-#    mX <- mean(X)
-#    mY <- mean(Y)
-#    u <- sum((X-mX)^2)
-#    q <- sum((Y-mY)^2)
-#    p <- sum((X-mX)*(Y-mY))
-
-#    ## initial values
-
-#    b1 <- ((error.ratio*q-u)+sqrt((u-error.ratio*q)^2+4*error.ratio*p^2))/(2*error.ratio*p)
-#    b0 <- mean(Y)-b1*mean(X)
-
-#    ## Iterative Algorithm
-
-#    i <- 0     # Number of iterations
-#    warn<-"no warnings"   # Warnings
-
- #   repeat
-#    {
-#      if (i >= iter.max)
- #     {
-#        warning(paste("no convergence after",iter.max,"last values B1:",B1,"B0:",B0))
- #       break
-#      }
-
-#      i<-i+1
-
-#      # Calculation of weights
-#      d <- Y-(b0+b1*X)
-#      XHAT <- X+(error.ratio*b1*d/(1+error.ratio*b1^2))
-#      YHAT <- Y-(d/(1+error.ratio*b1^2))
-      #W <- ((XHAT+error.ratio*YHAT)/(1+error.ratio))^(-2)
-
-#      euclid.d<-sqrt((X-XHAT)^2+(Y-YHAT)^2)
-#      euclid.mad<-mad(euclid.d)
-#      stdeuclid.d<-euclid.d/euclid.mad
-#      k<-1.345
-#      W<-ifelse(abs(stdeuclid.d) <= k, 1, k/abs(stdeuclid.d))
+#'              
 
 
-
-#      # Calculation of regression coefficients
-#      XW <- sum(W*X)/sum(W)
-#      YW <- sum(W*Y)/sum(W)
-#      U <- sum(W*((X-XW)^2))
-#      Q <- sum(W*((Y-YW)^2))
-#      P <- sum(W*(X-XW)*(Y-YW))
-#
-#      # Point estimates
-#      B1 <- (error.ratio*Q-U+sqrt((U-error.ratio*Q)^2+4*error.ratio*P^2))/(2*error.ratio*P)
-
-      #Singularity protection
- #     if (!is.finite(B1)){
-#        warning(paste("Singularity found during iteration, last valid values passed","b1:",b1,"b0:",b0))
-#        B1 <- b1
-#        B0 <- b0
-#        break
-#      }
-
-
-#      B0 <- YW-B1*XW
-
-#      # Stop condition
-#      if(abs(b1-B1) < threshold & abs(b0-B0) < threshold)
-#        break
-
-      # new values
-#      b1<-B1
-#      b0<-B0
-#    } # end of iterative algorithm
-
-#    list(b0 = B0, b1 = B1, 
-#                se.b0 = 0 , se.b1 = 0, 
-#                xw = XW,  weight = W)
-    
-    
-    
-#  }
-#}
-
-mc.mdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.000001)
+mc.mmNgdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.000001)
 {
   # Check validity of parameters
   stopifnot(is.numeric(X))
@@ -181,11 +79,14 @@ mc.mdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.00
     nX <- length(X)
     # kM <- 0.95106 rational geometric alternative
     kM <- 1.345
+    tauMM <- 4.685
     
     ### mode = 0 - Deming regression
     ### mode = 1 - WDeming regression
     mode <- 1
     W <- rep(1, nX)
+    
+    ## Use M-Deming as starting value for slope and intercept in MM
     
     model.Deming <- .C("calc_MDem", 
                        x = as.numeric(X), y = as.numeric(Y), 
@@ -201,15 +102,74 @@ mc.mdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.00
                        W = as.numeric(W), 
                        xw = as.numeric(xw),
                        kM = as.numeric(kM),
+                       #tauMM = as.numeric(tauMM),
                        PACKAGE="mcrPioda")
     if (model.Deming$maxit >= maxit) {
-      warning(paste("no convergence after", maxit, "iterations","B1:",
+      warning(paste("No M-start convergence after", maxit, "iterations","B1:",
                     model.Deming$slope,"B0:",model.Deming$intercept,"sum(W)",sum(model.Deming$W)))
     }
     
-    list(b1 = model.Deming$slope, b0 = model.Deming$intercept,
-         iter = model.Deming$maxit,
-         xw = model.Deming$xw,  weight = model.Deming$W)
+    ## Start values - refining phase. Order in base of weights, take only 50% of the highest
+    ## weights and calculate a new M-Deming.
+    
+    bPoint <- 0.5
+    
+    refDat <- data.frame(X=X,Y=Y,W=W)
+    selData <- order(W, decreasing=TRUE)
+    refDatHalf <- refDat[selData[1:(floor(nX*bPoint))],]
+    
+    ref.MDeming <- .C("calc_MDem", 
+                       x = as.numeric(refDatHalf$X), y = as.numeric(refDatHalf$Y), 
+                       n = as.integer(floor(nX*bPoint)), 
+                       error_ratio = as.numeric(error.ratio), 
+                       intercept = as.numeric(intercept), 
+                       slope = as.numeric(slope), 
+                       seIntercept = as.numeric(seIntercept), 
+                       seSlope = as.numeric(seSlope), 
+                       mode = as.integer(mode), 
+                       maxit = as.integer(iter.max), 
+                       threshold = as.numeric(threshold), 
+                       W = as.numeric(W), 
+                       xw = as.numeric(xw),
+                       kM = as.numeric(kM),
+                       #tauMM = as.numeric(tauMM),
+                       PACKAGE="mcrPioda")
+    
+    if (ref.MDeming$maxit >= maxit) {
+      warning(paste("No Ref-M convergence after", maxit, "iterations","B1:",
+                    ref.MDeming$slope,"B0:",ref.MDeming$intercept,"sum(W)",sum(ref.MDeming$W)))
+    }
+    
+    ## Finally uses M refined starts in the MM algorithm
+    
+    model.MMDeming <- .C("calc_MMDem", 
+                       x = as.numeric(X), y = as.numeric(Y), 
+                       n = as.integer(nX), 
+                       error_ratio = as.numeric(error.ratio), 
+                       #intercept = as.numeric(ref.MDeming$intercept),
+                       intercept = as.numeric(0),
+                       #slope = as.numeric(ref.MDeming$slope),
+                       slope = as.numeric(1.1),
+                       seIntercept = as.numeric(seIntercept), 
+                       seSlope = as.numeric(seSlope), 
+                       mode = as.integer(mode), 
+                       maxit = as.integer(iter.max), 
+                       threshold = as.numeric(threshold), 
+                       W = as.numeric(W), 
+                       xw = as.numeric(xw),
+                       kM = as.numeric(kM),
+                       tauMM = as.numeric(tauMM),
+                       PACKAGE="mcrPioda")
+    
+    if (model.MMDeming$maxit >= maxit) {
+      warning(paste("No MM convergence after", maxit, "iterations","B1:",
+                    model.MMDeming$slope,"B0:",model.MMDeming$intercept,"sum(W)",sum(model.MMDeming$W)))
+    }
+
+    list(b1 = model.MMDeming$slope, b0 = model.MMDeming$intercept,
+         iter = model.MMDeming$maxit,
+         xw = model.MMDeming$xw,  weight = model.MMDeming$W)
   }
+  
 }
 

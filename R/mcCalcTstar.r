@@ -109,6 +109,10 @@ mc.calcTstar <- function(.Object, x.levels, iter.max=30, threshold = 0.000001)
           callfun.reg <- function(idx) { mc.mdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold) }
         else if (regmeth == "MMDeming")
           callfun.reg <- function(idx) { mc.mmdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold) }
+        else if (regmeth == "NgMMDeming")
+          callfun.reg <- function(idx) { mc.mmNgdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold) }
+        else if (regmeth == "PiMMDeming")
+          callfun.reg <- function(idx) { mc.mmPidemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold) }
         else if (regmeth == "PaBa") 
         {
       		## Determine if slope 1 or -1 is expected on complete data set
