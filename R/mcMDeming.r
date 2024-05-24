@@ -104,7 +104,7 @@ mc.mdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.00
     }
     
     list(b1 = model.Deming$slope, b0 = model.Deming$intercept,
-         iter = model.Deming$maxit,
+         se.b0 = model.Deming$seIntercept, se.b1 = model.Deming$seSlope,
          xw = model.Deming$xw,  weight = model.Deming$W)
   }
 }

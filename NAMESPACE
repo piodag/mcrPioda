@@ -7,10 +7,11 @@ importFrom("grDevices", "rgb","axisTicks")
 importFrom("utils","tail")
 importFrom("graphics", "abline", "arrows", "box", "grid", 
 			"hist", "layout", "legend", "mtext", "par", 
-			"points", "polygon", "segments", "text", "title")
+			"points", "polygon", "segments", "text", "title","rect")
 importFrom("stats", "complete.cases", "cor", "cor.test", 
 			"density", "dt", "median", "pnorm", "qnorm", 
-			"qqplot", "qt", "quantile", "rt", "sd")
+			"qqplot", "qt", "quantile", "rt", "sd",
+			"mahalanobis","pchisq","mad")
 
 importFrom("parallel", "makeCluster", "detectCores", "clusterEvalQ", 
 			"clusterExport", "clusterApplyLB", "clusterSetRNGStream", 

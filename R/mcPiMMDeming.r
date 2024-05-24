@@ -39,6 +39,7 @@
 #' @param priorSlope starting slope value, default priorSlope = 1
 #' @param priorIntercept starting intercept value, default priorIntercept = 0
 #' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
+#' @param kM  description
 #' @return a list with elements
 #'  \item{b0}{intercept.}
 #'  \item{b1}{slope.}
@@ -122,7 +123,7 @@ mc.mmPidemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0
     }
 
     list(b1 = model.MMDeming$slope, b0 = model.MMDeming$intercept,
-         iter = model.MMDeming$maxit,
+         se.b0 = model.MMDeming$seIntercept, se.b1 = model.MMDeming$seSlope,
          xw = model.MMDeming$xw,  weight = model.MMDeming$W)
   }
   

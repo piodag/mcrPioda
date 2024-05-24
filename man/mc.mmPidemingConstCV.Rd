@@ -12,7 +12,8 @@ mc.mmPidemingConstCV(
   threshold = 1e-06,
   priorSlope = 1,
   priorIntercept = 0,
-  tauMM = 4.685
+  tauMM = 4.685,
+  kM = 1.345
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ mc.mmPidemingConstCV(
 \item{priorIntercept}{starting intercept value, default priorIntercept = 0}
 
 \item{tauMM}{Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685}
+
+\item{kM}{description}
 }
 \value{
 a list with elements

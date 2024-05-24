@@ -123,6 +123,11 @@
 #' @param rng.kind type of random number generator for bootstrap sampling. Only used when rng.seed is specified, see set.seed for details.
 #' @param iter.max maximum number of iterations for weighted Deming iterative algorithm.
 #' @param threshold numerical tolerance for weighted Deming iterative algorithm convergence.
+#' @param kM Huber's k for the M weighting, default kM = 1.345
+#' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
+#' @param priorSlope starting slope value for PiMMDeming, default priorSlope = 1
+#' @param priorIntercept starting intercept value for PiMMDeming, default priorIntercept = 0
+#' @param bdPoint Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5
 #' @param na.rm remove measurement pairs that contain missing values (Default is FALSE).
 #' @param NBins number of bins used when 'reg.method="PaBaLarge"' to classify each slope in one of 'NBins' bins covering the range of all slopes
 #' @param slope.measure angular measure of pairwise slopes used for exact PaBa regression (see below for details).\cr   

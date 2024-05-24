@@ -89,6 +89,16 @@ contains four basic methods for calculation of confidence intervals for regressi
 
 \item{NBins}{number of bins used when 'reg.method="PaBaLarge"' to classify each slope in one of 'NBins' bins covering the range of all slopes}
 
+\item{kM}{Huber's k for the M weighting, default kM = 1.345}
+
+\item{tauMM}{Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685}
+
+\item{priorSlope}{starting slope value for PiMMDeming, default priorSlope = 1}
+
+\item{priorIntercept}{starting intercept value for PiMMDeming, default priorIntercept = 0}
+
+\item{bdPoint}{Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5}
+
 \item{slope.measure}{angular measure of pairwise slopes used for exact PaBa regression (see below for details).\cr
 \code{"radian"} - for data sets with even sample numbers median slope is calculated as average of two central slope angles.\cr
 \code{"tangent"} - for data sets with even sample numbers median slope is calculated as average of two central slopes (tan(angle)).\cr}

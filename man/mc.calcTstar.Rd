@@ -4,7 +4,17 @@
 \alias{mc.calcTstar}
 \title{Compute Resampling T-statistic.}
 \usage{
-mc.calcTstar(.Object, x.levels, iter.max = 30, threshold = 1e-06)
+mc.calcTstar(
+  .Object,
+  x.levels,
+  iter.max = 30,
+  threshold = 1e-06,
+  kM = 1.345,
+  tauMM = 4.685,
+  priorSlope = 1,
+  priorIntercept = 0,
+  bdPoint = 0.5
+)
 }
 \arguments{
 \item{.Object}{object of class "MCResultResampling".}

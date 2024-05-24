@@ -36,7 +36,8 @@
 #' @references  Carpenter J., Bithell J. 
 #'              Bootstrap confidence intervals: when, which, what? A practical guide for medical statisticians.
 #'              Stat Med, 19 (9), 1141-1164 (2000).
-mc.calcTstar <- function(.Object, x.levels, iter.max=30, threshold = 0.000001)
+mc.calcTstar <- function(.Object, x.levels, iter.max=30, threshold = 0.000001, 
+                         kM=1.345,tauMM = 4.685, priorSlope = 1, priorIntercept = 0, bdPoint = 0.5)
 {
     stopifnot(is.numeric(x.levels))
 
@@ -106,11 +107,11 @@ mc.calcTstar <- function(.Object, x.levels, iter.max=30, threshold = 0.000001)
         else if (regmeth == "WDeming")
       		callfun.reg <- function(idx) { mc.wdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold) }
         else if (regmeth == "MDeming")
-          callfun.reg <- function(idx) { mc.mdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold,kM) }
+          callfun.reg <- function(idx) { mc.mdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold,kM=kM) }
         else if (regmeth == "MMDeming")
-          callfun.reg <- function(idx) { mc.mmdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold,tauMM) }
+          callfun.reg <- function(idx) { mc.mmdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold,tauMM=tauMM) }
         else if (regmeth == "NgMMDeming")
-          callfun.reg <- function(idx) { mc.mmNgdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold,kM,tauMM,bdPoint) }
+          callfun.reg <- function(idx) { mc.mmNgdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold,kM=kM,tauMM=tauMM,bdPoint=bdPoint) }
         else if (regmeth == "PiMMDeming")
           callfun.reg <- function(idx) { mc.mmPidemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold) }
         else if (regmeth == "PaBa") 
