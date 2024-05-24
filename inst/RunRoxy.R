@@ -9,4 +9,4 @@
 ###############################################################################
 
 library(roxygen2)
-roxygenize(package.dir="mcr")
+roxygenize(package.dir="mcrPioda")

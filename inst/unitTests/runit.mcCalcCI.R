@@ -7,7 +7,7 @@ test.mc.analytical.mc.call <- function()
     data(creatinine)
     crea <- creatinine[complete.cases(creatinine),]   
     
-    tmp <- mcr:::mc.analytical.ci(b0=0.01504697, b1=0.99397124, se.b0=0.04339864, se.b1=0.03331363, n=108, alpha=.05)
+    tmp <- mcrPioda:::mc.analytical.ci(b0=0.01504697, b1=0.99397124, se.b0=0.04339864, se.b1=0.03331363, n=108, alpha=.05)
     
     checkEquals(tmp[1,3:4], c(LCI=-0.07099505, UCI=0.101089), tolerance=10e-7)
     checkEquals(tmp[2,3:4], c(LCI=0.92792373, UCI=1.060019), tolerance=10e-7)
@@ -31,8 +31,8 @@ test.mc.calcLinnetCI.call <- function()
     Xhat.1 <- -0.0351187
     Xhat.2 <- 0.9979441
     
-    checkEquals( mcr:::mc.calcLinnetCI(Xjack.1, Xhat.1, alpha=.05), list(est=-0.0351187, se=0.13710168, CI=c(-0.3231586, 0.2529212)), tolerance=10e-7 )
-    checkEquals( mcr:::mc.calcLinnetCI(Xjack.2, Xhat.2, alpha=.05), list(est=0.9979441, se=0.09327199, CI=c(0.8019870, 1.1939013)), tolerance=10e-7 )
+    checkEquals( mcrPioda:::mc.calcLinnetCI(Xjack.1, Xhat.1, alpha=.05), list(est=-0.0351187, se=0.13710168, CI=c(-0.3231586, 0.2529212)), tolerance=10e-7 )
+    checkEquals( mcrPioda:::mc.calcLinnetCI(Xjack.2, Xhat.2, alpha=.05), list(est=0.9979441, se=0.09327199, CI=c(0.8019870, 1.1939013)), tolerance=10e-7 )
 }
 
 
@@ -77,7 +77,7 @@ test.mc.calc.Student.call <- function()
                     0.0252126857261716, -0.0928744183026222, -0.00504887737083748, 0.0288262258373617, 0.057204653001621, -0.189132296497132, 0.00729210342036124, 
                     -0.122666399041608, 0.259655959114795, -0.0563515677640154, 0.408342158100976, -0.154572416520996, -0.0986666001067948, -0.0451296520049611 )
                     
-    res <- mcr:::mc.calc.Student( bs.samples, xhat=-0.0351187007883316, alpha=.05, npoints=20)
+    res <- mcrPioda:::mc.calc.Student( bs.samples, xhat=-0.0351187007883316, alpha=.05, npoints=20)
     
     checkEquals( res, list(est=-0.0351187007883316, se=0.115378419917883, CI=c(-0.277519766161998, 0.207282364585335)), tolerance=10e-7)
 }
@@ -108,7 +108,7 @@ test.mc.calc.tboot.call <- function()
     B0.glob <- -0.0351
     se.B0.glob <- 0.0987
     
-    res <- mcr:::mc.calc.tboot( Xboot=B0.samples, Sboot=se.B0.samples, xhat=B0.glob, shat=se.B0.glob, alpha=.05)
+    res <- mcrPioda:::mc.calc.tboot( Xboot=B0.samples, Sboot=se.B0.samples, xhat=B0.glob, shat=se.B0.glob, alpha=.05)
     
     checkEquals( res, list(est=-0.0351, se=0.0987, CI=c("97.5%"=-0.2558322, "2.5%"=0.1738395)), tolerance=10e-7 )
 }
@@ -131,7 +131,7 @@ test.mc.calc.bca.call <- function()
     
     B0.glob <- -0.0351
     
-    res <- mcr:::mc.calc.bca( Xboot=B0.samples, Xjack=B0.jack, xhat=B0.glob, alpha=.05 )
+    res <- mcrPioda:::mc.calc.bca( Xboot=B0.samples, Xjack=B0.jack, xhat=B0.glob, alpha=.05 )
     
     checkEquals(as.numeric(res$CI), c(-0.1870422, 0.2811705), tolerance=10e-7)
 }
@@ -149,14 +149,14 @@ test.mc.calc.quantile <- function(Xboot, alpha)
                     -0.150280762854567, 0.0120168218014174, -0.107218131785763, -0.181289465843909, 0.113195736012605, -0.152691911906173, -0.157122489209217,
                     0.167294153419436 )
     
-    res <- mcr:::mc.calc.quantile(Xboot=samples, alpha=.05)
+    res <- mcrPioda:::mc.calc.quantile(Xboot=samples, alpha=.05)
     
     checkEquals(res, list(est=c("50%"=-0.01064645), CI=c("2.5%"=-0.1816869, "97.5%"=0.2981216)), tolerance=10e-7) 
 }
 
 test.mc.make.CIframe.call <- function()
 {    
-    res <- mcr:::mc.make.CIframe(b0=1, b1=2, se.b0=3, se.b1=4, CI.b0=c(5,5), CI.b1=c(6,6))
+    res <- mcrPioda:::mc.make.CIframe(b0=1, b1=2, se.b0=3, se.b1=4, CI.b0=c(5,5), CI.b1=c(6,6))
     checkEquals( colnames(res), c("EST", "SE", "LCI", "UCI"))
     checkEquals( rownames(res), c("Intercept", "Slope"))
 }

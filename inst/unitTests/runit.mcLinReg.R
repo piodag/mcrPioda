@@ -8,11 +8,11 @@ test.mc.linreg.call <- function()
     set.seed(19061978)
     smpl <- sample(110, 30)
     
-    checkException(mcr:::mc.linreg(as.numeric(NA), creatinine[smpl,1]))
-    checkException(mcr:::mc.linreg(numeric(0), numeric(0)))
-    checkException(mcr:::mc.linreg(creatinine[smple[-1], 1], creatinine[smpl,2]))
+    checkException(mcrPioda:::mc.linreg(as.numeric(NA), creatinine[smpl,1]))
+    checkException(mcrPioda:::mc.linreg(numeric(0), numeric(0)))
+    checkException(mcrPioda:::mc.linreg(creatinine[smple[-1], 1], creatinine[smpl,2]))
     
-    res <- mcr:::mc.linreg(creatinine[smpl,1], creatinine[smpl,2])
+    res <- mcrPioda:::mc.linreg(creatinine[smpl,1], creatinine[smpl,2])
     
     lm.fit <- lm(plasma.crea~serum.crea, creatinine[smpl,])
     Coef <- coef(lm.fit)
@@ -29,11 +29,11 @@ test.mc.wlinreg.call <- function()
     set.seed(19061978)
     smpl <- sample(110, 30)
     
-    checkException(mcr:::mc.wlinreg(as.numeric(NA), creatinine[smpl,1]))
-    checkException(mcr:::mc.wlinreg(numeric(0), numeric(0)))
-    checkException(mcr:::mc.wlinreg(creatinine[smple[-1], 1], creatinine[smpl,2]))
+    checkException(mcrPioda:::mc.wlinreg(as.numeric(NA), creatinine[smpl,1]))
+    checkException(mcrPioda:::mc.wlinreg(numeric(0), numeric(0)))
+    checkException(mcrPioda:::mc.wlinreg(creatinine[smple[-1], 1], creatinine[smpl,2]))
     
-    res <- mcr:::mc.wlinreg(creatinine[smpl,1], creatinine[smpl,2])
+    res <- mcrPioda:::mc.wlinreg(creatinine[smpl,1], creatinine[smpl,2])
     
     lm.fit <- lm(plasma.crea~serum.crea, creatinine[smpl,], weights=1/creatinine[smpl,1]^2)
 

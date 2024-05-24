@@ -42,7 +42,7 @@ up the computation.
 }
 \examples{
 
- library("mcr")
+ library("mcrPioda")
  data(creatinine,package="mcrPioda")
  
 # remove any NAs

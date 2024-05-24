@@ -48,6 +48,16 @@ necessary for Deming regression. Default 1.}
 
 \item{nsamples}{Number of bootstrap samples.}
 
+\item{priorSlope}{starting slope value for PiMMDeming, default priorSlope = 1}
+
+\item{priorIntercept}{starting intercept value for PiMMDeming, default priorIntercept = 0}
+
+\item{kM}{Huber's k for the M weighting, default kM = 1.345}
+
+\item{tauMM}{Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685}
+
+\item{bdPoint}{Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5.}
+
 \item{nnested}{Number of nested bootstrap samples.}
 
 \item{iter.max}{maximum number of iterations for weighted Deming iterative algorithm.}

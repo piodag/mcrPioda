@@ -10,11 +10,11 @@ test.mc.paba.call <- function()
     
     cc <- cor(crea[,1], crea[,2], method="kendall") > 0
     
-    amat.r <-  mcr:::mc.calcAngleMat.R(crea[,1], crea[,2], posCor=cc)             # angle matrix computed with R-implementation (slow)  
-    amat.c <-  mcr:::mc.calcAngleMat(crea[,1], crea[,2], posCor=cc)               # angle matrix computed with C-implementation (fast)
+    amat.r <-  mcrPioda:::mc.calcAngleMat.R(crea[,1], crea[,2], posCor=cc)             # angle matrix computed with R-implementation (slow)  
+    amat.c <-  mcrPioda:::mc.calcAngleMat(crea[,1], crea[,2], posCor=cc)               # angle matrix computed with C-implementation (fast)
     
-    paba.r <- mcr:::mc.paba(amat.r, crea[,1], crea[,2], alpha=0.05, posCor=TRUE, calcCI=TRUE) 
-    paba.c <- mcr:::mc.paba(amat.r, crea[,1], crea[,2], alpha=0.05, posCor=TRUE, calcCI=TRUE) 
+    paba.r <- mcrPioda:::mc.paba(amat.r, crea[,1], crea[,2], alpha=0.05, posCor=TRUE, calcCI=TRUE) 
+    paba.c <- mcrPioda:::mc.paba(amat.r, crea[,1], crea[,2], alpha=0.05, posCor=TRUE, calcCI=TRUE) 
     
     # values are copied and pasted from calanas
     
@@ -48,7 +48,7 @@ test.mc.paba.call <- function()
         
     calanas.td9 <- matrix( c(-2.44854969408334E-07, 0.991592719686709, NA, NA, -5.11589054457244E-06, 0.88402817327764, 2.05171478796142E-06, 1.12373138870351),
                             dimnames=list(c("Intercept", "Slope"), c("EST", "SE", "LCI", "UCI")), ncol=4)
-    paba.td9 <- mcr:::mc.paba( mcr:::mc.calcAngleMat(X.td9, Y.td9, posCor=posCor), X.td9, Y.td9, posCor=posCor, calcCI=TRUE)
+    paba.td9 <- mcrPioda:::mc.paba( mcrPioda:::mc.calcAngleMat(X.td9, Y.td9, posCor=posCor), X.td9, Y.td9, posCor=posCor, calcCI=TRUE)
         
     checkEquals( paba.td9, calanas.td9, tolerance=10e-14 )
     
@@ -75,7 +75,7 @@ test.mc.paba.call <- function()
     
     calanas.td13 <- matrix( c(-244854.969408333, 0.991592719686709, NA, NA, -5115890.544572, 0.88402817327764, 2051714.78796142, 1.12373138870351),
                             dimnames=list(c("Intercept", "Slope"), c("EST", "SE", "LCI", "UCI")), ncol=4)
-    paba.td13 <- mcr:::mc.paba( mcr:::mc.calcAngleMat(X.td13, Y.td13, posCor=posCor), X.td13, Y.td13, posCor=posCor, calcCI=TRUE)
+    paba.td13 <- mcrPioda:::mc.paba( mcrPioda:::mc.calcAngleMat(X.td13, Y.td13, posCor=posCor), X.td13, Y.td13, posCor=posCor, calcCI=TRUE)
     
     checkEquals( paba.td13, calanas.td13, tolerance=10e-14 )
     
@@ -103,7 +103,7 @@ test.mc.paba.call <- function()
     calanas.td15 <- matrix( c(-0.639752984809869, 1.02058852149448, NA, NA, -2.3330808182894, 0.95848878631593, 0.840973102642057, 1.09232009780764),
                             dimnames=list(c("Intercept", "Slope"), c("EST", "SE", "LCI", "UCI")), ncol=4)
         
-    paba.td15 <- mcr:::mc.paba( mcr:::mc.calcAngleMat(X.td15, Y.td15, posCor=posCor), X.td15, Y.td15, posCor=posCor, calcCI=TRUE)
+    paba.td15 <- mcrPioda:::mc.paba( mcrPioda:::mc.calcAngleMat(X.td15, Y.td15, posCor=posCor), X.td15, Y.td15, posCor=posCor, calcCI=TRUE)
         
     checkEquals( paba.td15, calanas.td15, tolerance=10e-14 )
                     
@@ -132,7 +132,7 @@ test.mc.paba.call <- function()
     calanas.td20 <- matrix( c(10.4644989393406, -0.00797410004149966, NA, NA, 9.71867624035348, -0.0288699851859214, 11.6101730965558, 0.010701458632505),
                             dimnames=list(c("Intercept", "Slope"), c("EST", "SE", "LCI", "UCI")), ncol=4)
                     
-    paba.td20 <- mcr:::mc.paba( mcr:::mc.calcAngleMat(X.td20, Y.td20, posCor=posCor), X.td20, Y.td20, posCor=posCor, calcCI=TRUE)
+    paba.td20 <- mcrPioda:::mc.paba( mcrPioda:::mc.calcAngleMat(X.td20, Y.td20, posCor=posCor), X.td20, Y.td20, posCor=posCor, calcCI=TRUE)
          
     checkEquals( paba.td20, calanas.td20, tolerance=10e-14 )
     
@@ -160,7 +160,7 @@ test.mc.paba.call <- function()
     calanas.td41 <- matrix( c(-1.74861851923587, 0.996354386947289, NA, NA, -8.32583620193478, 0.92273624446357, 0.773029866408987, 1.12979173135459),
                             dimnames=list(c("Intercept", "Slope"), c("EST", "SE", "LCI", "UCI")), ncol=4)
         
-    paba.td41 <- mcr:::mc.paba( mcr:::mc.calcAngleMat(X.td41, Y.td41, posCor=posCor), X.td41, Y.td41, posCor=posCor, calcCI=TRUE)
+    paba.td41 <- mcrPioda:::mc.paba( mcrPioda:::mc.calcAngleMat(X.td41, Y.td41, posCor=posCor), X.td41, Y.td41, posCor=posCor, calcCI=TRUE)
         
     checkEquals( paba.td41, calanas.td41, tolerance=10e-14 )   
     
@@ -188,7 +188,7 @@ test.mc.paba.call <- function()
     calanas.td75 <- matrix( c(99.8952889829088, -0.995207226008001, NA, NA, 95.1117211094814, -1.08090010053621, 106.103632460656, -0.908985813824519),
                             dimnames=list(c("Intercept", "Slope"), c("EST", "SE", "LCI", "UCI")), ncol=4)
         
-    paba.td75 <- mcr:::mc.paba( mcr:::mc.calcAngleMat(X.td75, Y.td75, posCor=posCor), X.td75, Y.td75, posCor=posCor, calcCI=TRUE)
+    paba.td75 <- mcrPioda:::mc.paba( mcrPioda:::mc.calcAngleMat(X.td75, Y.td75, posCor=posCor), X.td75, Y.td75, posCor=posCor, calcCI=TRUE)
         
     checkEquals( paba.td75, calanas.td75, tolerance=10e-14 )     
 }
@@ -201,15 +201,15 @@ test.mc.paba.resampling1 <- function()
 	
 	td.idxprob <- matrix(ncol=2,byrow=T,data=c(1.25,1.81,1.11,1.15,1.67,0.78,1.22,1.53,1.33,1.22,0.99,1.06,1.40,1.30,1.34,0.82,0.53,2.30,1.52,2.11))
 	posCor <- ifelse(cor(td.idxprob[,1],td.idxprob[,2],method="kendall") >= 0, TRUE, FALSE)
-	angM <- mcr:::mc.calcAngleMat(td.idxprob[,1],td.idxprob[,2], posCor)
+	angM <- mcrPioda:::mc.calcAngleMat(td.idxprob[,1],td.idxprob[,2], posCor)
 	
 	set.seed(42)
 	f <- function(x,y) {
 		ind <- sample(1:length(x), length(x), replace=TRUE)
 		posCor <- ifelse(cor(x[ind],y[ind],method="kendall") >= 0, TRUE, FALSE)
-		test1 <- try( mcr:::mc.paba(angM[ind,ind],x[ind],y[ind], posCor=posCor, calcCI=FALSE) )		# test without CI
+		test1 <- try( mcrPioda:::mc.paba(angM[ind,ind],x[ind],y[ind], posCor=posCor, calcCI=FALSE) )		# test without CI
 		checkTrue( !(  "try-error" %in% class(test1)))
-		test2 <- try( mcr:::mc.paba(angM[ind,ind],x[ind],y[ind], posCor=posCor, calcCI=TRUE) )		# test with CI
+		test2 <- try( mcrPioda:::mc.paba(angM[ind,ind],x[ind],y[ind], posCor=posCor, calcCI=TRUE) )		# test with CI
 		checkTrue( !(  "try-error" %in% class(test2)))
 	}
 	

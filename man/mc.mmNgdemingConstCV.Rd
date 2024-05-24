@@ -33,6 +33,10 @@ mc.mmNgdemingConstCV(
 \item{tauMM}{Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685}
 
 \item{bdPoint}{Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5}
+
+\item{priorSlope}{starting slope value for PiMMDeming, default priorSlope = 1}
+
+\item{priorIntercept}{starting intercept value for PiMMDeming, default priorIntercept = 0}
 }
 \value{
 a list with elements

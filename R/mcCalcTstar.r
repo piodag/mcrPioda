@@ -32,6 +32,11 @@
 #' @param x.levels a numeic vector of clinical desision points of interest.
 #' @param iter.max maximal number of iterations  for calculation of weighted deming regression.
 #' @param threshold threshold for calculation of weighted deming regression.
+#' @param kM Huber's k for the M weighting, default kM = 1.345
+#' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
+#' @param priorSlope starting slope value for PiMMDeming, default priorSlope = 1
+#' @param priorIntercept starting intercept value for PiMMDeming, default priorIntercept = 0
+#' @param bdPoint Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5
 #' @return Tstar numeric vector containing resampling pivot statistic.
 #' @references  Carpenter J., Bithell J. 
 #'              Bootstrap confidence intervals: when, which, what? A practical guide for medical statisticians.

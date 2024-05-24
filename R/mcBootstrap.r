@@ -46,6 +46,11 @@
 #' @param nnested Number of nested bootstrap samples.
 #' @param iter.max maximum number of iterations for weighted Deming iterative algorithm.
 #' @param threshold Numerical tolerance for weighted Deming iterative algorithm convergence.
+#' @param kM Huber's k for the M weighting, default kM = 1.345
+#' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
+#' @param priorSlope starting slope value for PiMMDeming, default priorSlope = 1
+#' @param priorIntercept starting intercept value for PiMMDeming, default priorIntercept = 0
+#' @param bdPoint Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5.
 #' @param NBins number of bins used when 'reg.method="PaBaLarge"' to classify each slope in one of 'NBins' bins of constant slope angle covering the range of all slopes.
 #' @param slope.measure angular measure of pairwise slopes used for exact PaBa regression (see \code{\link{mcreg}} for details).\cr   
 #'          \code{"radian"} - for data sets with even sample numbers median slope is calculated as average of two central slope angles.\cr

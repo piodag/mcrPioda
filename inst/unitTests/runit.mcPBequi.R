@@ -19,8 +19,8 @@ test.mc.PBequi.call1 <- function()
 #    dput(pbdeming[[1]])
 #Output: c(`(Intercept)` = 0.102307692307692, plasma.crea = 0.923076923076924 
 
-    pbeqsmall <- mcr:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="PBequi",calcCI=TRUE,methodlarge=F)
-    pbeqlarge <- mcr:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="PBequi",calcCI=TRUE,methodlarge=T)
+    pbeqsmall <- mcrPioda:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="PBequi",calcCI=TRUE,methodlarge=F)
+    pbeqlarge <- mcrPioda:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="PBequi",calcCI=TRUE,methodlarge=T)
     
     
     
@@ -40,8 +40,8 @@ test.mc.PBequi.call1 <- function()
 
 #     tsdeming <- theilsen(serum.crea~plasma.crea,crea )  
 #     dput(tsdeming[[1]])   
-     tssmall <- mcr:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="TS",calcCI=TRUE,methodlarge=F)
-    tslarge <- mcr:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="TS",calcCI=TRUE,methodlarge=T)
+     tssmall <- mcrPioda:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="TS",calcCI=TRUE,methodlarge=F)
+    tslarge <- mcrPioda:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="TS",calcCI=TRUE,methodlarge=T)
 
     checkEquals( 0.17796875, tssmall$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -72,8 +72,8 @@ test.mc.PBequi.call1 <- function()
     
         
 #    deming.td9 <- pbreg(Y.td9~X.td9,data.frame(X.td9=X.td9,Y.td9=Y.td9), method=3)
-    PBequi.small.td9 <- mcr:::mc.PBequi(X.td9, Y.td9,methodlarge=F)
-    PBequi.large.td9 <- mcr:::mc.PBequi(X.td9, Y.td9,methodlarge=T)
+    PBequi.small.td9 <- mcrPioda:::mc.PBequi(X.td9, Y.td9,methodlarge=F)
+    PBequi.large.td9 <- mcrPioda:::mc.PBequi(X.td9, Y.td9,methodlarge=T)
         
     checkEquals( -2.44854969408334e-07, PBequi.small.td9$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -86,8 +86,8 @@ test.mc.PBequi.call1 <- function()
 
     # Theil-Sen
 #    ts.td9 <- theilsen(Y.td9~X.td9,data.frame(X.td9=X.td9,Y.td9=Y.td9))
-    ts.small.td9 <- mcr:::mc.PBequi(X.td9, Y.td9,methodlarge=F,method.reg="TS")
-    ts.large.td9 <- mcr:::mc.PBequi(X.td9, Y.td9,methodlarge=T,method.reg="TS")
+    ts.small.td9 <- mcrPioda:::mc.PBequi(X.td9, Y.td9,methodlarge=F,method.reg="TS")
+    ts.large.td9 <- mcrPioda:::mc.PBequi(X.td9, Y.td9,methodlarge=T,method.reg="TS")
         
     checkEquals( 6.2991395442635e-07, ts.small.td9$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -118,8 +118,8 @@ test.mc.PBequi.call1 <- function()
                 31309875.198729, 19720969.9963234 )
      
 #     deming.td13 <- pbreg(Y.td13~X.td13,data.frame(X.td13=X.td13,Y.td13=Y.td13), method=3)
-    PBequi.small.td13 <- mcr:::mc.PBequi(X.td13, Y.td13,methodlarge=F)
-    PBequi.large.td13 <- mcr:::mc.PBequi(X.td13, Y.td13,methodlarge=T)
+    PBequi.small.td13 <- mcrPioda:::mc.PBequi(X.td13, Y.td13,methodlarge=F)
+    PBequi.large.td13 <- mcrPioda:::mc.PBequi(X.td13, Y.td13,methodlarge=T)
         
     checkEquals( -244854.969408333, PBequi.small.td13$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -132,8 +132,8 @@ test.mc.PBequi.call1 <- function()
  
     #Theil-Sen
 #    ts.td13 <- theilsen(Y.td13~X.td13,data.frame(X.td13=X.td13,Y.td13=Y.td13))
-    ts.small.td13 <- mcr:::mc.PBequi(X.td13, Y.td13,methodlarge=F,method.reg="TS")
-    ts.large.td13 <- mcr:::mc.PBequi(X.td13, Y.td13,methodlarge=T,method.reg="TS")
+    ts.small.td13 <- mcrPioda:::mc.PBequi(X.td13, Y.td13,methodlarge=F,method.reg="TS")
+    ts.large.td13 <- mcrPioda:::mc.PBequi(X.td13, Y.td13,methodlarge=T,method.reg="TS")
         
     checkEquals( 629913.954426358, ts.small.td13$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -166,8 +166,8 @@ test.mc.PBequi.call1 <- function()
                 31.1175741976669, 69.5490311988868)
         
 #     deming.td15 <- pbreg(Y.td15~X.td15,data.frame(X.td15=X.td15,Y.td15=Y.td15), method=3)
-    PBequi.small.td15 <- mcr:::mc.PBequi(X.td15, Y.td15,methodlarge=F)
-    PBequi.large.td15 <- mcr:::mc.PBequi(X.td15, Y.td15,methodlarge=T)
+    PBequi.small.td15 <- mcrPioda:::mc.PBequi(X.td15, Y.td15,methodlarge=F)
+    PBequi.large.td15 <- mcrPioda:::mc.PBequi(X.td15, Y.td15,methodlarge=T)
         
     checkEquals( -0.639752984809869, PBequi.small.td15$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -180,8 +180,8 @@ test.mc.PBequi.call1 <- function()
     
     #Theil-Sen
 #    ts.td15 <- theilsen(Y.td15~X.td15,data.frame(X.td15=X.td15,Y.td15=Y.td15))
-    ts.small.td15 <- mcr:::mc.PBequi(X.td15, Y.td15,methodlarge=F,method.reg="TS")
-    ts.large.td15 <- mcr:::mc.PBequi(X.td15, Y.td15,methodlarge=T,method.reg="TS")
+    ts.small.td15 <- mcrPioda:::mc.PBequi(X.td15, Y.td15,methodlarge=F,method.reg="TS")
+    ts.large.td15 <- mcrPioda:::mc.PBequi(X.td15, Y.td15,methodlarge=T,method.reg="TS")
         
     checkEquals( 0.215941922555261, ts.small.td15$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -216,8 +216,8 @@ test.mc.PBequi.call1 <- function()
     # pbreg from deming package only returns positive slope estimates, so change sign of Y!
 #   deming.td20 <- pbreg(Y.td20~X.td20,data.frame(X.td20=X.td20,Y.td20=-Y.td20), method=3)
 
-    PBequi.small.td20 <- mcr:::mc.PBequi(X.td20, Y.td20,methodlarge=F)
-    PBequi.large.td20 <- mcr:::mc.PBequi(X.td20, Y.td20,methodlarge=T)
+    PBequi.small.td20 <- mcrPioda:::mc.PBequi(X.td20, Y.td20,methodlarge=F)
+    PBequi.large.td20 <- mcrPioda:::mc.PBequi(X.td20, Y.td20,methodlarge=T)
         
     checkEquals( 13.7983056265337, PBequi.small.td20$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -230,8 +230,8 @@ test.mc.PBequi.call1 <- function()
     
     #Theil-Sen
 #k    ts.td20 <- theilsen(Y.td20~X.td20,data.frame(X.td20=X.td20,Y.td20=Y.td20))
-    ts.small.td20 <- mcr:::mc.PBequi(X.td20, Y.td20,methodlarge=F,method.reg="TS")
-    ts.large.td20 <- mcr:::mc.PBequi(X.td20, Y.td20,methodlarge=T,method.reg="TS")
+    ts.small.td20 <- mcrPioda:::mc.PBequi(X.td20, Y.td20,methodlarge=F,method.reg="TS")
+    ts.large.td20 <- mcrPioda:::mc.PBequi(X.td20, Y.td20,methodlarge=T,method.reg="TS")
         
     checkEquals( 10.308472354129, ts.small.td20$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -262,8 +262,8 @@ test.mc.PBequi.call1 <- function()
                 12.5229666712546, 13.2198613541858)
         
 #    deming.td41 <- pbreg(Y.td41~X.td41,data.frame(X.td41=X.td41,Y.td41=Y.td41), method=3)
-    PBequi.small.td41 <- mcr:::mc.PBequi(X.td41, Y.td41,methodlarge=F)
-    PBequi.large.td41 <- mcr:::mc.PBequi(X.td41, Y.td41,methodlarge=T)
+    PBequi.small.td41 <- mcrPioda:::mc.PBequi(X.td41, Y.td41,methodlarge=F)
+    PBequi.large.td41 <- mcrPioda:::mc.PBequi(X.td41, Y.td41,methodlarge=T)
         
     checkEquals( -1.74861851923587, PBequi.small.td41$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -276,8 +276,8 @@ test.mc.PBequi.call1 <- function()
     
     #Theil-Sen
 #    ts.td41 <- theilsen(Y.td41~X.td41,data.frame(X.td41=X.td41,Y.td41=Y.td41))
-    ts.small.td41 <- mcr:::mc.PBequi(X.td41, Y.td41,methodlarge=F,method.reg="TS")
-    ts.large.td41 <- mcr:::mc.PBequi(X.td41, Y.td41,methodlarge=T,method.reg="TS")
+    ts.small.td41 <- mcrPioda:::mc.PBequi(X.td41, Y.td41,methodlarge=F,method.reg="TS")
+    ts.large.td41 <- mcrPioda:::mc.PBequi(X.td41, Y.td41,methodlarge=T,method.reg="TS")
         
     checkEquals( -0.33225717077892, ts.small.td41$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -309,8 +309,8 @@ test.mc.PBequi.call1 <- function()
 
      # pbreg from deming package only returns positive slope estimates, so change sign of Y!      
 #    deming.td75 <- pbreg(Y.td75~X.td75,data.frame(X.td75=X.td75,Y.td75=-Y.td75), method=3)
-    PBequi.small.td75 <- mcr:::mc.PBequi(X.td75, Y.td75,methodlarge=F)
-    PBequi.large.td75 <- mcr:::mc.PBequi(X.td75, Y.td75,methodlarge=T)
+    PBequi.small.td75 <- mcrPioda:::mc.PBequi(X.td75, Y.td75,methodlarge=F)
+    PBequi.large.td75 <- mcrPioda:::mc.PBequi(X.td75, Y.td75,methodlarge=T)
         
     checkEquals( 99.8952889829088, PBequi.small.td75$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -323,8 +323,8 @@ test.mc.PBequi.call1 <- function()
 
     #Theil-Sen
 #    ts.td75 <- theilsen(Y.td75~X.td75,data.frame(X.td75=X.td75,Y.td75=Y.td75))
-    ts.small.td75 <- mcr:::mc.PBequi(X.td75, Y.td75,methodlarge=F,method.reg="TS")
-    ts.large.td75 <- mcr:::mc.PBequi(X.td75, Y.td75,methodlarge=T,method.reg="TS")
+    ts.small.td75 <- mcrPioda:::mc.PBequi(X.td75, Y.td75,methodlarge=F,method.reg="TS")
+    ts.large.td75 <- mcrPioda:::mc.PBequi(X.td75, Y.td75,methodlarge=T,method.reg="TS")
         
     checkEquals( 96.629630145324, ts.small.td75$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -350,9 +350,9 @@ test.mc.PBequi.resampling1 <- function()
 	set.seed(42)
 	f <- function(x,y) {
 		ind <- sample(1:length(x), length(x), replace=TRUE)
-		test1 <- try( mcr:::mc.PBequi(x[ind],y[ind], calcCI=FALSE) )		# test without CI
+		test1 <- try( mcrPioda:::mc.PBequi(x[ind],y[ind], calcCI=FALSE) )		# test without CI
 		checkTrue( class(test1) != "try-error")
-		test2 <- try( mcr:::mc.PBequi(x[ind],y[ind], calcCI=TRUE) )		# test with CI
+		test2 <- try( mcrPioda:::mc.PBequi(x[ind],y[ind], calcCI=TRUE) )		# test with CI
 		checkTrue( class(test2) != "try-error")
 	}
 	
@@ -395,8 +395,8 @@ test.mc.PBequi.call2 <- function()
 #    dput(pbdeming[[1]])
 #Output: c(`(Intercept)` = 0.102307692307692, plasma.crea = 0.923076923076924 
 
-    pbeqsmall <- mcr:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="PBequi",calcCI=TRUE,methodlarge=F)
-    pbeqlarge <- mcr:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="PBequi",calcCI=TRUE,methodlarge=T)
+    pbeqsmall <- mcrPioda:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="PBequi",calcCI=TRUE,methodlarge=F)
+    pbeqlarge <- mcrPioda:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="PBequi",calcCI=TRUE,methodlarge=T)
     
     
     
@@ -417,8 +417,8 @@ test.mc.PBequi.call2 <- function()
 
 #     tsdeming <- theilsen(serum.crea~plasma.crea,crea )  
 #     dput(tsdeming[[1]])   
-     tssmall <- mcr:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="TS",calcCI=TRUE,methodlarge=F)
-    tslarge <- mcr:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="TS",calcCI=TRUE,methodlarge=T)
+     tssmall <- mcrPioda:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="TS",calcCI=TRUE,methodlarge=F)
+    tslarge <- mcrPioda:::mc.PBequi(crea$plasma.crea,crea$serum.crea,slope.measure="radian",method.reg="TS",calcCI=TRUE,methodlarge=T)
 
     checkEquals( 0.17796875, tssmall$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -449,8 +449,8 @@ test.mc.PBequi.call2 <- function()
     
         
 #    deming.td9 <- pbreg(Y.td9~X.td9,data.frame(X.td9=X.td9,Y.td9=Y.td9), method=3)
-    PBequi.small.td9 <- mcr:::mc.PBequi(X.td9, Y.td9,methodlarge=F)
-    PBequi.large.td9 <- mcr:::mc.PBequi(X.td9, Y.td9,methodlarge=T)
+    PBequi.small.td9 <- mcrPioda:::mc.PBequi(X.td9, Y.td9,methodlarge=F)
+    PBequi.large.td9 <- mcrPioda:::mc.PBequi(X.td9, Y.td9,methodlarge=T)
         
     checkEquals( -2.44854969408334e-07, PBequi.small.td9$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -463,8 +463,8 @@ test.mc.PBequi.call2 <- function()
 
     # Theil-Sen
 #    ts.td9 <- theilsen(Y.td9~X.td9,data.frame(X.td9=X.td9,Y.td9=Y.td9))
-    ts.small.td9 <- mcr:::mc.PBequi(X.td9, Y.td9,methodlarge=F,method.reg="TS")
-    ts.large.td9 <- mcr:::mc.PBequi(X.td9, Y.td9,methodlarge=T,method.reg="TS")
+    ts.small.td9 <- mcrPioda:::mc.PBequi(X.td9, Y.td9,methodlarge=F,method.reg="TS")
+    ts.large.td9 <- mcrPioda:::mc.PBequi(X.td9, Y.td9,methodlarge=T,method.reg="TS")
         
     checkEquals( 6.2991395442635e-07, ts.small.td9$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -495,8 +495,8 @@ test.mc.PBequi.call2 <- function()
                 31309875.198729, 19720969.9963234 )
      
 #     deming.td13 <- pbreg(Y.td13~X.td13,data.frame(X.td13=X.td13,Y.td13=Y.td13), method=3)
-    PBequi.small.td13 <- mcr:::mc.PBequi(X.td13, Y.td13,methodlarge=F)
-    PBequi.large.td13 <- mcr:::mc.PBequi(X.td13, Y.td13,methodlarge=T)
+    PBequi.small.td13 <- mcrPioda:::mc.PBequi(X.td13, Y.td13,methodlarge=F)
+    PBequi.large.td13 <- mcrPioda:::mc.PBequi(X.td13, Y.td13,methodlarge=T)
         
     checkEquals( -244854.969408333, PBequi.small.td13$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -509,8 +509,8 @@ test.mc.PBequi.call2 <- function()
  
     #Theil-Sen
 #    ts.td13 <- theilsen(Y.td13~X.td13,data.frame(X.td13=X.td13,Y.td13=Y.td13))
-    ts.small.td13 <- mcr:::mc.PBequi(X.td13, Y.td13,methodlarge=F,method.reg="TS")
-    ts.large.td13 <- mcr:::mc.PBequi(X.td13, Y.td13,methodlarge=T,method.reg="TS")
+    ts.small.td13 <- mcrPioda:::mc.PBequi(X.td13, Y.td13,methodlarge=F,method.reg="TS")
+    ts.large.td13 <- mcrPioda:::mc.PBequi(X.td13, Y.td13,methodlarge=T,method.reg="TS")
         
     checkEquals( 629913.954426358, ts.small.td13$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -543,8 +543,8 @@ test.mc.PBequi.call2 <- function()
                 31.1175741976669, 69.5490311988868)
         
 #     deming.td15 <- pbreg(Y.td15~X.td15,data.frame(X.td15=X.td15,Y.td15=Y.td15), method=3)
-    PBequi.small.td15 <- mcr:::mc.PBequi(X.td15, Y.td15,methodlarge=F)
-    PBequi.large.td15 <- mcr:::mc.PBequi(X.td15, Y.td15,methodlarge=T)
+    PBequi.small.td15 <- mcrPioda:::mc.PBequi(X.td15, Y.td15,methodlarge=F)
+    PBequi.large.td15 <- mcrPioda:::mc.PBequi(X.td15, Y.td15,methodlarge=T)
         
     checkEquals( -0.639752984809869, PBequi.small.td15$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -557,8 +557,8 @@ test.mc.PBequi.call2 <- function()
     
     #Theil-Sen
 #    ts.td15 <- theilsen(Y.td15~X.td15,data.frame(X.td15=X.td15,Y.td15=Y.td15))
-    ts.small.td15 <- mcr:::mc.PBequi(X.td15, Y.td15,methodlarge=F,method.reg="TS")
-    ts.large.td15 <- mcr:::mc.PBequi(X.td15, Y.td15,methodlarge=T,method.reg="TS")
+    ts.small.td15 <- mcrPioda:::mc.PBequi(X.td15, Y.td15,methodlarge=F,method.reg="TS")
+    ts.large.td15 <- mcrPioda:::mc.PBequi(X.td15, Y.td15,methodlarge=T,method.reg="TS")
         
     checkEquals( 0.215941922555261, ts.small.td15$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -593,8 +593,8 @@ test.mc.PBequi.call2 <- function()
     # pbreg from deming package only returns positive slope estimates, so change sign of Y!
 #   deming.td20 <- pbreg(Y.td20~X.td20,data.frame(X.td20=X.td20,Y.td20=-Y.td20), method=3)
 
-    PBequi.small.td20 <- mcr:::mc.PBequi(X.td20, Y.td20,methodlarge=F)
-    PBequi.large.td20 <- mcr:::mc.PBequi(X.td20, Y.td20,methodlarge=T)
+    PBequi.small.td20 <- mcrPioda:::mc.PBequi(X.td20, Y.td20,methodlarge=F)
+    PBequi.large.td20 <- mcrPioda:::mc.PBequi(X.td20, Y.td20,methodlarge=T)
         
     checkEquals( 13.7983056265337, PBequi.small.td20$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -607,8 +607,8 @@ test.mc.PBequi.call2 <- function()
     
     #Theil-Sen
 #k    ts.td20 <- theilsen(Y.td20~X.td20,data.frame(X.td20=X.td20,Y.td20=Y.td20))
-    ts.small.td20 <- mcr:::mc.PBequi(X.td20, Y.td20,methodlarge=F,method.reg="TS")
-    ts.large.td20 <- mcr:::mc.PBequi(X.td20, Y.td20,methodlarge=T,method.reg="TS")
+    ts.small.td20 <- mcrPioda:::mc.PBequi(X.td20, Y.td20,methodlarge=F,method.reg="TS")
+    ts.large.td20 <- mcrPioda:::mc.PBequi(X.td20, Y.td20,methodlarge=T,method.reg="TS")
         
     checkEquals( 10.308472354129, ts.small.td20$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -639,8 +639,8 @@ test.mc.PBequi.call2 <- function()
                 12.5229666712546, 13.2198613541858)
         
 #    deming.td41 <- pbreg(Y.td41~X.td41,data.frame(X.td41=X.td41,Y.td41=Y.td41), method=3)
-    PBequi.small.td41 <- mcr:::mc.PBequi(X.td41, Y.td41,methodlarge=F)
-    PBequi.large.td41 <- mcr:::mc.PBequi(X.td41, Y.td41,methodlarge=T)
+    PBequi.small.td41 <- mcrPioda:::mc.PBequi(X.td41, Y.td41,methodlarge=F)
+    PBequi.large.td41 <- mcrPioda:::mc.PBequi(X.td41, Y.td41,methodlarge=T)
         
     checkEquals( -1.74861851923587, PBequi.small.td41$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -653,8 +653,8 @@ test.mc.PBequi.call2 <- function()
     
     #Theil-Sen
 #    ts.td41 <- theilsen(Y.td41~X.td41,data.frame(X.td41=X.td41,Y.td41=Y.td41))
-    ts.small.td41 <- mcr:::mc.PBequi(X.td41, Y.td41,methodlarge=F,method.reg="TS")
-    ts.large.td41 <- mcr:::mc.PBequi(X.td41, Y.td41,methodlarge=T,method.reg="TS")
+    ts.small.td41 <- mcrPioda:::mc.PBequi(X.td41, Y.td41,methodlarge=F,method.reg="TS")
+    ts.large.td41 <- mcrPioda:::mc.PBequi(X.td41, Y.td41,methodlarge=T,method.reg="TS")
         
     checkEquals( -0.33225717077892, ts.small.td41$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -686,8 +686,8 @@ test.mc.PBequi.call2 <- function()
 
      # pbreg from deming package only returns positive slope estimates, so change sign of Y!      
 #    deming.td75 <- pbreg(Y.td75~X.td75,data.frame(X.td75=X.td75,Y.td75=-Y.td75), method=3)
-    PBequi.small.td75 <- mcr:::mc.PBequi(X.td75, Y.td75,methodlarge=F)
-    PBequi.large.td75 <- mcr:::mc.PBequi(X.td75, Y.td75,methodlarge=T)
+    PBequi.small.td75 <- mcrPioda:::mc.PBequi(X.td75, Y.td75,methodlarge=F)
+    PBequi.large.td75 <- mcrPioda:::mc.PBequi(X.td75, Y.td75,methodlarge=T)
         
     checkEquals( 99.8952889829088, PBequi.small.td75$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -700,8 +700,8 @@ test.mc.PBequi.call2 <- function()
 
     #Theil-Sen
 #    ts.td75 <- theilsen(Y.td75~X.td75,data.frame(X.td75=X.td75,Y.td75=Y.td75))
-    ts.small.td75 <- mcr:::mc.PBequi(X.td75, Y.td75,methodlarge=F,method.reg="TS")
-    ts.large.td75 <- mcr:::mc.PBequi(X.td75, Y.td75,methodlarge=T,method.reg="TS")
+    ts.small.td75 <- mcrPioda:::mc.PBequi(X.td75, Y.td75,methodlarge=F,method.reg="TS")
+    ts.large.td75 <- mcrPioda:::mc.PBequi(X.td75, Y.td75,methodlarge=T,method.reg="TS")
         
     checkEquals( 96.629630145324, ts.small.td75$b0, tolerance=1e-12) 
     # Note: There is equivalence of results checked up to 12 decimal places
@@ -727,9 +727,9 @@ test.mc.PBequi.resampling2 <- function()
 	set.seed(42)
 	f <- function(x,y) {
 		ind <- sample(1:length(x), length(x), replace=TRUE)
-		test1 <- try( mcr:::mc.PBequi(x[ind],y[ind], calcCI=FALSE) )		# test without CI
+		test1 <- try( mcrPioda:::mc.PBequi(x[ind],y[ind], calcCI=FALSE) )		# test without CI
 		checkTrue( class(test1) != "try-error")
-		test2 <- try( mcr:::mc.PBequi(x[ind],y[ind], calcCI=TRUE) )		# test with CI
+		test2 <- try( mcrPioda:::mc.PBequi(x[ind],y[ind], calcCI=TRUE) )		# test with CI
 		checkTrue( class(test2) != "try-error")
 	}
 	
@@ -778,7 +778,7 @@ pabasim <- function(nsim=1, n=100, inter0 = 1, m0=2, sd0=0.1, pow=1, rmin=0, rma
             X <- r
         }
         Y <- inter0+m0*(r+r^pow*rnorm(n,0,sd0))
-        res <- mcr:::mc.PBequi(X,Y,method.reg=method.reg,slope.measure=slope.measure,extended.output=T,methodlarge=methodlarge,calcCI=T)
+        res <- mcrPioda:::mc.PBequi(X,Y,method.reg=method.reg,slope.measure=slope.measure,extended.output=T,methodlarge=methodlarge,calcCI=T)
         results[i,] <- c(res[[1]],res[[2]],res[[3]],res[[4]],res[[5]],res[[6]],res[[7]],res[[8]],res[[9]])
         medint[i] <- median(Y-m0*X)
         if(method.reg=="PBequi"){

@@ -11,7 +11,7 @@ if(as.numeric(rv$major) > 3 |
 }
 
 library("RUnit")
-library(mcr)
+library(mcrPioda)
 
 backup_options <- options()
 options(warn = 1)
