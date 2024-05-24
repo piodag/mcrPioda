@@ -8,3 +8,5 @@ src/*.dll
 .httr-oauth
 .DS_Store
 .quarto
+config.log
+config.status
