@@ -1,7 +1,7 @@
 Package: mcrPioda
 Version: 1.3.3
 Date: 2024-02-01
-Title: Method Comparison Regression - fork for M- and MM-Deming
+Title: Method Comparison Regression - mcr fork for M- and MM-Deming regression
 Maintainer: Giorgio Pioda <gfwp@ticino.com>
 Authors@R: c(
     person("Sergej", "Potapov", , "sergej.potapov@roche.com", role = c("aut", "cre"), comment=c(ORCID="0009-0002-6251-0279")),
