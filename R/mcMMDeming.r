@@ -33,6 +33,7 @@
 #' @param error.ratio ratio between squared measurement errors of reference- and test method, necessary for Deming regression (Default is 1).
 #' @param iter.max maximal number of iterations.
 #' @param threshold threshold value.
+#' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
 #' @return a list with elements
 #'  \item{b0}{intercept.}
 #'  \item{b1}{slope.}
@@ -45,7 +46,8 @@
 #'              Linnet K.
 #'              Estimation of the Linear Relationship between the Measurements of two Methods with Proportional Errors.
 #'              STATISTICS IN MEDICINE, Vol. 9, 1463-1473 (1990).
-mc.mmdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.000001)
+
+mc.mmdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.000001, tauMM= 4.685)
 {
   # Check validity of parameters
 
@@ -59,6 +61,7 @@ mc.mmdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.0000
   stopifnot(iter.max > 0)
   stopifnot(is.numeric(threshold))
   stopifnot(threshold >= 0)
+  stopifnot(tauMM > 0)
 
   # This algorithm often doesn't converge if there are negative
   # measurements in data set
@@ -140,7 +143,8 @@ mc.mmdemingConstCV <- function(X, Y, error.ratio, iter.max=120, threshold=0.0000
       euclid.d<-sqrt((X-XHAT)^2+(Y-YHAT)^2)
       #euclid.mad<-mad(euclid.d)
       stdeuclid.d<-euclid.d/scale.lts
-      k<-4.685
+      #k<-4.685
+      k <- tauMM
       W<-ifelse(abs(stdeuclid.d) <= k, (1-(stdeuclid.d/k)^2)^2, 0)
 
       # Calculation of regression coefficients

@@ -6,13 +6,18 @@
 \usage{
 mc.bootstrap(
   method.reg = c("LinReg", "WLinReg", "Deming", "WDeming", "PaBa", "PaBaLarge", "TS",
-    "PBequi", "MDeming", "MMDeming","NgMMDeming","PiMMDeming"),
+    "PBequi", "MDeming", "MMDeming", "NgMMDeming", "PiMMDeming"),
   jackknife = TRUE,
   bootstrap = c("none", "bootstrap", "nestedbootstrap"),
   X,
   Y,
   error.ratio,
   nsamples = 1000,
+  priorSlope = 1,
+  priorIntercept = 0,
+  kM = 1.345,
+  tauMM = 4.685,
+  bdPoint = 0.5,
   nnested = 25,
   iter.max = 30,
   threshold = 1e-08,
@@ -26,8 +31,8 @@ mc.bootstrap(
 \code{"WLinReg"} - weighted ordinary least square regression,\code{"Deming"} - Deming regression, 
 \code{"WDeming"} - weighted Deming regression, \code{"PaBa"} - Passing-Bablok regression.
 \code{"WDeming"} - weighted Deming regression, \code{"MDeming"} - weighted M-Deming regression,
-\code{"MMDeming"} - weighted MM-Deming regression,\code{"MMDeming"} - Passing-Bablok regression.}
-\code{"NgMMDeming"} - new generation MM-Deming regression,\code{"NgMMDeming"} - Passing-Bablok regression.}
+\code{"MMDeming"} - weighted MM-Deming regression,\code{"MMDeming"} - Passing-Bablok regression.
+\code{"NgMMDeming"} - new generation MM-Deming regression,\code{"NgMMDeming"} - Passing-Bablok regression.
 \code{"PiMMDeming"} - prior informed MM-Deming regression,\code{"PiMMDeming"} - Passing-Bablok regression.}
 
 \item{jackknife}{Logical value. If TRUE - Jackknife based confidence interval estimation method.}

@@ -5,7 +5,7 @@
 ## Function for computing weighted deming regression for two methods with  proportional errors.
 ##
 ## Copyright (C) 2011 Roche Diagnostics GmbH
-## Copyright (C) 2020 Giorgio Pioda for the M-Deming adaptation
+## Copyright (C) 2024 Giorgio Pioda for the Ng-MM-Deming adaptation
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -36,6 +36,9 @@
 #' @param error.ratio ratio between squared measurement errors of reference- and test method, necessary for Deming regression (Default is 1).
 #' @param iter.max maximal number of iterations.
 #' @param threshold threshold value.
+#' @param kM Huber's k for the M weighting, default kM = 1.345
+#' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
+#' @param bdPoint Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5
 #' @return a list with elements
 #'  \item{b0}{intercept.}
 #'  \item{b1}{slope.}
@@ -51,7 +54,8 @@
 #'              
 
 
-mc.mmNgdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.000001)
+mc.mmNgdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.000001,
+                                 kM = 1.345, tauMM = 4.685, bdPoint = 0.5, priorSlope = 1, priorIntercept = 0)
 {
   # Check validity of parameters
   stopifnot(is.numeric(X))
@@ -64,6 +68,11 @@ mc.mmNgdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0
   stopifnot(iter.max > 0)
   stopifnot(is.numeric(threshold))
   stopifnot(threshold >= 0)
+  stopifnot(priorSlope > 0)
+  stopifnot(kM > 0)
+  stopifnot(tauMM > 0)
+  stopifnot(bdPoint >= 0.5)
+  stopifnot(bdPoint <= 0.99)
   
   # This algorithm often doesn't converge if there are negative
   # measurements in data set
@@ -78,8 +87,8 @@ mc.mmNgdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0
     maxit <- iter.max
     nX <- length(X)
     # kM <- 0.95106 rational geometric alternative
-    kM <- 1.345
-    tauMM <- 4.685
+    #kM <- 1.345
+    #tauMM <- 4.685
     
     ### mode = 0 - Deming regression
     ### mode = 1 - WDeming regression
@@ -112,15 +121,15 @@ mc.mmNgdemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0
     ## Start values - refining phase. Order in base of weights, take only 50% of the highest
     ## weights and calculate a new M-Deming.
     
-    bPoint <- 0.5
+    # bdPoint <- 0.5
     
     refDat <- data.frame(X=X,Y=Y,W=W)
     selData <- order(W, decreasing=TRUE)
-    refDatHalf <- refDat[selData[1:(floor(nX*bPoint))],]
+    refDatHalf <- refDat[selData[1:(floor(nX*bdPoint))],]
     
     ref.MDeming <- .C("calc_MDem", 
                        x = as.numeric(refDatHalf$X), y = as.numeric(refDatHalf$Y), 
-                       n = as.integer(floor(nX*bPoint)), 
+                       n = as.integer(floor(nX*bdPoint)), 
                        error_ratio = as.numeric(error.ratio), 
                        intercept = as.numeric(intercept), 
                        slope = as.numeric(slope), 

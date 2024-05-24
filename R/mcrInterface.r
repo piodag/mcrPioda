@@ -240,6 +240,7 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
               method.bootstrap.ci = c("quantile", "Student", "BCa", "tBoot"),
               nsamples = 999, nnested = 25, rng.seed = NULL, rng.kind = "Mersenne-Twister",
               iter.max = 30, threshold = 0.000001, na.rm = FALSE, NBins = 1000000,
+              kM = 1.345, tauMM = 4.685, priorSlope = 1, priorIntercept = 0, bdPoint = 0.5,
 			  slope.measure = c("radian", "tangent"),methodlarge=TRUE)
 {
 	## Match choice parameters
@@ -406,7 +407,12 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
 							slope.measure = slope.measure,
               threshold = threshold, 
 							iter.max = iter.max, 
-							nnested = nnested)
+							nnested = nnested,
+							kM = kM,
+							tauMM = tauMM,
+							priorSlope = priorSlope,
+							priorIntercept = priorIntercept,
+							bdPoint = bdPoint)
         B0jack <- res$B0jack
         B1jack <- res$B1jack
         glob.coef <- res$glob.coef
@@ -451,7 +457,12 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
 								nsamples = nsamples, 
 								threshold = threshold, 
 								iter.max = iter.max, 
-								nnested = nnested)
+								nnested = nnested,
+								kM = kM,
+								tauMM = tauMM,
+								priorSlope = priorSlope,
+								priorIntercept = priorIntercept,
+								bdPoint = bdPoint)
             B0jack <- res$B0jack
             B1jack <- res$B1jack
 		}else{
@@ -464,7 +475,12 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
 								nsamples = nsamples, 
 								threshold = threshold, 
 								iter.max = iter.max, 
-								nnested = nnested)
+								nnested = nnested,
+								kM = kM,
+								tauMM = tauMM,
+								priorSlope = priorSlope,
+								priorIntercept = priorIntercept,
+								bdPoint = bdPoint) # Some doubt if here is necessary to add parameter
         }               
         xmean <- res$xmean
         B0 <- res$B0

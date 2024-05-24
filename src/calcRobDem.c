@@ -36,7 +36,6 @@ void calc_MDem(const double *X, const double *Y, int *nX,
     p += (X[i] - meanX) * (Y[i] - meanY);
   }
   
-  
   // Estimated points
   // [ Ref. K.Linnet. Estimation of the linear relationship between
   //        the measurements of two methods with  Proportional errors.
@@ -44,7 +43,6 @@ void calc_MDem(const double *X, const double *Y, int *nX,
   
   slope[0] = ((lambda*q - u) + sqrt(pow((u - lambda*q), 2) + 4*lambda*pow(p,2))) / (2*lambda*p);
   intercept[0] = meanY - slope[0]*meanX;
-  
   
   int j = 0;
   double d = 0, XHAT = 0, YHAT = 0;
@@ -55,7 +53,6 @@ void calc_MDem(const double *X, const double *Y, int *nX,
   double k = *kM;
   double euclid[n];
   double work[n];
-
   
   //do loop at least once
   while(i < itermax[0]){
@@ -72,7 +69,6 @@ void calc_MDem(const double *X, const double *Y, int *nX,
   // Stop loop, calculate MAD
    mad = gsl_stats_mad(euclid,1,n,work);
         
-        
     for(j = 0; j < n; j++){  
       if( euclid[j] / mad <= k){
         W[j] = 1;
@@ -83,14 +79,11 @@ void calc_MDem(const double *X, const double *Y, int *nX,
       sumW += W[j];
       XW += W[j] * X[j];
       YW += W[j] * Y[j];
-      
     }
     
     XW = XW/sumW;
     YW = YW/sumW;
     *xw = XW;
-    
-
     
     //Calculation of regression coefficients
     U = 0, Q = 0, P = 0;
@@ -111,8 +104,7 @@ void calc_MDem(const double *X, const double *Y, int *nX,
     }
     
     // This part is set to break resonance in the convergence. It is crucial to 
-    // average both slope AND intercept.
-    // Makes convergence faster.
+    // average both slope AND intercept. Makes convergence much faster.
     
     if(i % 2){
       slope[0] = (slope[0] + B1) / 2;
@@ -131,10 +123,6 @@ void calc_MDem(const double *X, const double *Y, int *nX,
   
 }
 
-
-// MM Deming rewriting. The big problem is the estimate of the starting value. The covSest() SFAST function is way too unreliable
-// to be used in C; generates too many false starts. The whole SFAST ROCKE alternance must be replaced. Here only the MM optimization
-// part.
 
 void calc_MMDem(const double *X, const double *Y, int *nX,
                double *error_ratio, double *intercept, double *slope,
@@ -217,7 +205,7 @@ void calc_MMDem(const double *X, const double *Y, int *nX,
     }
     
     // This part is set to break resonance in the convergence. It is crucial to 
-    // average both slope AND intercept. Makes convergence faster.
+    // average both slope AND intercept. Makes convergence much faster.
     
     if(i % 2){
       slope[0] = (slope[0] + B1) / 2;

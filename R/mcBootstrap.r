@@ -83,7 +83,8 @@
 mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaBa", "PaBaLarge","TS","PBequi","MDeming", "MMDeming","NgMMDeming","PiMMDeming"),
 						jackknife=TRUE, bootstrap=c("none","bootstrap", "nestedbootstrap"),
 						X, Y, error.ratio, nsamples=1000,
-                        nnested=25, iter.max=30, threshold=0.00000001, NBins=1000000, slope.measure=c("radian","tangent")) 
+						priorSlope = 1, priorIntercept = 0, kM = 1.345, tauMM = 4.685, bdPoint = 0.5, # row with added parameters
+            nnested=25, iter.max=30, threshold=0.00000001, NBins=1000000, slope.measure=c("radian","tangent")) 
 {
 	method.reg <- match.arg(method.reg)
 	bootstrap <- match.arg(bootstrap)
@@ -213,37 +214,37 @@ mc.bootstrap <- function(method.reg=c("LinReg","WLinReg","Deming","WDeming","PaB
       callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
         if(sd(X[idx])<=0){
           ## All identical points, no estimation possible
-          warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
+          warning("Resampling MDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
           list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA))
-        }
-        mc.mdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold)
+        } 
+        mc.mdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold, kM=kM )
       }
     }else if(method.reg == "MMDeming"){
       callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
         if(sd(X[idx])<=0){
           ## All identical points, no estimation possible
-          warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
+          warning("Resampling MMDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
           list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA))
         }
-        mc.mmdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold)
+        mc.mmdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold,tauMM=tauMM)
       }
     }else if(method.reg == "NgMMDeming"){
       callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
         if(sd(X[idx])<=0){
           ## All identical points, no estimation possible
-          warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
+          warning("Resampling NgMMDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
           list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA))
         }
-        mc.mmNgdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold)
+        mc.mmNgdemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold,kM=kM,tauMM=tauMM,bdPoint=bdPoint)
       }
     } else if(method.reg == "PiMMDeming"){
       callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){
         if(sd(X[idx])<=0){
           ## All identical points, no estimation possible
-          warning("Resampling WDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
+          warning("Resampling PiMMDeming regression: all x coordinates in subsample identical - regression coefficients undetermined!")
           list(b0=as.numeric(NA),b1=as.numeric(NA),iter=0,xw=as.numeric(NA))
         }
-        mc.mmPidemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold)
+        mc.mmPidemingConstCV(X[idx],Y[idx],error.ratio=error.ratio,iter.max=iter.max,threshold=threshold,priorSlope=priorSlope,priorIntercept=priorIntercept,tauMM=tauMM,kM=kM)
       }
     } else if(method.reg == "PaBaLarge"){
         callfun.reg <- function(idx, X, Y, error.ratio, iter.max, NBins, slope.measure){

@@ -496,7 +496,7 @@ MCResultBCa.printSummary<-function(.Object)
     if(regmeth=="MMDeming")
       regtext <- "Weighted MM-Deming Regression"
     if(regmeth=="NgMMDeming")
-      regtext <- "Next Generation MM-Deming Regression"
+      regtext <- "New Generation MM-Deming Regression"
     if(regmeth=="PiMMDeming")
       regtext <- "Prior informed MM-Deming Regression"
     if(regmeth %in% c("PaBa", "PaBaLarge")) 

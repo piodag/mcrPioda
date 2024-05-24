@@ -5,7 +5,7 @@
 ## Function for computing weighted deming regression for two methods with  proportional errors.
 ##
 ## Copyright (C) 2011 Roche Diagnostics GmbH
-## Copyright (C) 2020 Giorgio Pioda for the M-Deming adaptation
+## Copyright (C) 2024 Giorgio Pioda for the Pi-MM-Deming adaptation
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -36,6 +36,9 @@
 #' @param error.ratio ratio between squared measurement errors of reference- and test method, necessary for Deming regression (Default is 1).
 #' @param iter.max maximal number of iterations.
 #' @param threshold threshold value.
+#' @param priorSlope starting slope value, default priorSlope = 1
+#' @param priorIntercept starting intercept value, default priorIntercept = 0
+#' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
 #' @return a list with elements
 #'  \item{b0}{intercept.}
 #'  \item{b1}{slope.}
@@ -51,8 +54,11 @@
 #'              
 
 
-mc.mmPidemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.000001)
-{
+mc.mmPidemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0.000001,
+                                 priorSlope = 1, priorIntercept = 0, tauMM = 4.685 , kM = 1.345
+                                 )
+
+  {
   # Check validity of parameters
   stopifnot(is.numeric(X))
   stopifnot(is.numeric(Y))
@@ -64,6 +70,9 @@ mc.mmPidemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0
   stopifnot(iter.max > 0)
   stopifnot(is.numeric(threshold))
   stopifnot(threshold >= 0)
+  stopifnot(priorSlope > 0)
+  stopifnot(tauMM > 0)
+  stopifnot(kM > 0)
   
   # This algorithm often doesn't converge if there are negative
   # measurements in data set
@@ -78,10 +87,10 @@ mc.mmPidemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0
     maxit <- iter.max
     nX <- length(X)
     # kM <- 0.95106 rational geometric alternative
-    kM <- 1.345
-    tauMM <- 4.685
-    userSlope <- 1
-    userIntercept <- 0
+    # kM <- 1.345
+    # tauMM <- 4.685
+    # priorSlope <- 1
+    # priorIntercept <- 0
     
     ### mode = 0 - Deming regression
     ### mode = 1 - WDeming regression
@@ -94,8 +103,8 @@ mc.mmPidemingConstCV <- function(X, Y, error.ratio, iter.max = 30, threshold = 0
                        x = as.numeric(X), y = as.numeric(Y), 
                        n = as.integer(nX), 
                        error_ratio = as.numeric(error.ratio), 
-                       intercept = as.numeric(userIntercept),
-                       slope = as.numeric(userSlope),
+                       intercept = as.numeric(priorIntercept),
+                       slope = as.numeric(priorSlope),
                        seIntercept = as.numeric(seIntercept), 
                        seSlope = as.numeric(seSlope), 
                        mode = as.integer(mode), 

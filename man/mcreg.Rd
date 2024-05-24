@@ -13,7 +13,7 @@ mcreg(
   mtest.name = NULL,
   sample.names = NULL,
   method.reg = c("PaBa", "LinReg", "WLinReg", "Deming", "WDeming", "PaBaLarge", "PBequi",
-    "TS", "MDeming", "MMDeming","NgMMDeming","PiMMDeming"),
+    "TS", "MDeming", "MMDeming", "NgMMDeming", "PiMMDeming"),
   method.ci = c("bootstrap", "jackknife", "analytical", "nestedbootstrap"),
   method.bootstrap.ci = c("quantile", "Student", "BCa", "tBoot"),
   nsamples = 999,
@@ -24,6 +24,11 @@ mcreg(
   threshold = 1e-06,
   na.rm = FALSE,
   NBins = 1e+06,
+  kM = 1.345,
+  tauMM = 4.685,
+  priorSlope = 1,
+  priorIntercept = 0,
+  bdPoint = 0.5,
   slope.measure = c("radian", "tangent"),
   methodlarge = TRUE
 )
@@ -51,7 +56,7 @@ test method, necessary for Deming regression (Default 1).}
 \code{"WDeming"} - weighted Deming regression.\cr
 \code{"MDeming"} - Huber M-Deming regression.\cr
 \code{"MMDeming"} - Huber MM-Deming regression.\cr
-\code{"NgMMDeming"} - New generation MM-Deming regression.\cr
+\code{"NgMMDeming"} - new generation MM-Deming regression.\cr
 \code{"PiMMDeming"} - Prior informed MM-Deming regression.\cr
 \code{"TS"} - Theil-Sen regression.\cr
 \code{"PBequi"} - equivariant Passing-Bablok regression.\cr
