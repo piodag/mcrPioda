@@ -5,23 +5,25 @@ mcrPioda is a fork of the mcr package with additional functionalities:
  - NgMMDeming regression - With bootstrap CI and jackknife CI + SE
  - PiMMDeming regression - With bootstrap CI and jackknife CI + SE
  - plotBoxEllipses for Mahalanobis distance hypothesis testing
+ 
+All regression functions are written in C out of the MM-Deming which is kept
+for reproducibility and should be considered deprecated.
 
-The M-Deming and MM-Deming iterative procedures are still written in R and not compiled with C.
+There is an urgent need for M-Deming since **all Passing Bablok regression are biased** with
+low precision data sets (especially with 2 and 3 significant digits only).
 
-There is an urgent need for M-Deming since **all Passing Bablok regression are biased** when
-the low precision data set (2 and 3 significant digits only).
+Power testing for the jackknife and bootstrap Cis are ongoing. Jackknife could be an
+attractive alternative to bootstrap for small sample size.
 
-Power testing for the jackknife related methods are ongoing. Jackknife could be an
-attractive alternative to bootstrap.
+For the smallest samples the Bayesian Deming regression can be a better option.
+The same is true with heteroscedastic data sets. Check package *rstanbdp*.
 
 Worth mentioning that M-Deming relies on the very same recursive method proposed by Linnet
-the for WDeming, just with an M- algorithm for robust weights.
+the for WDeming, just with an M- algorithm for robust weight.
 
-MM-Deming algorithm is more complex. It is also a recursive method but relies on MM- methods. The most
-experimental part of this algorithm is the determination of the starting values.
-In this proposal (tested in 2021) the starting values for slope and intercept are calculated
-as average of the two possible covariances (flipping X and Y) calculated with Rocke's method.
-The subsequent iterative process is MM- like.
+MM-Deming algorithm is more complex. It is also a recursive method but relies on MM- methods and
+uses bi-square re-descending weights. The new algorithms NgMM- and PiMM- refresh the mad() dispersion
+of the residuals at each iterations, making the end results much less sensible to the starting values.
 
 Reference: [https://arxiv.org/pdf/2105.04628.pdf](https://arxiv.org/pdf/2105.04628.pdf)
 See also: [https://ssmtstatistica.wordpress.com/2024/01/27/equivariant-passing-bablok-regression-27-01-2024/](https://ssmtstatistica.wordpress.com/2024/01/27/equivariant-passing-bablok-regression-27-01-2024/)
