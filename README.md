@@ -5,9 +5,11 @@ mcrPioda is a fork of the mcr package with additional functionalities:
  - plotBoxEllipses for Mahalanobis distance hypothesis testing
 
 The M-Deming and MM-Deming iterative procedures are still written in R and not compiled with C
-in the master. In the devel tree the new release contains fast M- and MM-Deming reressions written in C.
-Just prefer the devel version 1.3.3 recently released. Windows binaries are also available,
-compiled via https://win-builder.r-project.org service.
+in the master. In the devel tree the new release contains fast M- and MM-Deming reressions written in C. 
+Just prefer the devel version 1.3.3 recently released. The master version is only kept for reproducibility
+tests. The Master version should be considered deprecated.
+
+Windows binaries are also available, compiled via https://win-builder.r-project.org service.
 
 There is an urgent need for M-Deming since **all Passing Bablok regression are biased** when
 the low precision data set (2 and 3 significant digits only).
