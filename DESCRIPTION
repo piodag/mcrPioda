@@ -1,16 +1,16 @@
 Package: mcrPioda
 Version: 1.3.3
-Date: 2024-02-01
+Date: 2024-05-30
 Title: Method Comparison Regression - mcr fork for M- and MM-Deming regression
 Maintainer: Giorgio Pioda <gfwp@ticino.com>
 Authors@R: c(
-    person("Sergej", "Potapov", , "sergej.potapov@roche.com", role = c("aut", "cre"), comment=c(ORCID="0009-0002-6251-0279")),
+    person("Giorgio", "Pioda", ,"gfwp@ticino.com", role = c("aut","cre"), comment=c(ORCID="0000-0002-8714-8678")),
+    person("Sergej", "Potapov", , "sergej.potapov@roche.com", role = c("aut"), comment=c(ORCID="0009-0002-6251-0279")),
     person("Fabian", "Model", , , role = c("aut")),
     person("Andre", "Schuetzenmeister", , "andre.schuetzenmeister@roche.com", role = c("aut"), comment=c(ORCID="0000-0002-2964-5502")),
     person("Ekaterina", "Manuilova", , "ekaterina.manuilova@roche.com", role = c("aut")),
     person("Florian", "Dufey", , "florian.dufey@roche.com", role = c("aut"), comment = c(ORCID = "0000-0001-6467-8556")),
     person("Jakob", "Raymaekers", ,"jakob.raymaekers@kuleuven.com", role = c("aut"), comment=c(ORCID="0000-0002-2093-3137")),
-    person("Giorgio", "Pioda", ,"gfwp@ticino.com", role = c("aut"), comment=c(ORCID="0000-0002-8714-8678")),
     person(given = "Venkatraman E.", family = "Seshan", role = c("ctb"), email = "seshanv@mskcc.org"),
     person("Roche", role = c("cph", "fnd"))
     )
