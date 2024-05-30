@@ -1,8 +1,8 @@
 \docType{package}
-\name{mcr-package}
-\alias{mcr}
-\alias{mcr-package}
-\title{Method Comparison Regression}
+\name{mcrPioda-package}
+\alias{mcrPioda}
+\alias{mcrPioda-package}
+\title{Method Comparison Regression - Mcr Fork for M- and MM-Deming Regression}
 \description{
  Regression methods to quantify the relation between two measurement methods are provided by this package. 
  In particular it addresses regression problems with errors in both variables and without repeated measurements.
@@ -26,6 +26,7 @@
   }
 }
 \author{
+  Giorgio Pioda <gfwp@ticino.com>,
   Sergej Potapov <sergej.potapov@roche.com>,
   Fabian Model <fabian.model@roche.com>,
   Andre Schuetzenmeister <andre.schuetzenmeister@roche.com>,
