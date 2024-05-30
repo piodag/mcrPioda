@@ -2,7 +2,7 @@
 % Please edit documentation in R/MCResultAnalyticalMethods.r
 \name{MCResultAnalytical.calcResponse}
 \alias{MCResultAnalytical.calcResponse}
-\title{Caluculate Response}
+\title{Calculate Response}
 \usage{
 MCResultAnalytical.calcResponse(.Object, x.levels, alpha = 0.05)
 }

@@ -19,11 +19,11 @@ mc.calcTstar(
 \arguments{
 \item{.Object}{object of class "MCResultResampling".}
 
-\item{x.levels}{a numeic vector of clinical desision points of interest.}
+\item{x.levels}{a numeric vector of clinical decision points of interest.}
 
-\item{iter.max}{maximal number of iterations  for calculation of weighted deming regression.}
+\item{iter.max}{maximal number of iterations  for calculation of weighted Deming regression.}
 
-\item{threshold}{threshold for calculation of weighted deming regression.}
+\item{threshold}{threshold for calculation of weighted Deming regression.}
 
 \item{kM}{Huber's k for the M weighting, default kM = 1.345}
 
@@ -33,7 +33,7 @@ mc.calcTstar(
 
 \item{priorIntercept}{starting intercept value for PiMMDeming, default priorIntercept = 0}
 
-\item{bdPoint}{Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5}
+\item{bdPoint}{Proportion of data points selected for the highly robust M regression used for the determination of the starting parameters. Default 0.5}
 }
 \value{
 Tstar numeric vector containing resampling pivot statistic.

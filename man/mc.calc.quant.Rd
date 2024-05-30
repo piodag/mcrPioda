@@ -9,7 +9,7 @@ mc.calc.quant(X, alpha)
 \arguments{
 \item{X}{numeric vector.}
 
-\item{alpha}{probabilty}
+\item{alpha}{probability}
 }
 \value{
 alpha-quantile of vector X.

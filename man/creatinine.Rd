@@ -7,5 +7,5 @@
        measurements in 110 heart surgery patients.
      }
      \usage{creatinine}
-     \format{A data frame containing 110 observations with serum and plasma creatinin measurements in mg/dL for each sample.}
+     \format{A data frame containing 110 observations with serum and plasma creatinine measurements in mg/dL for each sample.}
      \keyword{datasets}

@@ -97,7 +97,7 @@ contains four basic methods for calculation of confidence intervals for regressi
 
 \item{priorIntercept}{starting intercept value for PiMMDeming, default priorIntercept = 0}
 
-\item{bdPoint}{Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5}
+\item{bdPoint}{Proportion of data points selected for the highly robust M regression used for the determination of the starting parameters. Default 0.5}
 
 \item{slope.measure}{angular measure of pairwise slopes used for exact PaBa regression (see below for details).\cr
 \code{"radian"} - for data sets with even sample numbers median slope is calculated as average of two central slope angles.\cr
@@ -128,7 +128,7 @@ Deming and weighted Deming regression and Passing-Bablok regression. Point estim
 parameters are computed together with their standard errors and confidence intervals.
 }
 \details{
-The regression analysis yields regression coefficients 'Inercept' and 'Slope' of the regression
+The regression analysis yields regression coefficients 'Intercept' and 'Slope' of the regression
 \eqn{Testmethod = Intercept + Slope * Referencemethod}. There are methods for computing the systematical
 bias between reference and test method at a decision point Xc, \eqn{Bias(Xc) = Intercept + (Slope-1) * Xc},
 accompanied by its corresponding standard error and confidence interval. One can use plotting

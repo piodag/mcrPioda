@@ -2,7 +2,7 @@
 ##
 ## mcWDeming.r
 ##
-## Function for computing weighted deming regression for two methods with  proportional errors.
+## Function for computing weighted Deming regression for two methods with proportional errors.
 ##
 ## Copyright (C) 2011 Roche Diagnostics GmbH
 ## Copyright (C) 2020 Giorgio Pioda for the M-Deming adaptation
@@ -24,8 +24,8 @@
 
 #' Calculate Weighted Deming Regression
 #'
-#' Calculate weighted deming regression with iterative algorithm suggested by Linnet.
-#' This algorithm is avalaible only for positive values. But even in this case there is no guarantee that
+#' Calculate weighted Deming regression with iterative algorithm suggested by Linnet.
+#' This algorithm is available only for positive values. But even in this case there is no guarantee that
 #' the algorithm always converges.
 #'
 #' @param X measurement values of reference method.

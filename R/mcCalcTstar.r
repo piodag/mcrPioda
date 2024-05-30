@@ -29,14 +29,14 @@
 #' for Calculation of t-Bootstrap Confidence Intervals.
 #'
 #' @param .Object object of class "MCResultResampling".
-#' @param x.levels a numeic vector of clinical desision points of interest.
-#' @param iter.max maximal number of iterations  for calculation of weighted deming regression.
-#' @param threshold threshold for calculation of weighted deming regression.
+#' @param x.levels a numeric vector of clinical decision points of interest.
+#' @param iter.max maximal number of iterations  for calculation of weighted Deming regression.
+#' @param threshold threshold for calculation of weighted Deming regression.
 #' @param kM Huber's k for the M weighting, default kM = 1.345
 #' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
 #' @param priorSlope starting slope value for PiMMDeming, default priorSlope = 1
 #' @param priorIntercept starting intercept value for PiMMDeming, default priorIntercept = 0
-#' @param bdPoint Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5
+#' @param bdPoint Proportion of data points selected for the highly robust M regression used for the determination of the starting parameters. Default 0.5
 #' @return Tstar numeric vector containing resampling pivot statistic.
 #' @references  Carpenter J., Bithell J. 
 #'              Bootstrap confidence intervals: when, which, what? A practical guide for medical statisticians.
@@ -69,7 +69,7 @@ mc.calcTstar <- function(.Object, x.levels, iter.max=30, threshold = 0.000001,
     #  !! if we don't have any analytical estimate of standard error we
     #  need to use "nestedbootstrap" and obtain an resampling estimate at xc
     #
-    # xc - medical desision point
+    # xc - medical decision point
 
     response.glob <- response <- sigma.response <- matrix(nrow=nsamples,ncol=length(x.levels))
     for (k in 1:nsamples) 

@@ -42,11 +42,11 @@ MCResult.plotBias(
 \arguments{
 \item{x}{object of class "MCResult".}
 
-\item{xn}{# number of poits for drawing of confidence bounds/area.}
+\item{xn}{# number of points for drawing of confidence bounds/area.}
 
 \item{alpha}{numeric value specifying the 100(1-\code{alpha})\% confidence level of confidence intervals (Default is 0.05).}
 
-\item{add}{logical value. If \code{add=TRUE}, the grafic will be drawn in current grafical window.}
+\item{add}{logical value. If \code{add=TRUE}, the graphic will be drawn in current graphical window.}
 
 \item{prop}{a logical value. If \code{prop=TRUE} the proportional bias \eqn{ \%bias(Xc) = [ Intercept + (Slope-1) * Xc ] / Xc} will be drawn.}
 

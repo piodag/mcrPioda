@@ -172,7 +172,7 @@ MCResult.getData <- function(.Object)
 #' regression coefficients estimation. In case of Passing-Bablok
 #' Regression orthogonal residuals will be returned as optimized residuals .
 #' The residuals in x-direction are interesting for regression types which
-#' assume errors in both variables  (deming, weighted deming, Passing-Bablok), 
+#' assume errors in both variables  (Deming, weighted Deming, Passing-Bablok), 
 #' particularily for checking of model assumptions.
 #' @param .Object object of class "MCResult".
 #' @return residuals as data frame.
@@ -212,7 +212,7 @@ MCResult.getResiduals <- function(.Object)
 
 #' Get Fitted Values.
 #' 
-#' This funcion computes fitted values for a 'MCResult'-object. Depending
+#' This function computes fitted values for a 'MCResult'-object. Depending
 #' on the regression method and the error ratio, a projection onto the regression
 #' line is performed accordingly. For each point (x_i; y_i) i=1,...,n the projected
 #' point(x_hat_i; y_hat_i) is computed.
@@ -266,7 +266,7 @@ MCResult.getRegmethod <- function(.Object)
 #' \item{nPos}{sum of positive residuals}
 #' \item{nNeg}{sum of negative residuals}
 #' \item{cusum}{a cumulative sum of vector with scores ri for each point, sorted increasing by distance of points to regression line.}
-#' \item{max.cumsum}{Test statisics of linearity test}
+#' \item{max.cumsum}{Test statistics of linearity test}
 #' @references Passing, H., Bablok, W. (1983) 
 #'              A new biometrical procedure for testing the equality of measurements from two different analytical methods. 
 #'              Application of linear regression procedures for method comparison studies in clinical chemistry, Part I. 
@@ -538,7 +538,7 @@ MCResult.plotDifference <- function(.Object,
 #' Calculate Response \eqn{Intercept + Slope * Refrencemethod} with Corresponding Confidence Interval
 #'
 #' @param .Object object of class "MCResult".
-#' @param x.levels a numeric vector with points for which response schould be calculated.
+#' @param x.levels a numeric vector with points for which response should be calculated.
 #' @param alpha numeric value specifying the 100(1-\code{alpha})\% confidence level of the confidence interval (Default is 0.05).
 #' @param ... further parameters
 #' @return response and corresponding confidence interval for each point in vector \code{x.levels}.
@@ -570,7 +570,7 @@ MCResult.calcResponse <- function(.Object,x.levels,alpha,...)
 #' @param .Object object of class "MCResult".
 #' @param type One can choose between absolute (default)  and proportional bias (\code{Bias(Xc)/Xc}).
 #' @param percent logical value. If \code{percent = TRUE} the proportional bias will be calculated in percent.
-#' @param x.levels a numeric vector with decision points for which bias schould be calculated.
+#' @param x.levels a numeric vector with decision points for which bias should be calculated.
 #' @param alpha numeric value specifying the 100(1-\code{alpha})\% confidence level of the confidence interval (Default is 0.05).
 #' @param ... further parameters
 #' @return response and corresponding confidence interval for each decision point from x.levels.
@@ -1108,8 +1108,8 @@ MCResult.plot <- function(x,
 #' or only part of it.
 #'
 #' @param x object of class "MCResult".
-#' @param xn # number of poits for drawing of confidence bounds/area. 
-#' @param add logical value. If \code{add=TRUE}, the grafic will be drawn in current grafical window.
+#' @param xn # number of points for drawing of confidence bounds/area. 
+#' @param add logical value. If \code{add=TRUE}, the graphic will be drawn in current graphical window.
 #' @param prop a logical value. If \code{prop=TRUE} the proportional bias \eqn{ \%bias(Xc) = [ Intercept + (Slope-1) * Xc ] / Xc} will be drawn.
 #' @param xlim limits of the x-axis. If \code{xlim=NULL} the x-limits will be calculated automatically.
 #' @param ylim limits of the y-axis. If \code{ylim=NULL} the y-limits will be calculated automatically.

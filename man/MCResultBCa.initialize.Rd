@@ -59,7 +59,7 @@ MCResultBCa.initialize(
 
 \item{nnested}{number of inner simulation for nested bootstrap}
 
-\item{B0jack}{jackknife intercpet}
+\item{B0jack}{jackknife intercept}
 
 \item{B1jack}{jackknife slope}
 
@@ -77,7 +77,7 @@ MCResultBCa.initialize(
 
 \item{sigmaB1}{SD for slopes}
 
-\item{error.ratio}{for deming regression}
+\item{error.ratio}{for Deming regression}
 
 \item{weight}{1 for each data point}
 

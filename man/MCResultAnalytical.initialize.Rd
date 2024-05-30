@@ -32,7 +32,7 @@ MCResultAnalytical.initialize(
 
 \item{cimeth}{string specifying the confidence interval method}
 
-\item{error.ratio}{for deming regression}
+\item{error.ratio}{for Deming regression}
 
 \item{alpha}{value specifying the 100(1-alpha)\% confidence-level}
 

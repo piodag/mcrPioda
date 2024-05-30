@@ -56,7 +56,7 @@ necessary for Deming regression. Default 1.}
 
 \item{tauMM}{Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685}
 
-\item{bdPoint}{Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5.}
+\item{bdPoint}{Proportion of data points selected for the highly robust M regression used for the determination of the starting parameters. Default 0.5.}
 
 \item{nnested}{Number of nested bootstrap samples.}
 
@@ -96,7 +96,7 @@ a list consisting of
 }
 \description{
 Generate jackknife or (nested-) bootstrap replicates of a statistic applied to data. 
-Only a nonparametric ballanced design is possible. For each sample calculate 
+Only a nonparametric balanced design is possible. For each sample calculate 
 point estimations and standard  errors for regression coefficients.
 }
 \references{

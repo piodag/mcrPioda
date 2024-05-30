@@ -2,7 +2,7 @@
 ##
 ## mcWDeming.r
 ##
-## Function for computing weighted deming regression for two methods with  proportional errors.
+## Function for computing weighted Deming regression for two methods with proportional errors.
 ##
 ## Copyright (C) 2011 Roche Diagnostics GmbH
 ## Copyright (C) 2024 Giorgio Pioda for the Ng-MM-Deming adaptation
@@ -27,8 +27,8 @@
 #' Calculate MM Deming regression with iterative algorithm inspired on the work of Linnet.
 #' The algorithm uses bisquare redescending weights. For maximal stability and convergence
 #' the euclidean residuals are scaled in each iteration with a fresh calculated MAD instead of
-#' keeping the same MAD (assesed at the starting step) for the whole iteration.
-#' This algorithm is avalaible only for positive values. But even in this case there is no guarantee that
+#' keeping the same MAD (assessed at the starting step) for the whole iteration.
+#' This algorithm is available only for positive values. But even in this case there is no guarantee that
 #' the algorithm always converges.
 #'
 #' @param X measurement values of reference method.
@@ -38,7 +38,7 @@
 #' @param threshold threshold value.
 #' @param kM Huber's k for the M weighting, default kM = 1.345
 #' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
-#' @param bdPoint Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5
+#' @param bdPoint Proportion of data points selected for the highly robust M regression used for the determination of the starting parameters. Default 0.5
 #' @param priorSlope starting slope value for PiMMDeming, default priorSlope = 1
 #' @param priorIntercept starting intercept value for PiMMDeming, default priorIntercept = 0
 #' @return a list with elements

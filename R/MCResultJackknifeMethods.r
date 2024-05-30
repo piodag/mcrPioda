@@ -107,7 +107,7 @@ newMCResultJackknife <- function(   wdata, para, sample.names=NULL, method.names
 #' @param mnames empty method names vector
 #' @param regmeth string specifying the regression-method 
 #' @param cimeth string specifying the confidence interval method
-#' @param error.ratio for deming regression 
+#' @param error.ratio for Deming regression 
 #' @param alpha value specifying the 100(1-alpha)\% confidence-level
 #' @param glob.coef global coefficients
 #' @param B0jack jackknife intercepts
@@ -135,7 +135,7 @@ MCResultJackknife.initialize <- function(   .Object, data=data.frame(X=NA, Y=NA)
 }
 
 
-#' Caluculate Response 
+#' Calculate Response 
 #' 
 #' Calculate predicted values for given values of the reference-method.
 #' 

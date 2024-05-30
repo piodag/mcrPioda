@@ -98,7 +98,7 @@ newMCResultAnalytical <- function(wdata,para,xmean,sample.names=NULL,method.name
 #' @param mnames empty method names vector
 #' @param regmeth string specifying the regression-method 
 #' @param cimeth string specifying the confidence interval method
-#' @param error.ratio for deming regression 
+#' @param error.ratio for Deming regression 
 #' @param alpha value specifying the 100(1-alpha)\% confidence-level
 #' @param weight 1 for each data point
 #' @return No return value
@@ -121,7 +121,7 @@ MCResultAnalytical.initialize <- function(.Object,data=data.frame(X=NA,Y=NA),xme
 }
 
 
-#' Caluculate Response 
+#' Calculate Response 
 #' 
 #' Calculate predicted values for given values of the reference-method.
 #' @param .Object object of class 'MCResultAnalytical'

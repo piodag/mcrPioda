@@ -43,7 +43,7 @@
 #' @param nsamples Number of bootstrap samples.
 #' @param nnested Number of nested bootstrap samples.
 #' @param rng.seed Seed used to call mcreg, NULL if no seed was used
-#' @param rng.kind RNG type (string, see set.seed for details) used, only meaningfull if rng.seed was specified
+#' @param rng.kind RNG type (string, see set.seed for details) used, only meaningful if rng.seed was specified
 #' @param B0 Numeric vector with point estimations of intercept for each bootstrap sample. 
 #' @param B1 Numeric vector with point estimations of slope for each bootstrap sample. 
 #' @param sigmaB0 Numeric vector with estimation of standard error of intercept for each bootstrap sample. 
@@ -141,7 +141,7 @@ newMCResultResampling <- function(wdata,para,xmean,sample.names=NULL,method.name
 #' @param regmeth string specifying the regression-method 
 #' @param cimeth string specifying the confidence interval method
 #' @param bootcimeth string specifying the method for bootstrap confidence intervals
-#' @param error.ratio for deming regression 
+#' @param error.ratio for Deming regression 
 #' @param alpha value specifying the 100(1-alpha)\% confidence-level
 #' @param glob.coef global coefficients
 #' @param rng.seed random number generator seed
@@ -189,9 +189,9 @@ MCResultResampling.initialize <- function(.Object,data=data.frame(X=NA,Y=NA),par
     return(.Object)
 }
 
-#' Plot distriblution of bootstrap coefficients
+#' Plot distribution of bootstrap coefficients
 #'
-#' Plot distriblution of bootstrap coefficients (slope and intercept).
+#' Plot distribution of bootstrap coefficients (slope and intercept).
 #'
 #' @param .Object Object of class "MCResultResampling"
 #' @param breaks see function 'hist' (?hist) for details
@@ -219,6 +219,16 @@ MCResultResampling.plotBootstrapCoefficients<-function(.Object,breaks=20,...){
     text(.Object@glob.coef[1]+(hi$breaks[length(hi$breaks)]-hi$breaks[1])/30,range(c(dns$y,hi$density),na.rm=TRUE)[2],"estimation",col="red",adj=0)
 }
 
+
+#' Plot Box Ellipses of bootstrap coefficients
+#'
+#' Plot Box Ellipses of bootstrap coefficients (slope and intercept).
+#'
+#' @param .Object Object of class "MCResultResampling"
+#' @param breaks see function 'hist' (?hist) for details
+#' @param robust.cov Method for covariance. Default "MCD"
+#' @param ... further graphical parameters
+#' @return No return value
 
 MCResultResampling.plotBoxEllipses<-function(.Object, robust.cov = "MCD")
 {
@@ -269,9 +279,9 @@ MCResultResampling.plotBoxEllipses<-function(.Object, robust.cov = "MCD")
   
 }
 
-#' Plot distriblution of bootstrap pivot T
+#' Plot distribution of bootstrap pivot T
 #'
-#' Plot distriblution of bootstrap pivot T for slope and intercept and compare
+#' Plot distribution of bootstrap pivot T for slope and intercept and compare
 #' them with t(n-2) distribution.
 #'
 #' @param .Object Object of class "MCResultResampling".
@@ -342,7 +352,7 @@ MCResultResampling.bootstrapSummary<-function(.Object){
     return(round(bsum,5))
 }
 
-#' Caluculate Response 
+#' Calculate Response 
 #' 
 #' Calculate predicted values for given values of the reference-method.
 #' 

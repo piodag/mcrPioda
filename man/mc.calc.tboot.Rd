@@ -11,7 +11,7 @@ mc.calc.tboot(Xboot, Sboot, xhat, shat, alpha)
 The i-th element contains the point estimate for the i-th bootstrap sample.}
 
 \item{Sboot}{vector of standard deviations for each bootstrap sample. 
-It schould be estimated with any analytical method or nonparametric with nested bootstrap.}
+It should be estimated with any analytical method or nonparametric with nested bootstrap.}
 
 \item{xhat}{point estimate for the complete data set (scalar).}
 

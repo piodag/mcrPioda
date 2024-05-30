@@ -43,7 +43,7 @@
 #' @param nsamples Number of bootstrap samples.
 #' @param nnested Number of nested bootstrap samples.
 #' @param rng.seed Seed used to call mcreg, NULL if no seed was used
-#' @param rng.kind RNG type (string, see set.seed for details) used, only meaningfull if rng.seed was specified
+#' @param rng.kind RNG type (string, see set.seed for details) used, only meaningful if rng.seed was specified
 #' @param B0jack Numeric vector with point estimations of intercept for jackknife samples.
 #' @param B1jack Numeric vector with point estimations of slope for jackknife samples.
 #' @param B0 Numeric vector with point estimations of intercept for each bootstrap sample.
@@ -150,7 +150,7 @@ newMCResultBCa <- function( wdata, para, xmean, sample.names=NULL, method.names=
 #' @param regmeth string specifying the regression-method 
 #' @param cimeth string specifying the confidence interval method
 #' @param bootcimeth string specifying the method for bootstrap confidence intervals
-#' @param error.ratio for deming regression 
+#' @param error.ratio for Deming regression 
 #' @param alpha value specifying the 100(1-alpha)\% confidence-level
 #' @param glob.coef global coefficients
 #' @param rng.seed random number generator seed
@@ -158,7 +158,7 @@ newMCResultBCa <- function( wdata, para, xmean, sample.names=NULL, method.names=
 #' @param glob.sigma global sd values for regression parameters
 #' @param nsamples number of samples for resampling
 #' @param nnested number of inner simulation for nested bootstrap
-#' @param B0jack jackknife intercpet
+#' @param B0jack jackknife intercept
 #' @param B1jack jackknife slope
 #' @param B0 intercept
 #' @param B1 slope
@@ -201,9 +201,9 @@ MCResultBCa.initialize <- function( .Object, data=data.frame(X=NA,Y=NA), para=ma
     return(.Object)
 }
 
-#' Plot distriblution of bootstrap coefficients
+#' Plot distribution of bootstrap coefficients
 #'
-#' Plot distriblution of bootstrap coefficients (slope and intercept).
+#' Plot distribution of bootstrap coefficients (slope and intercept).
 #'
 #' @param .Object Object of class "MCResultBCa"
 #' @param breaks used in function 'hist' (see ?hist)
@@ -232,6 +232,15 @@ MCResultBCa.plotBootstrapCoefficients<-function(.Object, breaks=20, ...)
     text(.Object@glob.coef[1]+(hi$breaks[length(hi$breaks)]-hi$breaks[1])/30,range(c(dns$y,hi$density),na.rm=TRUE)[2],"estimation",col="red",adj=0)
 }
 
+#' Plot Box Ellipses of bootstrap coefficients
+#'
+#' Plot Box Ellipses of bootstrap coefficients (slope and intercept).
+#'
+#' @param .Object Object of class "MCResultResampling"
+#' @param breaks see function 'hist' (?hist) for details
+#' @param robust.cov Method for covariance. Default "MCD"
+#' @param ... further graphical parameters
+#' @return No return value
 
 MCResultBCa.plotBoxEllipses<-function(.Object, robust.cov = "MCD")
 {
@@ -283,9 +292,9 @@ MCResultBCa.plotBoxEllipses<-function(.Object, robust.cov = "MCD")
   
 }
 
-#' Plot distriblution of bootstrap pivot T
+#' Plot distribution of bootstrap pivot T
 #'
-#' Plot distriblution of bootstrap pivot T for slope and intercept and compare
+#' Plot distribution of bootstrap pivot T for slope and intercept and compare
 #' them with t(n-2) distribution.
 #'
 #' @param .Object Object of class "MCResultBCa".
@@ -360,7 +369,7 @@ MCResultBCa.bootstrapSummary<-function(.Object)
     return(round(bsum, 5))
 }
 
-#' Caluculate Response 
+#' Calculate Response 
 #' 
 #' Calculate predicted values for given values of the reference-method.
 #' @param .Object object of class 'MCResultBCa'

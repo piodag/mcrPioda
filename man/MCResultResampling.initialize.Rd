@@ -71,7 +71,7 @@ MCResultResampling.initialize(
 
 \item{sigmaB1}{SD for 'B1'}
 
-\item{error.ratio}{for deming regression}
+\item{error.ratio}{for Deming regression}
 
 \item{weight}{1 for each data point}
 

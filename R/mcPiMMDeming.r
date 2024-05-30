@@ -2,7 +2,7 @@
 ##
 ## mcWDeming.r
 ##
-## Function for computing weighted deming regression for two methods with  proportional errors.
+## Function for computing weighted Deming regression for two methods with proportional errors.
 ##
 ## Copyright (C) 2011 Roche Diagnostics GmbH
 ## Copyright (C) 2024 Giorgio Pioda for the Pi-MM-Deming adaptation
@@ -27,8 +27,8 @@
 #' Calculate MM Deming regression with iterative algorithm inspired on the work of Linnet.
 #' The algorithm uses bisquare redescending weights. For maximal stability and convergence
 #' the euclidean residuals are scaled in each iteration with a fresh calculated MAD instead of
-#' keeping the same MAD (assesed at the starting step) for the whole iteration.
-#' This algorithm is avalaible only for positive values. But even in this case there is no guarantee that
+#' keeping the same MAD (assessed at the starting step) for the whole iteration.
+#' This algorithm is available only for positive values. But even in this case there is no guarantee that
 #' the algorithm always converges.
 #'
 #' @param X measurement values of reference method.

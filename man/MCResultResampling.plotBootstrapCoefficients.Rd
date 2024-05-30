@@ -2,7 +2,7 @@
 % Please edit documentation in R/MCResultResamplingMethods.r
 \name{MCResultResampling.plotBootstrapCoefficients}
 \alias{MCResultResampling.plotBootstrapCoefficients}
-\title{Plot distriblution of bootstrap coefficients}
+\title{Plot distribution of bootstrap coefficients}
 \usage{
 MCResultResampling.plotBootstrapCoefficients(.Object, breaks = 20, ...)
 }
@@ -17,5 +17,5 @@ MCResultResampling.plotBootstrapCoefficients(.Object, breaks = 20, ...)
 No return value
 }
 \description{
-Plot distriblution of bootstrap coefficients (slope and intercept).
+Plot distribution of bootstrap coefficients (slope and intercept).
 }

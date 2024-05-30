@@ -17,7 +17,7 @@ MCResult.calcBias(
 \arguments{
 \item{.Object}{object of class "MCResult".}
 
-\item{x.levels}{a numeric vector with decision points for which bias schould be calculated.}
+\item{x.levels}{a numeric vector with decision points for which bias should be calculated.}
 
 \item{type}{One can choose between absolute (default)  and proportional bias (\code{Bias(Xc)/Xc}).}
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/MCResultBCaMethods.r
 \name{MCResultBCa.plotBootstrapT}
 \alias{MCResultBCa.plotBootstrapT}
-\title{Plot distriblution of bootstrap pivot T}
+\title{Plot distribution of bootstrap pivot T}
 \usage{
 MCResultBCa.plotBootstrapT(.Object, breaks = 20, ...)
 }
@@ -17,6 +17,6 @@ MCResultBCa.plotBootstrapT(.Object, breaks = 20, ...)
 No return value
 }
 \description{
-Plot distriblution of bootstrap pivot T for slope and intercept and compare
+Plot distribution of bootstrap pivot T for slope and intercept and compare
 them with t(n-2) distribution.
 }

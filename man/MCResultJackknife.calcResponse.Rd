@@ -2,7 +2,7 @@
 % Please edit documentation in R/MCResultJackknifeMethods.r
 \name{MCResultJackknife.calcResponse}
 \alias{MCResultJackknife.calcResponse}
-\title{Caluculate Response}
+\title{Calculate Response}
 \usage{
 MCResultJackknife.calcResponse(.Object, x.levels, alpha = 0.05)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/MCResultBCaMethods.r
 \name{MCResultBCa.plotBootstrapCoefficients}
 \alias{MCResultBCa.plotBootstrapCoefficients}
-\title{Plot distriblution of bootstrap coefficients}
+\title{Plot distribution of bootstrap coefficients}
 \usage{
 MCResultBCa.plotBootstrapCoefficients(.Object, breaks = 20, ...)
 }
@@ -17,5 +17,5 @@ MCResultBCa.plotBootstrapCoefficients(.Object, breaks = 20, ...)
 No return value
 }
 \description{
-Plot distriblution of bootstrap coefficients (slope and intercept).
+Plot distribution of bootstrap coefficients (slope and intercept).
 }

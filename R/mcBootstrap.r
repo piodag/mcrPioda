@@ -25,7 +25,7 @@
 #' Resampling estimation of regression parameters and standard  errors.
 #' 
 #' Generate jackknife or (nested-) bootstrap replicates of a statistic applied to data. 
-#' Only a nonparametric ballanced design is possible. For each sample calculate 
+#' Only a nonparametric balanced design is possible. For each sample calculate 
 #' point estimations and standard  errors for regression coefficients.
 #' 
 #' @param X Measurement values of reference method
@@ -50,7 +50,7 @@
 #' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
 #' @param priorSlope starting slope value for PiMMDeming, default priorSlope = 1
 #' @param priorIntercept starting intercept value for PiMMDeming, default priorIntercept = 0
-#' @param bdPoint Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5.
+#' @param bdPoint Proportion of data points selected for the highly robust M regression used for the determination of the starting parameters. Default 0.5.
 #' @param NBins number of bins used when 'reg.method="PaBaLarge"' to classify each slope in one of 'NBins' bins of constant slope angle covering the range of all slopes.
 #' @param slope.measure angular measure of pairwise slopes used for exact PaBa regression (see \code{\link{mcreg}} for details).\cr   
 #'          \code{"radian"} - for data sets with even sample numbers median slope is calculated as average of two central slope angles.\cr

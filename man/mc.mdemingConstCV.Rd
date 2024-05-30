@@ -34,8 +34,8 @@ a list with elements
  \item{iter}{number of iterations.}
 }
 \description{
-Calculate weighted deming regression with iterative algorithm suggested by Linnet.
-This algorithm is avalaible only for positive values. But even in this case there is no guarantee that
+Calculate weighted Deming regression with iterative algorithm suggested by Linnet.
+This algorithm is available only for positive values. But even in this case there is no guarantee that
 the algorithm always converges.
 }
 \references{

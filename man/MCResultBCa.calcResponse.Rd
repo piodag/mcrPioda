@@ -2,7 +2,7 @@
 % Please edit documentation in R/MCResultBCaMethods.r
 \name{MCResultBCa.calcResponse}
 \alias{MCResultBCa.calcResponse}
-\title{Caluculate Response}
+\title{Calculate Response}
 \usage{
 MCResultBCa.calcResponse(
   .Object,

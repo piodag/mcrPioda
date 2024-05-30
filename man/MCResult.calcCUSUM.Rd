@@ -15,7 +15,7 @@ A list containing the following elements:
 \item{nPos}{sum of positive residuals}
 \item{nNeg}{sum of negative residuals}
 \item{cusum}{a cumulative sum of vector with scores ri for each point, sorted increasing by distance of points to regression line.}
-\item{max.cumsum}{Test statisics of linearity test}
+\item{max.cumsum}{Test statistics of linearity test}
 }
 \description{
 Calculate CUSUM Statistics According to Passing & Bablok (1983)

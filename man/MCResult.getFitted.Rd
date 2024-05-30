@@ -14,7 +14,7 @@ MCResult.getFitted(.Object)
 fitted values as data frame.
 }
 \description{
-This funcion computes fitted values for a 'MCResult'-object. Depending
+This function computes fitted values for a 'MCResult'-object. Depending
 on the regression method and the error ratio, a projection onto the regression
 line is performed accordingly. For each point (x_i; y_i) i=1,...,n the projected
 point(x_hat_i; y_hat_i) is computed.

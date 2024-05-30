@@ -76,7 +76,7 @@ compareFit <- function( ... )
             axis.lab[i] <- paste(models[[i]]@regmeth," fit\n",models[[i]]@cimeth,"(",models[[i]]@bootcimeth,") CI",sep="")
     }# end of loop
 
-    YLIM <- c(0.6,nm+0.3) # limits for grafic
+    YLIM <- c(0.6,nm+0.3) # limits for graphic
     
     old.par <- par(c("mfrow", "oma", "mar"))
 	on.exit(par(old.par))

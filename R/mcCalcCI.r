@@ -106,7 +106,7 @@ mc.calc.Student<-function(Xboot, xhat, alpha, npoints)
 #' @param Xboot vector of point estimates for bootstrap sample. 
 #'        The i-th element contains the point estimate for the i-th bootstrap sample. 
 #' @param Sboot vector of standard deviations for each bootstrap sample. 
-#'        It schould be estimated with any analytical method or nonparametric with nested bootstrap.  
+#'        It should be estimated with any analytical method or nonparametric with nested bootstrap.  
 #' @param xhat point estimate for the complete data set (scalar).
 #' @param shat estimate of standard deviation for the complete data set (scalar).
 #' @param alpha numeric value specifying the 100(1-alpha)\% confidence level for the confidence interval (Default is 0.05).
@@ -132,7 +132,7 @@ mc.calc.tboot <- function(Xboot, Sboot, xhat, shat, alpha)
 #' described in Effron&Tibshirani.
 #'
 #' @param X numeric vector.
-#' @param alpha probabilty
+#' @param alpha probability
 #' @return alpha-quantile of vector X.
 mc.calc.quant <- function(X, alpha) 
 {

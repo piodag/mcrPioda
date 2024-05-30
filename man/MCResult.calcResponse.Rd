@@ -10,7 +10,7 @@ MCResult.calcResponse(.Object, x.levels, alpha, ...)
 \arguments{
 \item{.Object}{object of class "MCResult".}
 
-\item{x.levels}{a numeric vector with points for which response schould be calculated.}
+\item{x.levels}{a numeric vector with points for which response should be calculated.}
 
 \item{alpha}{numeric value specifying the 100(1-\code{alpha})\% confidence level of the confidence interval (Default is 0.05).}
 

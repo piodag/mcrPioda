@@ -2,7 +2,7 @@
 % Please edit documentation in R/MCResultResamplingMethods.r
 \name{MCResultResampling.calcResponse}
 \alias{MCResultResampling.calcResponse}
-\title{Caluculate Response}
+\title{Calculate Response}
 \usage{
 MCResultResampling.calcResponse(
   .Object,

@@ -32,7 +32,7 @@ mc.mmNgdemingConstCV(
 
 \item{tauMM}{Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685}
 
-\item{bdPoint}{Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5}
+\item{bdPoint}{Proportion of data points selected for the highly robust M regression used for the determination of the starting parameters. Default 0.5}
 
 \item{priorSlope}{starting slope value for PiMMDeming, default priorSlope = 1}
 
@@ -49,8 +49,8 @@ a list with elements
 Calculate MM Deming regression with iterative algorithm inspired on the work of Linnet.
 The algorithm uses bisquare redescending weights. For maximal stability and convergence
 the euclidean residuals are scaled in each iteration with a fresh calculated MAD instead of
-keeping the same MAD (assesed at the starting step) for the whole iteration.
-This algorithm is avalaible only for positive values. But even in this case there is no guarantee that
+keeping the same MAD (assessed at the starting step) for the whole iteration.
+This algorithm is available only for positive values. But even in this case there is no guarantee that
 the algorithm always converges.
 }
 \references{

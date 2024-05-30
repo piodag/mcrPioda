@@ -28,7 +28,7 @@
 #' Deming and weighted Deming regression and Passing-Bablok regression. Point estimates of regression
 #' parameters are computed together with their standard errors and confidence intervals.
 #'
-#' The regression analysis yields regression coefficients 'Inercept' and 'Slope' of the regression
+#' The regression analysis yields regression coefficients 'Intercept' and 'Slope' of the regression
 #' \eqn{Testmethod = Intercept + Slope * Referencemethod}. There are methods for computing the systematical
 #' bias between reference and test method at a decision point Xc, \eqn{Bias(Xc) = Intercept + (Slope-1) * Xc},
 #' accompanied by its corresponding standard error and confidence interval. One can use plotting
@@ -127,7 +127,7 @@
 #' @param tauMM Tukey's tau for bisquare redescending weighting function, default tauMM = 4,685
 #' @param priorSlope starting slope value for PiMMDeming, default priorSlope = 1
 #' @param priorIntercept starting intercept value for PiMMDeming, default priorIntercept = 0
-#' @param bdPoint Proportion of data points selected for the highgly robust M regression used for the determination of the starting parameters. Default 0.5
+#' @param bdPoint Proportion of data points selected for the highly robust M regression used for the determination of the starting parameters. Default 0.5
 #' @param na.rm remove measurement pairs that contain missing values (Default is FALSE).
 #' @param NBins number of bins used when 'reg.method="PaBaLarge"' to classify each slope in one of 'NBins' bins covering the range of all slopes
 #' @param slope.measure angular measure of pairwise slopes used for exact PaBa regression (see below for details).\cr   

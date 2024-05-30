@@ -56,7 +56,7 @@ newMCResultResampling(
 
 \item{rng.seed}{Seed used to call mcreg, NULL if no seed was used}
 
-\item{rng.kind}{RNG type (string, see set.seed for details) used, only meaningfull if rng.seed was specified}
+\item{rng.kind}{RNG type (string, see set.seed for details) used, only meaningful if rng.seed was specified}
 
 \item{B0}{Numeric vector with point estimations of intercept for each bootstrap sample.}
 
