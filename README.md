@@ -25,5 +25,5 @@ MM-Deming algorithm is more complex. It is also a recursive method but relies on
 uses bi-square re-descending weights. The new algorithms NgMM- and PiMM- refresh the mad() dispersion
 of the residuals at each iterations, making the end results much less sensible to the starting values.
 
-Reference: [https://arxiv.org/pdf/2105.04628.pdf](https://arxiv.org/pdf/2105.04628.pdf)
+Reference: [http://arxiv.org/pdf/2105.04628.pdf](http://arxiv.org/pdf/2105.04628)
 See also: [https://ssmtstatistica.wordpress.com/2024/01/27/equivariant-passing-bablok-regression-27-01-2024/](https://ssmtstatistica.wordpress.com/2024/01/27/equivariant-passing-bablok-regression-27-01-2024/)
