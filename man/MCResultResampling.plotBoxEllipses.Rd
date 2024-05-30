@@ -10,10 +10,6 @@ MCResultResampling.plotBoxEllipses(.Object, robust.cov = "MCD")
 \item{.Object}{Object of class "MCResultResampling"}
 
 \item{robust.cov}{Method for covariance. Default "MCD"}
-
-\item{breaks}{see function 'hist' (?hist) for details}
-
-\item{...}{further graphical parameters}
 }
 \value{
 No return value

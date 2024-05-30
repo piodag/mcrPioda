@@ -237,9 +237,7 @@ MCResultBCa.plotBootstrapCoefficients<-function(.Object, breaks=20, ...)
 #' Plot Box Ellipses of bootstrap coefficients (slope and intercept).
 #'
 #' @param .Object Object of class "MCResultResampling"
-#' @param breaks see function 'hist' (?hist) for details
 #' @param robust.cov Method for covariance. Default "MCD"
-#' @param ... further graphical parameters
 #' @return No return value
 
 MCResultBCa.plotBoxEllipses<-function(.Object, robust.cov = "MCD")
