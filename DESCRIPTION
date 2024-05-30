@@ -44,15 +44,3 @@ Collate: "mcrMisc.r" "mcLinReg.r" "mcDeming.r" "mcWDeming.r"
 RoxygenNote: 7.3.1
 LazyData: true
 NeedsCompilation: yes
-Packaged: 2024-02-01 11:10:03 UTC; gfwp
-Author: Giorgio Pioda [aut,cre] (<https://orcid.org/0000-0002-8714-8678>),
-  Sergej Potapov [aut] (<https://orcid.org/0009-0002-6251-0279>),
-  Fabian Model [aut],
-  Andre Schuetzenmeister [aut] (<https://orcid.org/0000-0002-2964-5502>),
-  Ekaterina Manuilova [aut],
-  Florian Dufey [aut] (<https://orcid.org/0000-0001-6467-8556>),
-  Jakob Raymaekers [aut] (<https://orcid.org/0000-0002-2093-3137>),
-  Venkatraman E. Seshan [ctb],
-  Roche [cph, fnd]
-Repository: CRAN
-Date/Publication: 2024-02-01 12:10:03 UTC
