@@ -9,6 +9,9 @@ MCResultResampling.printSummary(.Object)
 \arguments{
 \item{.Object}{object of class 'MCResultResampling'}
 }
+\value{
+no return value, print the analysis summary
+}
 \description{
 Functions prints a summary of the regression-analysis for objects of class 'MCResultResampling'.
 }

@@ -1,7 +1,7 @@
 Package: mcrPioda
 Version: 1.3.3
 Date: 2024-05-30
-Title: Method Comparison Regression - Mcr Fork for M- and MM-Deming Regression
+Title: Method Comparison Regression - Mcr Fork for M- And MM-Deming Regression
 Maintainer: Giorgio Pioda <gfwp@ticino.com>
 Authors@R: c(
     person("Giorgio", "Pioda", ,"gfwp@ticino.com", role = c("aut","cre"), comment=c(ORCID="0000-0002-8714-8678")),
@@ -21,7 +21,8 @@ Imports: stats, graphics, grDevices, methods, rrcov, mixtools
 Description: Regression methods to quantify the relation between two measurement
     methods are provided by this package. In particular it addresses regression
     problems with errors in both variables and without repeated measurements. It
-    implements the CLSI recommendations (see J. A. Budd et al. 
+    implements the Clinical Laboratory Standard International (CLSI) 
+    recommendations (see J. A. Budd et al. 
     (2018, <https://clsi.org/standards/products/method-evaluation/documents/ep09/>) 
     for analytical method comparison and bias estimation using patient samples.
     Furthermore, algorithms for Theil-Sen and equivariant Passing-Bablok estimators 
@@ -30,7 +31,7 @@ Description: Regression methods to quantify the relation between two measurement
     Further the robust M-Deming and MM-Deming (experimental) are available, see
     G. Pioda (2021, <arXiv:2105:04628>).
     A comprehensive overview over the implemented methods and references can be found 
-    in the manual pages "mcr-package" and "mcreg".
+    in the manual pages 'mcrPioda-package' and 'mcreg'.
 License: GPL (>= 3)
 Collate: "mcrMisc.r" "mcLinReg.r" "mcDeming.r" "mcWDeming.r"
         "mcPaBaLarge.r" "mcPaBa.r" "mcPBequi.r" "mcCalcCI.r"

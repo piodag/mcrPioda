@@ -439,6 +439,7 @@ MCResultResampling.calcResponse<-function(.Object, x.levels, alpha=0.05, bootcim
 #' Functions prints a summary of the regression-analysis for objects of class 'MCResultResampling'.
 #' 
 #' @param .Object object of class 'MCResultResampling'
+#' @returns no return value, print the analysis summary
 
 MCResultResampling.printSummary<-function(.Object){
     regmeth<-.Object@regmeth
