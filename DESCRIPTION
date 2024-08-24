@@ -42,6 +42,6 @@ Collate: "mcrMisc.r" "mcLinReg.r" "mcDeming.r" "mcWDeming.r"
         "MCResultResampling.r" "MCResultBCaMethods.r" "MCResultBCa.r"
         "mcrInterface.r" "mcrCompareFit.r" "mcrIncludeLegend.r" "zzz.r"
         "ktau.r" "mcMDeming.r" "mcMMDeming.r" "mcNgMMDeming.r" "mcPiMMDeming.r"
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 LazyData: true
 NeedsCompilation: yes

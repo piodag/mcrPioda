@@ -32,6 +32,7 @@ export(
 	"getRegmethod",
 	"getResiduals",
 	"getFitted",
+	"calcPaBaTiesRatio",
 	"getRJIF",
 	"includeLegend",
 	"mcreg",

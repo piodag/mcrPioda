@@ -92,6 +92,9 @@ setMethod("getResiduals",signature=c(.Object="MCResult"),definition=MCResult.get
 setGeneric("getFitted",function(.Object,...){standardGeneric("getFitted")})
 setMethod("getFitted",signature=c(.Object="MCResult"),definition=MCResult.getFitted)
 
+setGeneric("calcPaBaTiesRatio",function(.Object,...){standardGeneric("calcPaBaTiesRatio")})
+setMethod("calcPaBaTiesRatio",signature=c(.Object="MCResult"),definition=MCResult.calcPaBaTiesRatio)
+
 setGeneric("getRegmethod",function(.Object,...){standardGeneric("getRegmethod")})
 setMethod("getRegmethod",signature=c(.Object="MCResult"),definition=MCResult.getRegmethod)
 
