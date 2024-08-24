@@ -348,6 +348,15 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
         stop("Weighted linear regression for zero values is not available.")
     if(method.reg %in% c("WDeming","PaBa","MDeming","MMDeming","NgMMDeming","PiMMDeming") & method.ci=="bootstrap" & method.bootstrap.ci=="tBoot") 
         stop(paste("The analytical estimation of coefficients' SE for", method.reg ,"is not available. \nFor tBoot please choose nested bootstrap."))	
+    
+    ## Passing Bablok ties warning
+    
+    if(method.reg %in% c("PaBa", "PBequi" , "PaBaLarge") & min(data) < 0) 
+      message("PaBa methods are biased with low data precision, check the slopes ties ratio with calcPaBaTiesRatio()\n")
+    
+    ## Suggest Bayesian Deming regression for small sample size
+    if(length(x)< 50)
+      message("For a small sample size consider using the Bayesian Deming (robust) regression provided in the {rstanbdp} package")
 
     ## Analytical confidence intervals
     if(method.ci=="analytical"){
@@ -355,7 +364,7 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
             ## Determine if slope 1 or -1 is expected
             posCor <- cor(data[,"x"], data[,"y"], method="kendall") >= 0
             if(method.reg == "PaBa"){  
-                ## Compute slope matrix
+                ## Compute slope matrix 
                 #angM <- mc.calcAngleMat(data[,"x"], data[,"y"], posCor=posCor)
                 ## Regression
                 mc.res <- mc.paba(angM = NULL, data[,"x"], data[,"y"], 
