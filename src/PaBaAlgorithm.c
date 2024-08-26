@@ -138,7 +138,7 @@ void PaBaLargeData( double * pX, double * pY, int * pNData, int * pPosCor, int *
   else                                                              /* nValIndex2 is an odd number */ 
   {
     Index = IndexOf( half, pBins, *pNBins);                         
-    *pSlope = Tan( ((double)(Index) / (*pNBins)) * PI - PI2);
+    *pSlope = Tan( ((double)(Index) / (*pNBins)) * M_PI - PI2);
   }
   /* calculate confidence interval for the slope, the CI for the intercept will be calculated on R-side */
   /* Lower CI-Bound */
@@ -163,7 +163,7 @@ void PaBaLargeData( double * pX, double * pY, int * pNData, int * pPosCor, int *
     {
 	    LCLindex = IndexOf(nItems, pBins, *pNBins);
 		  if(LCLindex >= 0)
-        *pSlopeLower = Tan(((double)LCLindex/(*pNBins))*PI - PI2);
+        *pSlopeLower = Tan(((double)LCLindex/(*pNBins))*M_PI - PI2);
       else
 		    LCLundef = true; 
     }
@@ -188,7 +188,7 @@ void PaBaLargeData( double * pX, double * pY, int * pNData, int * pPosCor, int *
     {
 	    UCLindex = IndexOf(nItems, pBins, *pNBins);
 	    if(UCLindex >= 0)
-        *pSlopeUpper = Tan((double)UCLindex/(*pNBins) * PI - PI2);
+        *pSlopeUpper = Tan((double)UCLindex/(*pNBins) * M_PI - PI2);
 		  else
         UCLundef = true;
     }
@@ -233,7 +233,7 @@ void FillBins(  int * pnSlots, int * posCor, double * pXVals, double * pYVals,
 			if(dx != .0)                                        // avoiding division by zero              
 			{
 				phi = atan(dy/dx);
-				Index = (int) (.5 + (*nSlots)*(phi+PI2)/PI);           // indices are computed for all angles within 1st and 2nd quadrant of a cartesian coordinate system
+				Index = (int) (.5 + (*nSlots)*(phi+PI2)/M_PI);           // indices are computed for all angles within 1st and 2nd quadrant of a cartesian coordinate system
 				pnSlots[Index]++;                                 // ... casting cuts decimal digits
 				(*nAllItems)++;
         if( phi >= PI4 )
@@ -337,8 +337,8 @@ double getMedianSlope(int index1, int index2, int NBins, int tangent)
 {
   double Slope;
 
-  double Slope1 = ((double)index1 / (NBins)) * PI - PI2;
-  double Slope2 = ((double)index2 / (NBins)) * PI - PI2;
+  double Slope1 = ((double)index1 / (NBins)) * M_PI - PI2;
+  double Slope2 = ((double)index2 / (NBins)) * M_PI - PI2;
   
   if(tangent == 1)
   {
