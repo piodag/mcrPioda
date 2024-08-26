@@ -356,7 +356,7 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
     
     ## Suggest Bayesian Deming regression for small sample size
     if(length(x)< 50)
-      message("Remark: For a small sample size consider using the Bayesian Deming (robust) regression provided in the {rstanbdp} package")
+      message("Remark: For a small sample size consider using the Bayesian Deming (robust) regression provided by the {rstanbdp} package")
 
     ## Analytical confidence intervals
     if(method.ci=="analytical"){
