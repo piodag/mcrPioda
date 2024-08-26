@@ -351,12 +351,12 @@ mcreg <- function(x, y = NULL, error.ratio = 1, alpha = 0.05,
     
     ## Passing Bablok ties warning
     
-    if(method.reg %in% c("PaBa", "PBequi" , "PaBaLarge") & min(data) < 0) 
-      message("PaBa methods are biased with low data precision, check the slopes ties ratio with calcPaBaTiesRatio()\n")
+    if(method.reg %in% c("PaBa", "PBequi" , "PaBaLarge")) 
+      message("Remark: All PaBa methods are biased with low data precision, check the slopes ties ratio with calcPaBaTiesRatio()")
     
     ## Suggest Bayesian Deming regression for small sample size
     if(length(x)< 50)
-      message("For a small sample size consider using the Bayesian Deming (robust) regression provided in the {rstanbdp} package")
+      message("Remark: For a small sample size consider using the Bayesian Deming (robust) regression provided in the {rstanbdp} package")
 
     ## Analytical confidence intervals
     if(method.ci=="analytical"){

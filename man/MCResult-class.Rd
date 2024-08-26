@@ -11,6 +11,7 @@
 \alias{getRegmethod,MCResult-method}
 \alias{getResiduals,MCResult-method}
 \alias{getFitted,MCResult-method}
+\alias{calcPaBaTiesRatio,MCResult-method}
 \alias{getWeights,MCResult-method}
 \alias{plot,MCResult-method}
 \alias{plotBias,MCResult-method}
@@ -65,6 +66,7 @@ Ekaterina Manuilova \email{ekaterina.manuilova@roche.com},
 Andre Schuetzenmeister \email{andre.schuetzenmeister@roche.com}, 
 Fabian Model \email{fabian.model@roche.com}
 Sergej Potapov \email{sergej.potapov@roche.com}
+Giorgio Pioda \email{gfwp@ticino.com}
 }
 \examples{
 showClass("MCResult")

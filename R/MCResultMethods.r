@@ -248,6 +248,7 @@ MCResult.getFitted <- function(.Object)
 #' This function computes the ratio of slopes ties values in the classic pairwise
 #' PaBa slope calculation. A ratio higher than approx 0.05 may suggest a potential
 #' bias risk. In this case data precision is too low for correct PaBa estimation.
+#' The function is written in R and can be slow with large data set.
 #' @param .Object object of class "MCResult".
 #' @return PaBa ties ratio (ties slopes vs total slopes)
 #' @aliases calcPaBaTiesRatio
@@ -255,7 +256,7 @@ MCResult.getFitted <- function(.Object)
 MCResult.calcPaBaTiesRatio <- function (.Object)
 {
   
-  message("As rule of thumb with ratio values higher than 0.05 some kind of bias can be expected")
+  message("Experimental: As rule of thumb with ratio values higher than 0.05 some kind of bias can be expected for small samples")
   
   N <- nrow(.Object@data)
   dat <- .Object@data

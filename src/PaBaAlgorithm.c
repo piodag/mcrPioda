@@ -30,8 +30,8 @@
 /*typedef enum {false, true} bool;         false=0, true=1 */
 const double INF = 1020304.050607;      /* evaluated on R-side as Inf */
 const double EPS = 1.e-12;
-const double PI2 = PI/2;  
-const double PI4 = PI/4;
+const double PI2 = M_PI/2;  
+const double PI4 = M_PI/4;
 /* function prototypes to avoid implict declaration of functions */
 void FillBins(  int * pnSlots, int * posCor, double * pXVals, double * pYVals,
                 int * nData, int * nPos, int * nPos2, int * nNeg, int * nNeg2, 
