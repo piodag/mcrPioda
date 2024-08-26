@@ -17,4 +17,5 @@ PaBa ties ratio (ties slopes vs total slopes)
 This function computes the ratio of slopes ties values in the classic pairwise
 PaBa slope calculation. A ratio higher than approx 0.05 may suggest a potential
 bias risk. In this case data precision is too low for correct PaBa estimation.
+The function is written in R and can be slow with large data set.
 }
