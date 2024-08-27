@@ -185,7 +185,9 @@ void calc_PaBa(const double *X, const double *Y, const int *nX,
 
 	if(N*(N-1)/2 < 2e+8){
 		/* allocate storage: all helpers, initially zero */
-		double *ans = Calloc(N*(N-1)/2, double);                                  /* (n(n-1)/2) x 1  */
+		//double *ans = Calloc(N*(N-1)/2, double);                                  /* (n(n-1)/2) x 1  */
+		double *ans = R_Calloc(N*(N-1)/2, double);
+		
 
 		/*  calculate all angles */
 		calc_AngleMat_opt(X, Y, nX, pCor, ans, &nAllItems,
@@ -269,12 +271,19 @@ void calc_PaBa(const double *X, const double *Y, const int *nX,
 		if(LCLundef || UCLundef){                                            /* signal error(s) computing CI-bounds for slope */
 		    se_slope[0] = se_slope[1] = NA_REAL;
 		}
-		Free(ans);
+		
+		//Free(ans);
+		R_Free(ans);
 
 		/******************/
 		/* calculate intercept and confidence interval */
 		/******************/
-		double *mcres_intercept = Calloc(N, double);
+		
+		
+		//double *mcres_intercept = Calloc(N, double);
+		double *mcres_intercept = R_Calloc(N, double);
+		
+		
 		for(i=0; i < N; i++){
 			mcres_intercept[i] = diff(Y[i], slope[0]*X[i]);
 		}
@@ -319,7 +328,8 @@ void calc_PaBa(const double *X, const double *Y, const int *nX,
 				se_intercept[1] = quickselect(mcres_intercept, N, half-1);
 			}
 		}
-		Free(mcres_intercept);
+		//Free(mcres_intercept);
+		R_Free(mcres_intercept);
 	} else {
 		*slope = 0;
 		*intercept = 0;
