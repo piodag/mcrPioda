@@ -15,5 +15,4 @@ LaTeX: pdfLaTeX
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
-PackageBuildBinaryArgs: --configure-args=DSTRICT_R_HEADERS=1
 PackageCheckArgs: --as-cran
