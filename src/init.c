@@ -3,16 +3,11 @@
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
-/* FIXME: 
-   Check these declarations against the C/Fortran source code.
-*/
-
-
 /* .C calls */
-extern void calc_Deming(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
-extern void calc_Linreg(void *, void *, void *, void *, void *, void *, void *, void *, void *);
-extern void calc_PaBa(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
-extern void PaBaLargeData(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void calc_Deming(const double *, const double *, int *, double *, double *, double *, double *, double *, int *, int *, double *, double *, double *);
+extern void calc_Linreg(const double *, const double *, int *, double *, double *, double *, double *, double *, double *);
+extern void calc_PaBa(const double *, const double *, const int *, double *, double *, double *, double *, double *, int *, int *, int *);
+extern void PaBaLargeData(double *, double *, int *, int *, int *, double *, double *, double *, double *, int *, int *);
 
 /* .Call calls */
 extern SEXP calcAngleMat(SEXP, SEXP, SEXP);
